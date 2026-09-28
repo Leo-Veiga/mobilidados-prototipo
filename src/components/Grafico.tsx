@@ -1,9 +1,12 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Chart from 'chart.js/auto';
 import type { ChartConfiguration, ChartType, TooltipItem } from 'chart.js';
 import { fmt } from '@/lib/formato';
+import { baixarImagemGrafico, type InfoImagem } from '@/lib/imagemGrafico';
+import { IconeImagem } from './Icones';
+import styles from './Grafico.module.css';
 
 // Tema escuro, com as cores e a fonte do site
 Chart.defaults.color = '#fff';
@@ -31,20 +34,39 @@ interface Props {
   altura?: number;
   /** Descrição para leitores de tela */
   descricao: string;
+  /** Título, subtítulo e fonte da imagem baixada pelo botão "Baixar imagem" */
+  imagem: InfoImagem;
 }
 
-export default function Grafico({ config, altura = 300, descricao }: Props) {
+export default function Grafico({ config, altura = 300, descricao, imagem }: Props) {
   const canvas = useRef<HTMLCanvasElement>(null);
+  const [gerando, setGerando] = useState(false);
 
   useEffect(() => {
-    // O construtor não aceita a união de tipos; cada membro dela é uma configuração válida
-    const grafico = new Chart(canvas.current!, config as ChartConfiguration);
+    // O construtor não aceita a união de tipos; cada membro dela é uma configuração válida.
+    // Resolução mínima de 2x, para a imagem baixada ficar nítida mesmo em telas comuns.
+    const grafico = new Chart(canvas.current!, {
+      ...config,
+      options: { ...config.options, devicePixelRatio: Math.max(window.devicePixelRatio || 1, 2) },
+    } as ChartConfiguration);
     return () => grafico.destroy();
   }, [config]);
 
+  async function baixar() {
+    setGerando(true);
+    try { await baixarImagemGrafico(canvas.current!, imagem); } finally { setGerando(false); }
+  }
+
   return (
-    <div style={{ position: 'relative', height: altura }}>
-      <canvas ref={canvas} role="img" aria-label={descricao} />
-    </div>
+    <figure className={styles.figura}>
+      <div style={{ position: 'relative', height: altura }}>
+        <canvas ref={canvas} role="img" aria-label={descricao} />
+      </div>
+      <div className={styles.acoes}>
+        <button type="button" className={styles.botao} onClick={baixar} disabled={gerando}>
+          <IconeImagem tamanho={18} /> {gerando ? 'Gerando…' : 'Baixar imagem'}
+        </button>
+      </div>
+    </figure>
   );
 }

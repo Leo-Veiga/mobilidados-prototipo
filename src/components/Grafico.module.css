@@ -1,0 +1,9 @@
+.figura { margin: 0; }
+.acoes { display: flex; justify-content: flex-end; margin-top: 8px; }
+.botao {
+  display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px;
+  background: transparent; color: var(--verde-300); border: 1px solid var(--borda); border-radius: var(--raio);
+  font: 400 14px var(--fonte); cursor: pointer;
+}
+.botao:hover:not(:disabled) { border-color: var(--verde-300); background: var(--neutro-900); }
+.botao:disabled { opacity: .6; cursor: wait; }

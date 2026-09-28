@@ -76,13 +76,19 @@ export default function SecaoInfra({ ind, lugares, atual }: Props) {
         <div className="cartao">
           <h3>{nomeAtual}{ano ? ` — ${ano}` : ''}</h3>
           {ano
-            ? <Grafico config={composicao} descricao={`${g.nome} em ${nomeAtual}, ${ano}`} />
+            ? <Grafico
+                config={composicao} descricao={`${g.nome} em ${nomeAtual}, ${ano}`}
+                imagem={{ titulo: `${g.nome} — ${nomeAtual}`, subtitulo: `% da população de cada grupo · ${ano}`, fonte: 'ITDP Brasil / MobiliDADOS' }}
+              />
             : <div className="vazio" style={{ height: 300 }}>Não há dados deste indicador para este local.</div>}
           {ano > 0 && <p className="fonte-dado">Fonte: ITDP. Percentual da população de cada grupo que vive a até 1 km (PNT) ou 300 m (PNB) da infraestrutura.</p>}
         </div>
         <div className="cartao">
           <h3>{rotulo(g.total)} — comparação</h3>
-          <Grafico config={configComparacao} altura={Math.max(300, comparacao.length * 22 + 60)} descricao={`${rotulo(g.total)}: comparação entre locais`} />
+          <Grafico
+            config={configComparacao} altura={Math.max(300, comparacao.length * 22 + 60)} descricao={`${rotulo(g.total)}: comparação entre locais`}
+            imagem={{ titulo: `${rotulo(g.total)} — comparação entre as capitais`, subtitulo: `% · dado mais recente de cada capital (ano entre parênteses) · em destaque: ${nomeAtual}`, fonte: 'ITDP Brasil / MobiliDADOS' }}
+          />
           <p className="fonte-dado">Em destaque, o local selecionado. Entre parênteses, o ano do dado mais recente.</p>
         </div>
       </div>

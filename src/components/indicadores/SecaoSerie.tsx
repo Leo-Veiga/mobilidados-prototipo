@@ -11,6 +11,7 @@ interface Props {
   /** Séries de um indicador: { slugDoLocal: { ano: valor } } */
   series: Record<string, Serie>;
   titulo: string;
+  unidade: string;
   lugares: Lugar[];
   /** Locais já selecionados ao abrir */
   iniciais: string[];
@@ -18,7 +19,7 @@ interface Props {
 }
 
 /** Série histórica de um indicador: compara locais ao longo dos anos */
-export default function SecaoSerie({ series, titulo, lugares, iniciais, rotuloLugar }: Props) {
+export default function SecaoSerie({ series, titulo, unidade, lugares, iniciais, rotuloLugar }: Props) {
   const comDado = useMemo(() => lugares.filter(l => series[l.slug]), [lugares, series]);
   const anos = useMemo(
     () => [...new Set(comDado.flatMap(l => Object.keys(series[l.slug]).map(Number)))].sort((a, b) => a - b),
@@ -67,7 +68,10 @@ export default function SecaoSerie({ series, titulo, lugares, iniciais, rotuloLu
       </div>
       <div className="cartao">
         {config
-          ? <Grafico config={config} altura={420} descricao={`Série histórica: ${titulo}`} />
+          ? <Grafico
+              config={config} altura={420} descricao={`Série histórica: ${titulo}`}
+              imagem={{ titulo: `${titulo} — série histórica`, subtitulo: `${unidade} · ${Math.min(...anosSel)}–${Math.max(...anosSel)}` }}
+            />
           : <div className="vazio" style={{ height: 420 }}>Selecione ao menos um ano e um local</div>}
       </div>
     </>

@@ -70,7 +70,14 @@ export default function GraficosIndicador({ codigo, nome, unidade, series, lugar
         <h2 id="titulo-ranking" className={styles.titulo}>Comparação entre as capitais</h2>
         <p className={styles.texto}>Valor mais recente de cada capital ({unidade}). Entre parênteses, o ano do dado.</p>
         <div className="cartao">
-          <Grafico config={config} altura={Math.max(320, ranking.length * 24 + 60)} descricao={`${nome}: comparação entre as capitais`} />
+          <Grafico
+            config={config} altura={Math.max(320, ranking.length * 24 + 60)} descricao={`${nome}: comparação entre as capitais`}
+            imagem={{
+              titulo: `${nome} — comparação entre as capitais`,
+              subtitulo: `${unidade} · dado mais recente de cada capital (ano entre parênteses)`
+                + (destaque ? ` · em destaque: ${ranking.find(x => x.l.slug === destaque)?.l.nome}` : ''),
+            }}
+          />
         </div>
       </section>
 
@@ -80,7 +87,7 @@ export default function GraficosIndicador({ codigo, nome, unidade, series, lugar
           Compare o desempenho de duas ou mais capitais em um ano específico ou ao longo do tempo.
           A comparação está sujeita à disponibilidade dos dados.
         </p>
-        <SecaoSerie key={destaque} series={series} titulo={nome} lugares={lugares} iniciais={destaque ? [destaque] : []} rotuloLugar="Capitais" />
+        <SecaoSerie key={destaque} series={series} titulo={nome} unidade={unidade} lugares={lugares} iniciais={destaque ? [destaque] : []} rotuloLugar="Capitais" />
       </section>
 
       <div className="centro"><BotaoDados onClick={baixar} texto="Baixar os dados deste indicador (CSV)" /></div>
