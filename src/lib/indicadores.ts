@@ -7,6 +7,11 @@ const catalogo = catalogoJson as Catalogo;
 export const rotulo = (codigo: string) => catalogo[codigo]?.nome ?? codigo;
 export const unidade = (codigo: string) => catalogo[codigo]?.unidade ?? '';
 
+/** Código da planilha -> trecho de URL ("PNT_ATE_1/2" -> "pnt-ate-1-2", "kgCO2/hab" -> "kgco2-hab") */
+export function slugIndicador(codigo: string): string {
+  return codigo.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
 export interface GrupoInfra {
   id: string;
   nome: string;

@@ -3,10 +3,10 @@ import PaginaBusca from '@/components/busca/PaginaBusca';
 import { dadosBusca } from '@/components/busca/dadosBusca';
 
 export const metadata: Metadata = {
-  title: 'Capitais',
-  description: 'Indicadores de mobilidade urbana das 27 capitais brasileiras.',
+  title: 'Buscar dados',
+  description: 'Encontre dados de mobilidade urbana por localização ou por indicador.',
 };
 
-export default function PaginaCapitais() {
+export default function Buscar() {
   return <PaginaBusca abaInicial="local" {...dadosBusca()} />;
 }

@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react';
 import type { ChartConfiguration } from 'chart.js';
 import BotaoDados from '@/components/BotaoDados';
-import Grafico, { PALETA } from '@/components/Grafico';
+import Grafico, { COR_SECUNDARIA, PALETA } from '@/components/Grafico';
 import { baixarCSV } from '@/lib/csv';
 import { GRUPOS_INFRA, rotulo } from '@/lib/indicadores';
 import type { Indicadores, Lugar } from '@/lib/tipos';
@@ -50,7 +50,7 @@ export default function SecaoInfra({ ind, lugares, atual }: Props) {
     type: 'bar',
     data: {
       labels: comparacao.map(x => `${x.l.curto ?? x.l.nome} (${x.ano})`),
-      datasets: [{ label: '%', data: comparacao.map(x => x.v), backgroundColor: comparacao.map(x => (x.l.slug === atual ? '#6ef1be' : '#3a6f63')) }],
+      datasets: [{ label: '%', data: comparacao.map(x => x.v), backgroundColor: comparacao.map(x => (x.l.slug === atual ? PALETA[0] : COR_SECUNDARIA)) }],
     },
     options: { indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { beginAtZero: true, ticks: { callback: v => v + '%' } }, y: { ticks: { autoSkip: false } } } },
   }), [comparacao, atual]);

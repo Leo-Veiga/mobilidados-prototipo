@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import Abas from '@/components/Abas';
+import { IconeLink } from '@/components/Icones';
 import { fmt, pct } from '@/lib/formato';
 import { MODOS_TMA, type Capital } from '@/lib/tipos';
 import styles from './FichaCapital.module.css';
@@ -9,100 +11,98 @@ const NOME_MODO: Record<(typeof MODOS_TMA)[number], string> = {
   barca: 'Barca', brt: 'BRT', metro: 'Metrô', monotrilho: 'Monotrilho', trem: 'Trem', vlt: 'VLT',
 };
 
-/** Na planilha, "-" e "NA" significam "sem informação" */
-const valido = (v: string) => Boolean(v) && v !== '-' && v !== 'NA';
+/** Na planilha, "-", "NA" e "N/A" significam "sem informação" */
+const valido = (v: string | null | undefined) => Boolean(v) && !['-', 'NA', 'N/A'].includes(v!.trim());
 
-function Item({ valor, rotulo }: { valor: React.ReactNode; rotulo: string }) {
+/** Um número grande com legenda curta embaixo */
+function Numero({ valor, rotulo }: { valor: React.ReactNode; rotulo: string }) {
   return (
-    <div>
-      <div className={styles.valor}>{valor || '–'}</div>
+    <div className={styles.numero}>
+      <div className={styles.valor}>{valor}</div>
       <div className={styles.rotulo}>{rotulo}</div>
     </div>
   );
 }
 
-function Fonte({ fonte }: { fonte: string }) {
-  if (!valido(fonte)) return null;
+/** "https://www.recife.pe.gov.br/x/y" -> "recife.pe.gov.br" (endereços mal formados aparecem inteiros) */
+function dominio(url: string) {
+  try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return url; }
+}
+
+function Fontes({ fontes }: { fontes: [string, string][] }) {
+  const lista = fontes.filter(([, f]) => valido(f));
+  if (!lista.length) return null;
   return (
-    <div className={styles.fonte}>
-      Fonte: {/^https?:\/\//.test(fonte) ? <a href={fonte} target="_blank" rel="noopener">{fonte}</a> : fonte}
-    </div>
+    <ul className={styles.fontes}>
+      {lista.map(([tema, f]) => (
+        <li key={tema}>
+          <strong>{tema}:</strong>{' '}
+          {/^https?:\/\//.test(f)
+            ? <a href={f} target="_blank" rel="noopener"><IconeLink tamanho={16} /> {dominio(f)}</a>
+            : f}
+        </li>
+      ))}
+    </ul>
   );
 }
 
-function Bloco({ titulo, azul, inteiro, fonte, children }: {
-  titulo?: string; azul?: boolean; inteiro?: boolean; fonte?: string; children: React.ReactNode;
-}) {
-  return (
-    <div className={[styles.bloco, azul && styles.azul, inteiro && styles.inteiro].filter(Boolean).join(' ')}>
-      {titulo && <div className={styles.titulo}>{titulo}</div>}
-      <div className={styles.itens}>{children}</div>
-      {fonte && <Fonte fonte={fonte} />}
-    </div>
-  );
-}
-
-/** Ficha "Sobre a capital", com as abas Informações gerais e Mobilidade */
+/** Ficha da capital, com as abas Informações gerais e Mobilidade */
 export default function FichaCapital({ c }: { c: Capital }) {
   const [aba, setAba] = useState<'info' | 'mob'>('info');
   const tma = MODOS_TMA.filter(m => c.tma[m].estacoes || c.tma[m].km);
 
   return (
-    <>
-      <div className={styles.abas} role="tablist">
-        <button role="tab" type="button" aria-selected={aba === 'info'} onClick={() => setAba('info')}>Informações gerais</button>
-        <button role="tab" type="button" aria-selected={aba === 'mob'} onClick={() => setAba('mob')}>Mobilidade</button>
-      </div>
-
-      <div className={styles.blocos} role="tabpanel">
-        {aba === 'info' ? (
-          <>
-            <Bloco inteiro>
-              <Item valor={fmt(c.area, 1) + ' km²'} rotulo="Área" />
-              <Item valor={<>{fmt(c.idhm, 3)}{c.faixaIdhm && <small> ({c.faixaIdhm})</small>}</>} rotulo="IDHM" />
-              <Item valor={fmt(c.pop2016, 0)} rotulo="População (2016)" />
-              <Item valor={fmt(c.densidadeUrbana, 0) + ' hab/km²'} rotulo="Densidade urbana" />
-              <Item valor={'R$ ' + fmt(c.renda, 0)} rotulo="Renda média domiciliar per capita" />
-            </Bloco>
-            <Bloco azul inteiro>
-              <Item valor={pct(c.percDr1sm)} rotulo="Domicílios com renda abaixo de um salário mínimo per capita" />
-              <Item valor={pct(c.percNegros)} rotulo="População negra" />
-              <Item valor={pct(c.percBrancos)} rotulo="População branca" />
-              <Item valor={pct(c.percMulheres)} rotulo="Mulheres na população" />
-              <Item valor={pct(c.percHomens)} rotulo="Homens na população" />
-            </Bloco>
-          </>
-        ) : (
-          <>
-            <Bloco titulo="Licitação de ônibus" fonte={c.laiContratoFonte}>
-              <Item valor={c.laiContrato} rotulo="Contrato de concessão" />
-              {valido(c.laiContratoInicio) && <Item valor={c.laiContratoInicio} rotulo="Data de início" />}
-              {valido(c.laiContratoPrazo) && <Item valor={c.laiContratoPrazo} rotulo="Duração" />}
-            </Bloco>
-            <Bloco titulo="Frota com GPS" fonte={c.laiGpsFonte}>
-              <Item valor={c.laiGps} rotulo="Existência de GPS" />
-              {valido(c.laiGpsFrota) && c.laiGpsFrota !== c.laiGps && <Item valor={c.laiGpsFrota} rotulo="Percentual de implantação" />}
-            </Bloco>
-            <Bloco titulo="Disponibilidade do GTFS" fonte={c.laiGtfsFonte}>
-              <Item valor={c.laiGtfs} rotulo="GTFS disponível" />
-            </Bloco>
-            <Bloco titulo="Plano de mobilidade" fonte={c.planmobFonte}>
-              <Item valor={c.planmobStatus} rotulo="Status" />
-              {valido(c.planmobAno) && <Item valor={c.planmobAno} rotulo="Ano de aprovação" />}
-            </Bloco>
-            <Bloco titulo="Estações e extensão da rede de transporte de média e alta capacidade (TMA)" azul inteiro fonte="ITDP">
-              {tma.length
-                ? tma.map(m => (
-                  <Item
-                    key={m} rotulo={NOME_MODO[m]}
-                    valor={<>{fmt(c.tma[m].estacoes, 0)} <small>{c.tma[m].estacoes === 1 ? 'estação' : 'estações'}</small> ({fmt(c.tma[m].km, 1)} km)</>}
-                  />
-                ))
-                : <div className={styles.rotulo}>A capital não possui rede de transporte de média e alta capacidade.</div>}
-            </Bloco>
-          </>
-        )}
-      </div>
-    </>
+    <Abas
+      rotulo="Dados da capital" ativa={aba} aoMudar={setAba} className={styles.ficha}
+      abas={[{ id: 'info', titulo: 'Informações gerais' }, { id: 'mob', titulo: 'Mobilidade' }]}
+    >
+      {aba === 'info' ? (
+        <div className={styles.grade}>
+          <Numero valor={<>{fmt(c.area, 1)} <small>km²</small></>} rotulo="Área" />
+          <Numero valor={<>{fmt(c.idhm, 3)}{c.faixaIdhm && <small> ({c.faixaIdhm})</small>}</>} rotulo="IDHM" />
+          <Numero valor={<>{fmt((c.pop2016 ?? 0) / 1e6, 1)} <small>milhões</small></>} rotulo="População (2016)" />
+          <Numero valor={<>{fmt(c.densidadeUrbana, 0)} <small>hab/km²</small></>} rotulo="Densidade urbana" />
+          <Numero valor={'R$ ' + fmt(c.renda, 0)} rotulo="Renda média domiciliar per capita" />
+          <Numero valor={pct(c.percDr1sm)} rotulo="Domicílios com renda abaixo de 1 salário mínimo per capita" />
+          <Numero valor={pct(c.percNegros)} rotulo="População negra" />
+          <Numero valor={pct(c.percBrancos)} rotulo="População branca" />
+          <Numero valor={pct(c.percMulheres)} rotulo="Mulheres na população" />
+          <Numero valor={pct(c.percHomens)} rotulo="Homens na população" />
+        </div>
+      ) : (
+        <>
+          <div className={styles.grade}>
+            <Numero
+              valor={valido(c.laiContratoPrazo) ? c.laiContratoPrazo : c.laiContrato || '–'}
+              rotulo={valido(c.laiContratoInicio) ? `Licitação de ônibus (desde ${c.laiContratoInicio})` : 'Licitação de ônibus'}
+            />
+            <Numero
+              valor={valido(c.laiGpsFrota) && c.laiGpsFrota !== c.laiGps ? c.laiGpsFrota : c.laiGps || '–'}
+              rotulo="Frota com GPS"
+            />
+            <Numero valor={c.laiGtfs || '–'} rotulo="Disponibilidade do GTFS" />
+            <Numero
+              valor={valido(c.planmobAno) ? `${c.planmobStatus} (${c.planmobAno})` : c.planmobStatus || '–'}
+              rotulo="Plano de mobilidade"
+            />
+          </div>
+          <h3 className={styles.subtitulo}>Estações e extensão da rede de transporte de média e alta capacidade (TMA)</h3>
+          {tma.length ? (
+            <div className={styles.grade}>
+              {tma.map(m => (
+                <Numero
+                  key={m} rotulo={NOME_MODO[m]}
+                  valor={<>{fmt(c.tma[m].estacoes, 0)} <small>{c.tma[m].estacoes === 1 ? 'estação' : 'estações'} · {fmt(c.tma[m].km, 1)} km</small></>}
+                />
+              ))}
+            </div>
+          ) : <p className="centro nota">A capital não possui rede de transporte de média e alta capacidade.</p>}
+          <Fontes fontes={[
+            ['Licitação de ônibus', c.laiContratoFonte], ['Frota com GPS', c.laiGpsFonte],
+            ['GTFS', c.laiGtfsFonte], ['Plano de mobilidade', c.planmobFonte], ['Rede de TMA', 'ITDP'],
+          ]} />
+        </>
+      )}
+    </Abas>
   );
 }

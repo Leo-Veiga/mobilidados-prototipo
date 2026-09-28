@@ -1,5 +1,25 @@
-.rodape { background: #000; padding: 22px 20px; font-size: 12px; display: flex; justify-content: center; align-items: center; gap: 8px 18px; flex-wrap: wrap; }
-.licenca { display: inline-flex; align-items: center; gap: 4px; }
-.licenca:hover { color: var(--verde); }
-.licenca img { height: 18px; width: 18px; }
-.nota { color: var(--texto-2); }
+.rodape { background: var(--neutro-1000); border-top: 2px solid var(--verde-300); }
+
+.principal { max-width: 1000px; margin: 0 auto; padding: 32px 20px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 32px 40px; }
+.marca { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.marca > img { width: 120px; height: auto; }
+.marca strong { font-size: 14px; }
+.redes { display: flex; gap: 12px; }
+.redes img { width: 22px; height: 22px; filter: invert(1); opacity: .9; }
+.redes a:hover img { opacity: 1; filter: invert(84%) sepia(28%) saturate(700%) hue-rotate(90deg); }
+
+.links { display: flex; flex-wrap: wrap; gap: 8px 24px; font-weight: 700; }
+.links a:hover { color: var(--verde-300); text-decoration: underline; }
+
+.inferior {
+  border-top: 2px solid var(--verde-300); padding: 20px; font-size: 14px; font-weight: 300;
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px;
+  max-width: 100%;
+}
+.inferior > span { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.licenca { display: inline-flex; gap: 4px; margin-left: 6px; }
+.licenca img { filter: invert(1); }
+
+@media (min-width: 900px) {
+  .inferior { padding: 20px max(20px, calc((100% - 1000px) / 2)); }
+}

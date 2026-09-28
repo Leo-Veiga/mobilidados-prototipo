@@ -1,97 +1,73 @@
 import Link from 'next/link';
-import Capa from '@/components/Capa';
+import BuscaInicial from '@/components/busca/BuscaInicial';
+import { capitais, listaIndicadores } from '@/lib/dados';
 import { asset } from '@/lib/formato';
 import styles from './page.module.css';
 
-/* Números de destaque da homepage (textos do site original, 2022) */
-const DESTAQUES = [
-  'A taxa de motorização no Brasil subiu consecutivamente nos últimos 20 anos, chegando a 471 automóveis para cada mil habitantes em 2020.',
-  'Não é acidente. Em 2019 mais de 31 mil pessoas morreram em sinistros de trânsito no Brasil.',
-  'Em duas a cada três capitais do país, mais de 80% da população mora longe de ciclovias e ciclofaixas.',
-  'Menos de 20% da população das grandes metrópoles brasileiras vive próxima de uma estação de média e alta capacidade.',
-  'O consumo de combustível por veículos particulares é a principal fonte de poluição do ar nas cidades brasileiras.',
-];
-
-const ENTRADAS = [
-  { href: '/capitais/', icone: 'home-capitais.png', texto: 'Indicadores por capitais' },
-  { icone: 'home-rms.png', texto: 'Indicadores por regiões metropolitanas' },
-  { icone: 'home-base-dados.png', texto: 'Base de dados' },
-];
-
 type Logo = [nome: string, arquivo: string, site: string];
-const LOGOS: [grupo: string, logos: Logo[]][] = [
-  ['Realização', [['ITDP Brasil', 'itdp.jpg', 'https://itdpbrasil.org/']]],
-  ['Apoio', [
-    ['Instituto Clima e Sociedade', 'ics.png', 'https://www.climaesociedade.org/'],
-    ['Oak Foundation', 'oak-foundation.png', 'https://oakfnd.org/'],
-  ]],
-  ['Parceiros', [
-    ['Ameciclo', 'ameciclo.jpg', 'https://www.ameciclo.org/'],
-    ['Habitat Geo', 'habitat.png', 'https://www.habitatgeo.com.br/'],
-    ['União de Ciclistas do Brasil', 'ucb.jpg', 'https://www.uniaodeciclistas.org.br/'],
-    ['Casa Fluminense', 'casa-fluminense.png', 'https://casafluminense.org.br/'],
-    ['Nossa BH', 'nossabh.png', 'https://nossabh.org.br/'],
-    ['Instituto de Energia e Meio Ambiente', 'iema.png', 'https://energiaeambiente.org.br/'],
-    ['Idec', 'idec.jpg', 'https://idec.org.br/'],
-    ['Multiplicidade Mobilidade Urbana', 'multiplicidade.png', 'https://multiplicidademobilidade.com.br/'],
-  ]],
+const LOGOS: { grupo: string; logos: Logo[] }[] = [
+  { grupo: 'Realização', logos: [['ITDP Brasil', 'itdp.jpg', 'https://itdpbrasil.org/']] },
+  {
+    grupo: 'Apoio', logos: [
+      ['Instituto Clima e Sociedade', 'ics.png', 'https://www.climaesociedade.org/'],
+      ['Oak Foundation', 'oak-foundation.png', 'https://oakfnd.org/'],
+    ],
+  },
+  {
+    grupo: 'Parceiros', logos: [
+      ['Multiplicidade Mobilidade Urbana', 'multiplicidade.png', 'https://multiplicidademobilidade.com.br/'],
+      ['Ameciclo', 'ameciclo.jpg', 'https://www.ameciclo.org/'],
+      ['União de Ciclistas do Brasil', 'ucb.jpg', 'https://www.uniaodeciclistas.org.br/'],
+      ['Casa Fluminense', 'casa-fluminense.png', 'https://casafluminense.org.br/'],
+      ['Nossa BH', 'nossabh.png', 'https://nossabh.org.br/'],
+      ['Instituto de Energia e Meio Ambiente', 'iema.png', 'https://energiaeambiente.org.br/'],
+      ['Idec', 'idec.jpg', 'https://idec.org.br/'],
+      ['Habitat Geo', 'habitat.png', 'https://www.habitatgeo.com.br/'],
+    ],
+  },
 ];
 
 export default function Home() {
+  const locais = capitais.map(c => ({ rotulo: `${c.nome} (${c.uf})`, href: `/capitais/${c.slug}/` }));
+  const indicadores = listaIndicadores.map(i => ({ rotulo: i.nome, href: `/indicadores/${i.slug}/` }));
+
   return (
     <>
-      <Capa imagem="capa-home.jpg" alta titulo="Monitore a mobilidade urbana nas 27 capitais e 9 maiores regiões metropolitanas do país">
-        <p className={styles.intro}>
-          A MobiliDADOS é uma plataforma com indicadores e dados abertos para apoiar a elaboração e o
-          monitoramento de políticas públicas de mobilidade urbana no país.
-        </p>
-        <a className={styles.chamada} href="#indicadores">Confira os indicadores</a>
-      </Capa>
-
-      <div className="container">
-        <section className="secao" id="indicadores">
-          <h2 className="centro">Confira os indicadores</h2>
-          <div className={styles.entradas}>
-            {ENTRADAS.map(e => {
-              const conteudo = (
-                <>
-                  <img src={asset('/img/icones/' + e.icone)} alt="" />
-                  <strong>{e.texto}</strong>
-                  {!e.href && <small>em breve</small>}
-                </>
-              );
-              return e.href
-                ? <Link key={e.texto} className={styles.entrada} href={e.href}>{conteudo}</Link>
-                : <div key={e.texto} className={`${styles.entrada} ${styles.desativada}`}>{conteudo}</div>;
-            })}
+      <section className={styles.hero} style={{ backgroundImage: `url('${asset('/img/capa-home.jpg')}')` }}>
+        <div className="container">
+          <h1 className={styles.titulo}>Monitore a mobilidade urbana nas 27 capitais e 9 maiores regiões metropolitanas do país</h1>
+          <p className={styles.subtitulo}>Encontre dados de mobilidade urbana por indicador ou localização</p>
+          <div className={styles.linhaBusca}>
+            <BuscaInicial locais={locais} indicadores={indicadores} />
+            <aside className={styles.apresentacao}>
+              A <span className={styles.verde}>MobiliDADOS</span> é uma plataforma com{' '}
+              <Link className={styles.azul} href="/indicadores/">indicadores e dados abertos</Link> para apoiar a
+              elaboração e monitoramento de políticas públicas de mobilidade urbana no país.
+            </aside>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="secao" aria-labelledby="titulo-destaques">
-          <h2 id="titulo-destaques" className="centro">Destaques</h2>
-          <ul className={styles.destaques}>
-            {DESTAQUES.map(d => <li key={d}>{d}</li>)}
-          </ul>
-        </section>
-      </div>
-
-      <section className={styles.sobre} id="sobre">
-        <div className={styles.sobreFundo} style={{ backgroundImage: `url('${asset('/img/capa-home.jpg')}')` }} />
-        <div className={`container ${styles.sobreConteudo}`}>
-          <h2>Sobre a MobiliDADOS</h2>
-          <p>
-            A MobiliDADOS foi criada com o objetivo de promover o uso de informações confiáveis nos processos de
-            elaboração, monitoramento e avaliação de políticas de mobilidade e desenvolvimento urbano. Além de
-            indicadores para capitais e regiões metropolitanas, a plataforma oferece acesso a todos os dados brutos
-            utilizados e descreve as metodologias de apuração de cada indicador.
-          </p>
+      <section id="sobre" className={styles.sobre}>
+        <div className="container">
+          <h2 className={styles.tituloSobre}>Sobre a <span>MobiliDADOS</span></h2>
+          <div className={styles.textoSobre}>
+            <p>
+              A MobiliDADOS foi criada com o objetivo de promover o uso de informações confiáveis nos processos de
+              elaboração, monitoramento e avaliação de políticas de mobilidade e desenvolvimento urbano.
+            </p>
+            <p>
+              Além de indicadores para capitais e regiões metropolitanas, a plataforma oferece acesso a todos os dados
+              brutos utilizados e descreve as metodologias de apuração de cada indicador.
+            </p>
+          </div>
         </div>
       </section>
 
       <section className={styles.logos} aria-label="Realização, apoio e parceiros">
-        {LOGOS.map(([grupo, logos]) => (
+        {LOGOS.map(({ grupo, logos }) => (
           <div key={grupo} className={styles.grupoLogos}>
-            <h3>{grupo}</h3>
+            <h3><span>{grupo}</span></h3>
             <div>
               {logos.map(([nome, arquivo, site]) => (
                 <a key={nome} href={site} target="_blank" rel="noopener" title={nome}>

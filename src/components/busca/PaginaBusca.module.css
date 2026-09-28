@@ -1,0 +1,29 @@
+.titulo { font-size: 39px; font-weight: 400; padding-top: 32px; margin-bottom: 20px; }
+.abas { margin-bottom: 80px; }
+.abas > [role="tabpanel"] { background: var(--fundo-painel); }
+
+/* Localização */
+.local { display: flex; justify-content: center; gap: 24px 40px; max-width: 1100px; margin: 0 auto; padding: 16px 0; }
+.colunaLocal { flex: 0 1 500px; min-width: 0; }
+.tipoLocal { display: flex; flex-wrap: wrap; gap: 8px 24px; border: 0; padding: 0; margin: 0 0 20px; }
+.tipoLocal label { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; }
+.tipoLocal input { accent-color: var(--verde-500); width: 16px; height: 16px; }
+.desativado { color: var(--texto-2); cursor: not-allowed !important; }
+.chips { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.chip { display: inline-flex; align-items: center; height: 40px; padding: 0 10px; border: 1px solid var(--verde-300); border-radius: var(--raio); color: var(--verde-300); }
+.chip:hover { background: var(--neutro-900); }
+.mapa { flex: 0 1 548px; min-width: 0; height: auto; align-self: flex-start; }
+
+/* Indicadores */
+.indicadores { max-width: 950px; margin: 0 auto; padding: 8px 8px 0; }
+.listaIndicadores { list-style: none; padding: 0; margin: 32px 0 0; }
+.listaIndicadores a { display: flex; align-items: center; gap: 12px; padding: 12px 8px; border-radius: var(--raio); }
+.listaIndicadores a:hover { background: #222; }
+.listaIndicadores a svg { flex-shrink: 0; }
+.listaIndicadores span { flex: 1; }
+.listaIndicadores small { color: var(--texto-2); font-size: 13px; font-weight: 300; text-align: right; }
+
+@media (max-width: 900px) {
+  .mapa { display: none; }
+  .titulo { font-size: 30px; }
+}

@@ -1,0 +1,8 @@
+.faixa { background: #27272a; padding: 40px 0 28px; }
+.voltar { display: inline-flex; align-items: center; gap: 4px; color: var(--verde-300); font-weight: 600; margin-left: -6px; }
+.voltar:hover { text-decoration: underline; }
+.titulo { margin: 16px auto 0; max-width: 760px; text-align: center; font-size: 36px; font-weight: 600; }
+
+@media (max-width: 600px) {
+  .titulo { font-size: 28px; }
+}

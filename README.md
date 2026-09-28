@@ -10,10 +10,14 @@ O site é **100% estático**: o build gera arquivos HTML, CSS, JS e CSV que pode
 
 ## O que já está no ar
 
-- Página inicial
-- Capitais: lista das 27 capitais e uma página por capital (`/capitais/recife/`), com ficha, distribuição
-  da infraestrutura e série histórica dos indicadores
+- Página inicial, com busca por localização ou indicador
+- Buscar dados (`/buscar/`, `/capitais/`, `/indicadores/`)
+- Uma página por capital (`/capitais/recife/`): ficha (informações gerais e mobilidade), valor mais recente
+  de cada indicador e distribuição da infraestrutura
+- Uma página por indicador (`/indicadores/pnt/`): comparação entre as capitais e série histórica
 - Regiões metropolitanas: *em breve*
+
+O visual segue o design do site MobiliDADOS de 2024–2025 (fundo escuro, verde `#64EAA6`, fonte Open Sans).
 
 ## Tecnologias
 
@@ -35,7 +39,7 @@ scripts/
   pos-build.mjs               ajuste do build para o GitHub Pages
 src/
   app/                        páginas (cada pasta é uma URL)
-  components/                 peças reutilizáveis (menu, capa, gráficos, filtros...)
+  components/                 peças reutilizáveis (cabeçalho, abas, busca, gráficos, filtros...)
   data/                       JSON gerados a cada build (fora do git)
   lib/                        tipos, formatação e acesso aos dados
 public/

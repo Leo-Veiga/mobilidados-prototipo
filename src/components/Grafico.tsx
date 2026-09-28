@@ -5,10 +5,10 @@ import Chart from 'chart.js/auto';
 import type { ChartConfiguration, ChartType, TooltipItem } from 'chart.js';
 import { fmt } from '@/lib/formato';
 
-// Tema escuro, como no site original
+// Tema escuro, com as cores e a fonte do site
 Chart.defaults.color = '#fff';
-Chart.defaults.font.family = 'Montserrat, Arial, sans-serif';
-Chart.defaults.borderColor = 'rgba(255,255,255,.12)';
+Chart.defaults.font.family = '"Open Sans", Helvetica, Arial, sans-serif';
+Chart.defaults.borderColor = 'rgba(255,255,255,.1)';
 Chart.defaults.maintainAspectRatio = false;
 Chart.defaults.plugins.tooltip.callbacks.label = (c: TooltipItem<ChartType>) => {
   const p = c.parsed as { x: number; y: number };
@@ -16,8 +16,11 @@ Chart.defaults.plugins.tooltip.callbacks.label = (c: TooltipItem<ChartType>) => 
   return ` ${c.dataset.label ? c.dataset.label + ': ' : ''}${fmt(v, 2)}`;
 };
 
-export const PALETA = ['#6ef1be', '#48c0d9', '#f5b841', '#ef6f8e', '#b39ddb', '#e8e15a', '#ff8a5b', '#8fd16a', '#6f94ff', '#4dd0c4',
-  '#f48fb1', '#c5e1a5', '#ffcc80', '#90caf9', '#ce93d8', '#80deea', '#ffab91', '#a5d6a7', '#fff59d', '#b0bec5'];
+// Começa pelo verde e o azul da marca
+export const PALETA = ['#64eaa6', '#54c7dd', '#f5b841', '#ef6f8e', '#b39ddb', '#e8e15a', '#ff8a5b', '#2ab870', '#6f94ff', '#1f95ab',
+  '#f48fb1', '#c5e1a5', '#ffcc80', '#90caf9', '#ce93d8', '#80deea', '#ffab91', '#a1ffcf', '#fff59d', '#b0bec5'];
+/** Cor das barras dos outros locais quando um local está em destaque */
+export const COR_SECUNDARIA = '#2f5f48';
 
 /** Configuração aceita pelo componente: gráficos de barras ou de linhas */
 export type ConfigGrafico = ChartConfiguration<'bar'> | ChartConfiguration<'line'>;

@@ -1,0 +1,21 @@
+.painel { background: var(--fundo); border: 1px solid var(--borda); border-radius: var(--raio); padding: 24px 32px; }
+.campo { position: relative; max-width: 320px; margin-bottom: 24px; }
+.campo input { width: 100%; height: 44px; padding: 0 16px 0 40px; border: 0; border-radius: var(--raio); background: #fff; color: #111; font: 15px var(--fonte); }
+.icone { position: absolute; left: 12px; top: 12px; color: #808080; pointer-events: none; }
+
+.cabecalho { display: flex; justify-content: space-between; font-weight: 700; padding: 0 8px 8px; border-bottom: 1px solid var(--borda); }
+.cabecalho span:last-child { font-weight: 600; }
+.lista { list-style: none; margin: 0; padding: 8px 0 0; }
+.lista a { display: flex; align-items: center; gap: 12px; padding: 12px 8px; border-radius: var(--raio); }
+.lista a:hover { background: #222; }
+.lista a svg { flex-shrink: 0; }
+.nome { flex: 1; }
+.valor { text-align: right; white-space: nowrap; }
+.valor small { color: var(--texto-2); font-weight: 300; font-size: 13px; }
+
+@media (max-width: 600px) {
+  .painel { padding: 16px; }
+  .cabecalho span:last-child { display: none; }
+  .lista a { flex-wrap: wrap; }
+  .valor { width: 100%; text-align: left; padding-left: 32px; }
+}

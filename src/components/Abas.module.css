@@ -1,0 +1,19 @@
+.lista { display: flex; position: relative; z-index: 1; }
+.aba {
+  min-width: 180px; height: 60px; padding: 0 24px; margin-right: -1px;
+  background: var(--fundo-aba-inativa); color: var(--verde-300);
+  border: 1px solid var(--borda); border-radius: var(--raio) var(--raio) 0 0;
+  font: 16px var(--fonte); cursor: pointer;
+}
+.aba[aria-selected="true"] { background: var(--fundo); color: #fff; border-bottom-color: var(--fundo); height: 61px; }
+.aba:hover:not([aria-selected="true"]) { background: var(--neutro-900); }
+
+.painel {
+  margin-top: -1px; padding: 24px 16px; background: var(--fundo);
+  border: 1px solid var(--borda); border-radius: 0 var(--raio) var(--raio) var(--raio);
+}
+
+@media (max-width: 600px) {
+  .aba { min-width: 0; flex: 1; padding: 0 12px; }
+  .painel { border-radius: 0 0 var(--raio) var(--raio); }
+}

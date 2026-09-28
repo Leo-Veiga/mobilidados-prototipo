@@ -1,37 +1,34 @@
-.intro { font-size: 17px; max-width: 720px; margin: 0 auto 32px; }
-.chamada { display: inline-block; padding: 12px 28px; border: 2px solid var(--verde); color: var(--verde); font-weight: 700; text-transform: uppercase; font-size: 13px; letter-spacing: .04em; transition: .2s; }
-.chamada:hover { background: var(--verde); color: #000; }
-
-/* Entradas para os indicadores */
-.entradas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 900px; margin: 0 auto; }
-.entrada { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 30px 20px; border: 1px solid var(--linha); border-radius: 4px; text-align: center; transition: .2s; }
-.entrada img { height: 90px; width: auto; }
-.entrada strong { font-size: 15px; }
-.entrada small { font-size: 10px; text-transform: uppercase; letter-spacing: .06em; color: var(--texto-2); }
-a.entrada:hover { border-color: var(--verde); color: var(--verde); background: var(--fundo-2); }
-.desativada { opacity: .45; }
-
-/* Destaques */
-.destaques { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-.destaques li { background: var(--fundo-2); border-left: 4px solid var(--verde); padding: 20px; font-size: 14px; font-weight: 700; line-height: 1.4; }
-.destaques li:nth-child(even) { border-color: var(--azul); }
+/* Topo com o mapa verde */
+.hero { background-color: var(--fundo); background-size: cover; background-position: center; padding: 140px 0 40px; }
+.titulo { font-size: 39px; font-weight: 400; max-width: 63%; line-height: 1.3; }
+.subtitulo { font-size: 20px; font-weight: 300; margin: 20px 0 20px; }
+.linhaBusca { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 32px; }
+.linhaBusca > :first-child { flex: 0 1 820px; min-width: 0; }
+.apresentacao { width: 300px; padding: 24px; background: var(--fundo); border-radius: var(--raio); line-height: 1.6; }
+.verde { color: var(--verde-300); }
+.azul { color: var(--azul-300); }
+.azul:hover { text-decoration: underline; }
 
 /* Sobre */
-.sobre { position: relative; overflow: hidden; padding: 80px 0; text-align: center; }
-.sobreFundo { position: absolute; inset: 0; background-size: cover; background-position: center; filter: brightness(.3); }
-.sobreConteudo { position: relative; max-width: 820px; }
-.sobreConteudo h2 { font-size: 26px; margin-bottom: 20px; }
-.sobreConteudo p { font-size: 16px; }
+.sobre { padding: 100px 0 80px; }
+.tituloSobre { font-size: 30px; font-weight: 600; margin-bottom: 40px; }
+.tituloSobre span { color: var(--verde-500); }
+.textoSobre { border-left: 1px solid var(--verde-500); padding-left: 16px; max-width: 1000px; font-size: 18px; font-weight: 300; line-height: 1.55; }
+.textoSobre p:last-child { margin: 0; }
 
-/* Logos (fundo claro, porque os logos originais são coloridos com fundo branco) */
-.logos { background: #fff; color: #222; padding: 40px 20px; display: flex; flex-wrap: wrap; justify-content: center; gap: 30px 60px; }
-.grupoLogos h3 { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: #666; margin-bottom: 14px; text-align: center; }
-.grupoLogos > div { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 18px 28px; }
-.grupoLogos img { height: 50px; width: auto; display: block; }
+/* Logos em faixa branca (os arquivos originais têm fundo claro) */
+.logos { background: #fff; color: #808080; padding: 40px 20px 32px; }
+.grupoLogos { max-width: 1100px; margin: 0 auto 24px; }
+.grupoLogos h3 { display: flex; align-items: center; gap: 24px; font-size: 16px; font-weight: 400; margin-bottom: 16px; }
+.grupoLogos h3::before, .grupoLogos h3::after { content: ""; flex: 1; height: 1px; background: #d3d3d3; }
+.grupoLogos > div { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 16px 48px; }
+.grupoLogos img { height: 56px; width: auto; display: block; }
 .grupoLogos a:hover img { opacity: .75; }
 
 @media (max-width: 900px) {
-  .entradas { grid-template-columns: 1fr; max-width: 360px; }
-  .entrada img { height: 70px; }
-  .grupoLogos img { height: 40px; }
+  .hero { padding-top: 64px; }
+  .titulo { font-size: 30px; max-width: 100%; }
+  .subtitulo { font-size: 17px; }
+  .apresentacao { width: 100%; }
+  .grupoLogos img { height: 44px; }
 }

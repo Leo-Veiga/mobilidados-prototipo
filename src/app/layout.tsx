@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
-import { Montserrat, Open_Sans } from 'next/font/google';
-import Navbar from '@/components/Navbar';
+// Fonte instalada no projeto (sem depender do Google Fonts durante o build)
+import '@fontsource/open-sans/latin-300.css';
+import '@fontsource/open-sans/latin-400.css';
+import '@fontsource/open-sans/latin-600.css';
+import '@fontsource/open-sans/latin-700.css';
+import Cabecalho from '@/components/Cabecalho';
 import Rodape from '@/components/Rodape';
 import './globals.css';
-
-const montserrat = Montserrat({ subsets: ['latin'], weight: ['400', '700'], variable: '--font-montserrat' });
-const openSans = Open_Sans({ subsets: ['latin'], weight: ['400', '600'], variable: '--font-open-sans' });
 
 export const metadata: Metadata = {
   title: { default: 'MobiliDADOS', template: '%s | MobiliDADOS' },
@@ -14,9 +15,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" className={`${montserrat.variable} ${openSans.variable}`}>
+    <html lang="pt-BR">
       <body>
-        <Navbar />
+        <Cabecalho />
         <main>{children}</main>
         <Rodape />
       </body>
