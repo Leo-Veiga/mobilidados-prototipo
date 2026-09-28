@@ -50,7 +50,14 @@ jobs:
         run: npm run dados
 
       - name: Gerar o site
-        run: npm run build
+        # Em caso de erro, as últimas linhas do build viram uma anotação na página da execução
+        # (visível sem login). O build só fala de código; o conteúdo da planilha não aparece aqui.
+        run: |
+          set -o pipefail
+          if ! npm run build 2>&1 | tee build.log; then
+            echo "::error title=Falha ao gerar o site::$(tail -n 40 build.log | sed ':a;N;$!ba;s/%/%25/g;s/\r//g;s/\n/%0A/g')"
+            exit 1
+          fi
         env:
           # Site em https://<usuario>.github.io/<repositorio>/
           # Com domínio próprio, remova esta linha.
