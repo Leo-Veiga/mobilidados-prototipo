@@ -1,0 +1,1622 @@
+[
+ {
+  "slug": "aracaju",
+  "nome": "Aracaju",
+  "uf": "SE",
+  "rm": "Região Metropolitana de Aracaju",
+  "lat": -10.947247,
+  "lon": -37.073082,
+  "texto": "Capital do estado de Sergipe.",
+  "area": 186.415,
+  "areaUrbana": 173.075,
+  "pop2016": 657013,
+  "densidade": 3054.941931,
+  "densidadeUrbana": 3282.288025,
+  "idhm": 0.77,
+  "faixaIdhm": "Alto",
+  "renda": 2775,
+  "percDr1sm": 0.55,
+  "percNegros": 0.66,
+  "percMulheres": 0.47,
+  "percBrancos": 0.34,
+  "percHomens": 0.53,
+  "laiContrato": "Não",
+  "laiContratoInicio": "-",
+  "laiContratoPrazo": "-",
+  "laiContratoFonte": "-",
+  "laiGps": "Sim",
+  "laiGpsFrota": "100%",
+  "laiGpsFonte": "Não está público",
+  "laiGtfs": "Sim",
+  "laiGtfsFonte": "Não está público",
+  "tma": {
+   "barca": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "brt": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "metro": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "monotrilho": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "trem": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "vlt": {
+    "estacoes": 0,
+    "km": 0
+   }
+  },
+  "planmobStatus": "Em revisão",
+  "planmobAno": "2012",
+  "planmobFonte": "http://www.smttaju.com.br/mobilidade-urbana/PLANO-DIRETOR-DE-MOBILIDADE.pdf"
+ },
+ {
+  "slug": "belem",
+  "nome": "Belém",
+  "uf": "PA",
+  "rm": "Região Metropolitana de Belém",
+  "lat": -1.455755,
+  "lon": -48.49018,
+  "texto": "Capital do estado do Pará.",
+  "area": 1066.81,
+  "areaUrbana": 224.056,
+  "pop2016": 1492745,
+  "densidade": 1304.48721,
+  "densidadeUrbana": 5956.859,
+  "idhm": 0.746,
+  "faixaIdhm": "Alto",
+  "renda": 1803,
+  "percDr1sm": 0.63,
+  "percNegros": 0.72,
+  "percMulheres": 0.53,
+  "percBrancos": 0.28,
+  "percHomens": 0.47,
+  "laiContrato": "Não",
+  "laiContratoInicio": "-",
+  "laiContratoPrazo": "-",
+  "laiContratoFonte": "-",
+  "laiGps": "Não identificado",
+  "laiGpsFrota": "Não identificado",
+  "laiGpsFonte": "Não identificado",
+  "laiGtfs": "Não identificado",
+  "laiGtfsFonte": "NA",
+  "tma": {
+   "barca": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "brt": {
+    "estacoes": 22,
+    "km": 18.8
+   },
+   "metro": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "monotrilho": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "trem": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "vlt": {
+    "estacoes": 0,
+    "km": 0
+   }
+  },
+  "planmobStatus": "Possui",
+  "planmobAno": "2016",
+  "planmobFonte": "http://bit.ly/2F3gEMd"
+ },
+ {
+  "slug": "belo-horizonte",
+  "nome": "Belo Horizonte",
+  "uf": "MG",
+  "rm": "Região Metropolitana de Belo Horizonte",
+  "lat": -19.916681,
+  "lon": -43.934493,
+  "texto": "Capital do estado de Minas Gerais.",
+  "area": 354.277,
+  "areaUrbana": 334,
+  "pop2016": 2512070,
+  "densidade": 6681.861933,
+  "densidadeUrbana": 7086.916168,
+  "idhm": 0.81,
+  "faixaIdhm": "Alto",
+  "renda": 2820,
+  "percDr1sm": 0.4,
+  "percNegros": 0.52,
+  "percMulheres": 0.53,
+  "percBrancos": 0.48,
+  "percHomens": 0.47,
+  "laiContrato": "Sim",
+  "laiContratoInicio": "2008",
+  "laiContratoPrazo": "20 anos",
+  "laiContratoFonte": "https://prefeitura.pbh.gov.br/sites/default/files/imagens/authenticated%2C%20editor_a_bhtrans/MINUTA_CONTRATO_FINAL_ANEXO_IX_080326.pdf",
+  "laiGps": "Sim",
+  "laiGpsFrota": "100%",
+  "laiGpsFonte": "https://dados.pbh.gov.br/organization/bhtrans",
+  "laiGtfs": "Sim",
+  "laiGtfsFonte": "https://dados.pbh.gov.br/organization/bhtrans",
+  "tma": {
+   "barca": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "brt": {
+    "estacoes": 45,
+    "km": 22.7
+   },
+   "metro": {
+    "estacoes": 18,
+    "km": 27.5
+   },
+   "monotrilho": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "trem": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "vlt": {
+    "estacoes": 0,
+    "km": 0
+   }
+  },
+  "planmobStatus": "Possui",
+  "planmobAno": "2017",
+  "planmobFonte": "https://prefeitura.pbh.gov.br/bhtrans/informacoes/planmob-bh/documentos"
+ },
+ {
+  "slug": "boa-vista",
+  "nome": "Boa Vista",
+  "uf": "RR",
+  "rm": "Região Metropolitana da Capital",
+  "lat": 2.82351,
+  "lon": -60.675833,
+  "texto": "Capital do estado de Roraima.",
+  "area": 5733.68,
+  "areaUrbana": 180.807,
+  "pop2016": 399213,
+  "densidade": 49.225105,
+  "densidadeUrbana": 1527.263878,
+  "idhm": 0.752,
+  "faixaIdhm": "Alto",
+  "renda": 2274,
+  "percDr1sm": 0.61,
+  "percNegros": 0.71,
+  "percMulheres": 0.5,
+  "percBrancos": 0.29,
+  "percHomens": 0.5,
+  "laiContrato": "Sim",
+  "laiContratoInicio": "2010",
+  "laiContratoPrazo": "15 anos",
+  "laiContratoFonte": "Não está online",
+  "laiGps": "Sim",
+  "laiGpsFrota": "100%",
+  "laiGpsFonte": "Não está público",
+  "laiGtfs": "Náo",
+  "laiGtfsFonte": "NA",
+  "tma": {
+   "barca": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "brt": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "metro": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "monotrilho": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "trem": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "vlt": {
+    "estacoes": 0,
+    "km": 0
+   }
+  },
+  "planmobStatus": "Não possui",
+  "planmobAno": "N/A",
+  "planmobFonte": "N/A"
+ },
+ {
+  "slug": "brasilia",
+  "nome": "Brasília",
+  "uf": "DF",
+  "rm": "Região Integrada de Desenvolvimento do Distrito Federal e Entorno",
+  "lat": -15.794229,
+  "lon": -47.882166,
+  "texto": "Distrito Federal.",
+  "area": 6040.9,
+  "areaUrbana": 795.1,
+  "pop2016": 3015268,
+  "densidade": 423.200185,
+  "densidadeUrbana": 3090.579801,
+  "idhm": 0.824,
+  "faixaIdhm": "Muito Alto",
+  "renda": 3656,
+  "percDr1sm": 0.4,
+  "percNegros": 0.56,
+  "percMulheres": 0.48,
+  "percBrancos": 0.44,
+  "percHomens": 0.52,
+  "laiContrato": "Sim",
+  "laiContratoInicio": "2012/2013",
+  "laiContratoPrazo": "10 anos",
+  "laiContratoFonte": "http://www.transparencia.df.gov.br/#/",
+  "laiGps": "Sim",
+  "laiGpsFrota": "100%",
+  "laiGpsFonte": "Não está público",
+  "laiGtfs": "Não",
+  "laiGtfsFonte": "NA",
+  "tma": {
+   "barca": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "brt": {
+    "estacoes": 10,
+    "km": 23.5
+   },
+   "metro": {
+    "estacoes": 26,
+    "km": 39.2
+   },
+   "monotrilho": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "trem": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "vlt": {
+    "estacoes": 0,
+    "km": 0
+   }
+  },
+  "planmobStatus": "Em revisão",
+  "planmobAno": "2011",
+  "planmobFonte": "https://drive.google.com/file/d/1cPc5HRdSXLOe9MEyhTIonnZdPM9YnmVK/view"
+ },
+ {
+  "slug": "campo-grande",
+  "nome": "Campo Grande",
+  "uf": "MS",
+  "rm": "N/A",
+  "lat": -20.469711,
+  "lon": -54.620121,
+  "texto": "Capital do estado do Mato Grosso do Sul.",
+  "area": 8707.38,
+  "areaUrbana": 314.649,
+  "pop2016": 895982,
+  "densidade": 89.580792,
+  "densidadeUrbana": 2435.885701,
+  "idhm": 0.784,
+  "faixaIdhm": "Alto",
+  "renda": 2300,
+  "percDr1sm": 0.49,
+  "percNegros": 0.47,
+  "percMulheres": 0.48,
+  "percBrancos": 0.53,
+  "percHomens": 0.52,
+  "laiContrato": "Sim",
+  "laiContratoInicio": "2012",
+  "laiContratoPrazo": "20 anos",
+  "laiContratoFonte": "http://www.campogrande.ms.gov.br/agereg/artigos/contrato-consorcio-guaicurus/",
+  "laiGps": "Sim",
+  "laiGpsFrota": "100%",
+  "laiGpsFonte": "Não está público",
+  "laiGtfs": "Sim",
+  "laiGtfsFonte": "Não está público",
+  "tma": {
+   "barca": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "brt": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "metro": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "monotrilho": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "trem": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "vlt": {
+    "estacoes": 0,
+    "km": 0
+   }
+  },
+  "planmobStatus": "Possui",
+  "planmobAno": "2015",
+  "planmobFonte": "https://drive.google.com/file/d/1xmDwiKZ1R_DIlc9b9ojtGe1TUq-0_XRM/view"
+ },
+ {
+  "slug": "cuiaba",
+  "nome": "Cuiabá",
+  "uf": "MT",
+  "rm": "Região Metropolitana do Vale do Cuiabá",
+  "lat": -15.601411,
+  "lon": -56.097892,
+  "texto": "Capital do estado do Mato Grosso.",
+  "area": 3647.43,
+  "areaUrbana": 218.819,
+  "pop2016": 612547,
+  "densidade": 150.124334,
+  "densidadeUrbana": 2417.486599,
+  "idhm": 0.785,
+  "faixaIdhm": "Alto",
+  "renda": 2379,
+  "percDr1sm": 0.47,
+  "percNegros": 0.65,
+  "percMulheres": 0.51,
+  "percBrancos": 0.35,
+  "percHomens": 0.49,
+  "laiContrato": "Sim",
+  "laiContratoInicio": "2019",
+  "laiContratoPrazo": "20 anos",
+  "laiContratoFonte": "https://arsec.cuiaba.mt.gov.br/ver-transporte-publico/32/5404/REVISAO-EXTRAORDINARIA--CONTRATOS-DE-CONCESSAO--TRANSPORTE-COLETIVO/",
+  "laiGps": "Sim",
+  "laiGpsFrota": "100%",
+  "laiGpsFonte": "Não está público",
+  "laiGtfs": "Não",
+  "laiGtfsFonte": "NA",
+  "tma": {
+   "barca": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "brt": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "metro": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "monotrilho": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "trem": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "vlt": {
+    "estacoes": 0,
+    "km": 0
+   }
+  },
+  "planmobStatus": "Em elaboração",
+  "planmobAno": "N/A",
+  "planmobFonte": "N/A"
+ },
+ {
+  "slug": "curitiba",
+  "nome": "Curitiba",
+  "uf": "PR",
+  "rm": "Região Metropolitana de Curitiba",
+  "lat": -25.428954,
+  "lon": -49.267137,
+  "texto": "Capital do estado do Paraná.",
+  "area": 483.947,
+  "areaUrbana": 363.8,
+  "pop2016": 1933105,
+  "densidade": 3603.96903,
+  "densidadeUrbana": 4693.870258,
+  "idhm": 0.823,
+  "faixaIdhm": "Muito Alto",
+  "renda": 3153,
+  "percDr1sm": 0.31,
+  "percNegros": 0.44,
+  "percMulheres": 0.53,
+  "percBrancos": 0.56,
+  "percHomens": 0.47,
+  "laiContrato": "Sim",
+  "laiContratoInicio": "2010",
+  "laiContratoPrazo": "15 anos",
+  "laiContratoFonte": "https://www.urbs.curitiba.pr.gov.br/institucional/licitacoes/01052009",
+  "laiGps": "Sim",
+  "laiGpsFrota": "100%",
+  "laiGpsFonte": "https://www.curitiba.pr.gov.br/dadosabertos/busca/?grupo=8",
+  "laiGtfs": "Sim",
+  "laiGtfsFonte": "https://www.curitiba.pr.gov.br/dadosabertos/busca/?termo=gtfs",
+  "tma": {
+   "barca": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "brt": {
+    "estacoes": 118,
+    "km": 74.7
+   },
+   "metro": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "monotrilho": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "trem": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "vlt": {
+    "estacoes": 0,
+    "km": 0
+   }
+  },
+  "planmobStatus": "Em revisão",
+  "planmobAno": "2008",
+  "planmobFonte": "http://redpgv.coppe.ufrj.br/index.php/es/informacion/banco-de-estudo-de-impactos/641-plano-de-mobilidade-curitiba/file"
+ },
+ {
+  "slug": "florianopolis",
+  "nome": "Florianópolis",
+  "uf": "SC",
+  "rm": "Região Metropolitana de Florianópolis",
+  "lat": -27.595378,
+  "lon": -48.54805,
+  "texto": "Capital do estado Santa Catarina.",
+  "area": 764.922,
+  "areaUrbana": 212.683,
+  "pop2016": 500973,
+  "densidade": 547.285867,
+  "densidadeUrbana": 1892.417354,
+  "idhm": 0.847,
+  "faixaIdhm": "Muito Alto",
+  "renda": 2986,
+  "percDr1sm": 0.24,
+  "percNegros": 0.15,
+  "percMulheres": 0.48,
+  "percBrancos": 0.85,
+  "percHomens": 0.52,
+  "laiContrato": "Sim",
+  "laiContratoInicio": "2014",
+  "laiContratoPrazo": "20 anos",
+  "laiContratoFonte": "https://www.consorciofenix.com.br/upload/contrato.pdf",
+  "laiGps": "Sim",
+  "laiGpsFrota": "100%",
+  "laiGpsFonte": "Não está público",
+  "laiGtfs": "Não",
+  "laiGtfsFonte": "NA",
+  "tma": {
+   "barca": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "brt": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "metro": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "monotrilho": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "trem": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "vlt": {
+    "estacoes": 0,
+    "km": 0
+   }
+  },
+  "planmobStatus": "Em revisão",
+  "planmobAno": "2015",
+  "planmobFonte": "https://drive.google.com/file/d/1sZxMS-7N7bmrb-A7iEWpsSLV8Tqlyxhu/view"
+ },
+ {
+  "slug": "fortaleza",
+  "nome": "Fortaleza",
+  "uf": "CE",
+  "rm": "Região Metropolitana de Fortaleza",
+  "lat": -3.731862,
+  "lon": -38.52667,
+  "texto": "Capital do estado do Ceará.",
+  "area": 317.727,
+  "areaUrbana": 313.483,
+  "pop2016": 2669342,
+  "densidade": 7694.813472,
+  "densidadeUrbana": 7798.987505,
+  "idhm": 0.754,
+  "faixaIdhm": "Alto",
+  "renda": 1863,
+  "percDr1sm": 0.65,
+  "percNegros": 0.62,
+  "percMulheres": 0.53,
+  "percBrancos": 0.38,
+  "percHomens": 0.47,
+  "laiContrato": "Sim",
+  "laiContratoInicio": "2012",
+  "laiContratoPrazo": "15 anos",
+  "laiContratoFonte": "Não está online",
+  "laiGps": "Sim",
+  "laiGpsFrota": "100%",
+  "laiGpsFonte": "https://dados.fortaleza.ce.gov.br/dataset/?text=gps",
+  "laiGtfs": "Sim",
+  "laiGtfsFonte": "Não está público",
+  "tma": {
+   "barca": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "brt": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "metro": {
+    "estacoes": 13,
+    "km": 15.4
+   },
+   "monotrilho": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "trem": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "vlt": {
+    "estacoes": 10,
+    "km": 13.2
+   }
+  },
+  "planmobStatus": "Possui",
+  "planmobAno": "2015",
+  "planmobFonte": "https://drive.google.com/file/d/0Bw1Tkc7R4118VkhkdzdsSFJGTVk/view?resourcekey=0-dSEg69mhDvoBvcupjXsyLg"
+ },
+ {
+  "slug": "goiania",
+  "nome": "Goiânia",
+  "uf": "GO",
+  "rm": "Região Metropolitana de Goiânia",
+  "lat": -16.686891,
+  "lon": -49.264794,
+  "texto": "Capital do estado de Goiás.",
+  "area": 769.152,
+  "areaUrbana": 414.9,
+  "pop2016": 1516113,
+  "densidade": 1689.080962,
+  "densidadeUrbana": 3112.991082,
+  "idhm": 0.799,
+  "faixaIdhm": "Alto",
+  "renda": 2603,
+  "percDr1sm": 0.42,
+  "percNegros": 0.45,
+  "percMulheres": 0.48,
+  "percBrancos": 0.55,
+  "percHomens": 0.52,
+  "laiContrato": "Sim",
+  "laiContratoInicio": "2008",
+  "laiContratoPrazo": "20 anos",
+  "laiContratoFonte": "https://cmtcrmg.com.br/wp-content/uploads/2019/08/CONTRATO-CMTC-E-COOTEGO-2008.pdf",
+  "laiGps": "Sim",
+  "laiGpsFrota": "100%",
+  "laiGpsFonte": "Não está público",
+  "laiGtfs": "Sim",
+  "laiGtfsFonte": "Não está público",
+  "tma": {
+   "barca": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "brt": {
+    "estacoes": 24,
+    "km": 13.4
+   },
+   "metro": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "monotrilho": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "trem": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "vlt": {
+    "estacoes": 0,
+    "km": 0
+   }
+  },
+  "planmobStatus": "Em elaboração",
+  "planmobAno": "N/A",
+  "planmobFonte": "N/A"
+ },
+ {
+  "slug": "joao-pessoa",
+  "nome": "João Pessoa",
+  "uf": "PB",
+  "rm": "Região Metropolitana de João Pessoa",
+  "lat": -7.119496,
+  "lon": -34.845012,
+  "texto": "Capital do estado da Paraíba.",
+  "area": 214.531,
+  "areaUrbana": 163.375,
+  "pop2016": 809015,
+  "densidade": 3350.66727,
+  "densidadeUrbana": 4383.118592,
+  "idhm": 0.763,
+  "faixaIdhm": "Alto",
+  "renda": 2418,
+  "percDr1sm": 0.59,
+  "percNegros": 0.54,
+  "percMulheres": 0.47,
+  "percBrancos": 0.46,
+  "percHomens": 0.53,
+  "laiContrato": "Sim",
+  "laiContratoInicio": "2011",
+  "laiContratoPrazo": "20 anos",
+  "laiContratoFonte": "Não está online",
+  "laiGps": "Sim",
+  "laiGpsFrota": "100%",
+  "laiGpsFonte": "Não está público",
+  "laiGtfs": "Não",
+  "laiGtfsFonte": "NA",
+  "tma": {
+   "barca": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "brt": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "metro": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "monotrilho": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "trem": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "vlt": {
+    "estacoes": 0,
+    "km": 0
+   }
+  },
+  "planmobStatus": "Sim",
+  "planmobAno": "2020",
+  "planmobFonte": "http://www.planmob.joaopessoa.pb.gov.br/?page_id=7"
+ },
+ {
+  "slug": "macapa",
+  "nome": "Macapá",
+  "uf": "AP",
+  "rm": "Região Metropolitana de Macapá",
+  "lat": 0.035574,
+  "lon": -51.070535,
+  "texto": "Capital do estado do Amapá.",
+  "area": 6452.14,
+  "areaUrbana": 117.522,
+  "pop2016": 503327,
+  "densidade": 61.454649,
+  "densidadeUrbana": 3198.796821,
+  "idhm": 0.733,
+  "faixaIdhm": "Alto",
+  "renda": 2290,
+  "percDr1sm": 0.61,
+  "percNegros": 0.73,
+  "percMulheres": 0.51,
+  "percBrancos": 0.27,
+  "percHomens": 0.49,
+  "laiContrato": "Não",
+  "laiContratoInicio": "NA",
+  "laiContratoPrazo": "NA",
+  "laiContratoFonte": "NA",
+  "laiGps": "Sim",
+  "laiGpsFrota": "100%",
+  "laiGpsFonte": "Não está público",
+  "laiGtfs": "Não identificado",
+  "laiGtfsFonte": "NA",
+  "tma": {
+   "barca": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "brt": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "metro": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "monotrilho": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "trem": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "vlt": {
+    "estacoes": 0,
+    "km": 0
+   }
+  },
+  "planmobStatus": "Em elaboração",
+  "planmobAno": "N/A",
+  "planmobFonte": "https://goo.gl/f8z6v7"
+ },
+ {
+  "slug": "maceio",
+  "nome": "Maceió",
+  "uf": "AL",
+  "rm": "Região Metropolitana de Maceió",
+  "lat": -9.649849,
+  "lon": -35.708949,
+  "texto": "Capital do estado de Alagoas.",
+  "area": 513.353,
+  "areaUrbana": 199.84,
+  "pop2016": 1018948,
+  "densidade": 1809.949489,
+  "densidadeUrbana": 4646.206966,
+  "idhm": 0.721,
+  "faixaIdhm": "Alto",
+  "renda": 1756,
+  "percDr1sm": 0.66,
+  "percNegros": 0.62,
+  "percMulheres": 0.47,
+  "percBrancos": 0.38,
+  "percHomens": 0.53,
+  "laiContrato": "Sim",
+  "laiContratoInicio": "2016",
+  "laiContratoPrazo": "15 anos",
+  "laiContratoFonte": "Não está online",
+  "laiGps": "Sim",
+  "laiGpsFrota": "100%",
+  "laiGpsFonte": "Não está público",
+  "laiGtfs": "Não",
+  "laiGtfsFonte": "NA",
+  "tma": {
+   "barca": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "brt": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "metro": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "monotrilho": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "trem": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "vlt": {
+    "estacoes": 0,
+    "km": 0
+   }
+  },
+  "planmobStatus": "Em elaboração",
+  "planmobAno": "N/A",
+  "planmobFonte": "N/A"
+ },
+ {
+  "slug": "manaus",
+  "nome": "Manaus",
+  "uf": "AM",
+  "rm": "Região Metropolitana de Manaus",
+  "lat": -3.119028,
+  "lon": -60.021731,
+  "texto": "Capital do estado do Amazonas.",
+  "area": 11489.8,
+  "areaUrbana": 497.43,
+  "pop2016": 2182763,
+  "densidade": 156.42657,
+  "densidadeUrbana": 3591.681242,
+  "idhm": 0.737,
+  "faixaIdhm": "Alto",
+  "renda": 1998.5,
+  "percDr1sm": 0.64,
+  "percNegros": 0.72,
+  "percMulheres": 0.49,
+  "percBrancos": 0.28,
+  "percHomens": 0.51,
+  "laiContrato": "Sim",
+  "laiContratoInicio": "2020",
+  "laiContratoPrazo": "10 anos",
+  "laiContratoFonte": "Não está online",
+  "laiGps": "Sim",
+  "laiGpsFrota": "88.50%",
+  "laiGpsFonte": "Não está público",
+  "laiGtfs": "Não",
+  "laiGtfsFonte": "NA",
+  "tma": {
+   "barca": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "brt": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "metro": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "monotrilho": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "trem": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "vlt": {
+    "estacoes": 0,
+    "km": 0
+   }
+  },
+  "planmobStatus": "Possui",
+  "planmobAno": "2015",
+  "planmobFonte": "https://drive.google.com/file/d/14wxEB0CYGEX_RC8Tyl6DH0qgDPxsxcGh/view"
+ },
+ {
+  "slug": "natal",
+  "nome": "Natal",
+  "uf": "RN",
+  "rm": "Região Metropolitana de Natal",
+  "lat": -5.779257,
+  "lon": -35.200916,
+  "texto": "Capital do estado do Rio Grande do Norte.",
+  "area": 169.187,
+  "areaUrbana": 156.321,
+  "pop2016": 884122,
+  "densidade": 4737.521204,
+  "densidadeUrbana": 5127.436493,
+  "idhm": 0.763,
+  "faixaIdhm": "Alto",
+  "renda": 2117,
+  "percDr1sm": 0.59,
+  "percNegros": 0.54,
+  "percMulheres": 0.47,
+  "percBrancos": 0.46,
+  "percHomens": 0.53,
+  "laiContrato": "Não",
+  "laiContratoInicio": "NA",
+  "laiContratoPrazo": "NA",
+  "laiContratoFonte": "NA",
+  "laiGps": "Sim",
+  "laiGpsFrota": "100%",
+  "laiGpsFonte": "Não está público",
+  "laiGtfs": "Sim",
+  "laiGtfsFonte": "NA",
+  "tma": {
+   "barca": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "brt": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "metro": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "monotrilho": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "trem": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "vlt": {
+    "estacoes": 0,
+    "km": 0
+   }
+  },
+  "planmobStatus": "Possui",
+  "planmobAno": "2022",
+  "planmobFonte": "https://natal.rn.gov.br/sttu/planmob"
+ },
+ {
+  "slug": "palmas",
+  "nome": "Palmas",
+  "uf": "TO",
+  "rm": "Região Metropolitana de Palmas",
+  "lat": -10.249091,
+  "lon": -48.324286,
+  "texto": "Capital do estado de Tocantins.",
+  "area": 2268.95,
+  "areaUrbana": 121.59,
+  "pop2016": 299127,
+  "densidade": 99.887613,
+  "densidadeUrbana": 1783.904926,
+  "idhm": 0.788,
+  "faixaIdhm": "Alto",
+  "renda": 2236,
+  "percDr1sm": 0.49,
+  "percNegros": 0.65,
+  "percMulheres": 0.49,
+  "percBrancos": 0.35,
+  "percHomens": 0.51,
+  "laiContrato": "Sim",
+  "laiContratoInicio": "NA",
+  "laiContratoPrazo": "NA",
+  "laiContratoFonte": "NA",
+  "laiGps": "Sim",
+  "laiGpsFrota": "100%",
+  "laiGpsFonte": "Não está público",
+  "laiGtfs": "Sim",
+  "laiGtfsFonte": "NA",
+  "tma": {
+   "barca": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "brt": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "metro": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "monotrilho": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "trem": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "vlt": {
+    "estacoes": 0,
+    "km": 0
+   }
+  },
+  "planmobStatus": "Em elaboração",
+  "planmobAno": "N/A",
+  "planmobFonte": "N/A"
+ },
+ {
+  "slug": "porto-alegre",
+  "nome": "Porto Alegre",
+  "uf": "RS",
+  "rm": "Região Metropolitana de Porto Alegre",
+  "lat": -30.034647,
+  "lon": -51.217658,
+  "texto": "Capital do estado do Rio Grande do Sul.",
+  "area": 575.997,
+  "areaUrbana": 364.2,
+  "pop2016": 1483771,
+  "densidade": 2425.984858,
+  "densidadeUrbana": 3784.294344,
+  "idhm": 0.805,
+  "faixaIdhm": "Muito Alto",
+  "renda": 3452,
+  "percDr1sm": 0.31,
+  "percNegros": 0.2,
+  "percMulheres": 0.46,
+  "percBrancos": 0.8,
+  "percHomens": 0.54,
+  "laiContrato": "Sim",
+  "laiContratoInicio": "2015",
+  "laiContratoPrazo": "20 anos",
+  "laiContratoFonte": "http://www2.portoalegre.rs.gov.br/smf/default.php?reg=19&p_secao=256",
+  "laiGps": "Sim",
+  "laiGpsFrota": "100%",
+  "laiGpsFonte": "https://www.tripoa.net.br/GPS",
+  "laiGtfs": "Sim",
+  "laiGtfsFonte": "https://dadosabertos.poa.br/dataset/groups/gtfs",
+  "tma": {
+   "barca": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "brt": {
+    "estacoes": 75,
+    "km": 39
+   },
+   "metro": {
+    "estacoes": 6,
+    "km": 9.1
+   },
+   "monotrilho": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "trem": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "vlt": {
+    "estacoes": 0,
+    "km": 0
+   }
+  },
+  "planmobStatus": "Posui",
+  "planmobAno": "2022",
+  "planmobFonte": "https://www.camarapoa.rs.gov.br/draco/processos/137529/LC_951.pdf"
+ },
+ {
+  "slug": "porto-velho",
+  "nome": "Porto Velho",
+  "uf": "RO",
+  "rm": "Região Metropolitana de Porto Velho",
+  "lat": -8.761161,
+  "lon": -63.90043,
+  "texto": "Capital do estado de Rondônia.",
+  "area": 34758.9,
+  "areaUrbana": 176.159,
+  "pop2016": 529544,
+  "densidade": 12.098168,
+  "densidadeUrbana": 2211.343162,
+  "idhm": 0.736,
+  "faixaIdhm": "Alto",
+  "renda": 1952,
+  "percDr1sm": 0.53,
+  "percNegros": 0.7,
+  "percMulheres": 0.5,
+  "percBrancos": 0.3,
+  "percHomens": 0.5,
+  "laiContrato": "Sim",
+  "laiContratoInicio": "2018",
+  "laiContratoPrazo": "15 anos",
+  "laiContratoFonte": "https://uploads.portovelho.ro.gov.br/contratos/1713/159294288584e79a37a746654135694b1e8bdfa0809a7dd6b9.pdf",
+  "laiGps": "Sim",
+  "laiGpsFrota": "Não identificado",
+  "laiGpsFonte": "Não está público",
+  "laiGtfs": "Não",
+  "laiGtfsFonte": "NA",
+  "tma": {
+   "barca": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "brt": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "metro": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "monotrilho": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "trem": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "vlt": {
+    "estacoes": 0,
+    "km": 0
+   }
+  },
+  "planmobStatus": "Possui",
+  "planmobAno": "2022",
+  "planmobFonte": "https://sapl.portovelho.ro.leg.br/ta/2526/text?"
+ },
+ {
+  "slug": "recife",
+  "nome": "Recife",
+  "uf": "PE",
+  "rm": "Região Metropolitana do Recife",
+  "lat": -8.057838,
+  "lon": -34.882897,
+  "texto": "Capital do estado de Pernambuco.",
+  "area": 222.032,
+  "areaUrbana": 218.7,
+  "pop2016": 1645727,
+  "densidade": 6892.11465,
+  "densidadeUrbana": 6997.119342,
+  "idhm": 0.772,
+  "faixaIdhm": "Alto",
+  "renda": 2810,
+  "percDr1sm": 0.6,
+  "percNegros": 0.58,
+  "percMulheres": 0.46,
+  "percBrancos": 0.42,
+  "percHomens": 0.54,
+  "laiContrato": "Sim",
+  "laiContratoInicio": "2013",
+  "laiContratoPrazo": "15 anos",
+  "laiContratoFonte": "https://www.granderecife.pe.gov.br/sitegrctm/servicos/licitacao/concessoes-do-stpprmr/",
+  "laiGps": "Sim",
+  "laiGpsFrota": "100%",
+  "laiGpsFonte": "Não está público",
+  "laiGtfs": "Sim",
+  "laiGtfsFonte": "Não está público",
+  "tma": {
+   "barca": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "brt": {
+    "estacoes": 16,
+    "km": 8.1
+   },
+   "metro": {
+    "estacoes": 18,
+    "km": 26.1
+   },
+   "monotrilho": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "trem": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "vlt": {
+    "estacoes": 0,
+    "km": 0
+   }
+  },
+  "planmobStatus": "Em elaboração",
+  "planmobAno": "N/A",
+  "planmobFonte": "N/A"
+ },
+ {
+  "slug": "rio-branco",
+  "nome": "Rio Branco",
+  "uf": "AC",
+  "rm": "N/A",
+  "lat": -9.975384,
+  "lon": -67.824918,
+  "texto": "Capital do estado do Acre.",
+  "area": 9030.46,
+  "areaUrbana": 133.443,
+  "pop2016": 407319,
+  "densidade": 36.949059,
+  "densidadeUrbana": 2249.672145,
+  "idhm": 0.727,
+  "faixaIdhm": "Alto",
+  "renda": 1942.25,
+  "percDr1sm": 0.64,
+  "percNegros": 0.72,
+  "percMulheres": 0.49,
+  "percBrancos": 0.28,
+  "percHomens": 0.51,
+  "laiContrato": "Sim",
+  "laiContratoInicio": "2004",
+  "laiContratoPrazo": "20 anos",
+  "laiContratoFonte": "http://transportes.riobranco.ac.gov.br/contratos.html",
+  "laiGps": "Sim",
+  "laiGpsFrota": "100%",
+  "laiGpsFonte": "Não está público",
+  "laiGtfs": "Não",
+  "laiGtfsFonte": "NA",
+  "tma": {
+   "barca": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "brt": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "metro": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "monotrilho": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "trem": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "vlt": {
+    "estacoes": 0,
+    "km": 0
+   }
+  },
+  "planmobStatus": "Possui",
+  "planmobAno": "2009",
+  "planmobFonte": "https://drive.google.com/file/d/1KI2b4tLKwN-tFa4SifKDmpeJdoxRw9ob/view"
+ },
+ {
+  "slug": "rio-de-janeiro",
+  "nome": "Rio de Janeiro",
+  "uf": "RJ",
+  "rm": "Região Metropolitana do Rio de Janeiro",
+  "lat": -22.906847,
+  "lon": -43.172897,
+  "texto": "Capital do estado do Rio de Janeiro.",
+  "area": 1309.31,
+  "areaUrbana": 881.7,
+  "pop2016": 6718903,
+  "densidade": 4799.085014,
+  "densidadeUrbana": 7123.159805,
+  "idhm": 0.799,
+  "faixaIdhm": "Alto",
+  "renda": 3016,
+  "percDr1sm": 0.42,
+  "percNegros": 0.48,
+  "percMulheres": 0.53,
+  "percBrancos": 0.52,
+  "percHomens": 0.47,
+  "laiContrato": "Sim",
+  "laiContratoInicio": "2010",
+  "laiContratoPrazo": "20 anos",
+  "laiContratoFonte": "http://www.rio.rj.gov.br/web/transparenciadamobilidade/exibeconteudo?id=4801047",
+  "laiGps": "Sim",
+  "laiGpsFrota": "100%",
+  "laiGpsFonte": "https://www.data.rio/search?q=datalake",
+  "laiGtfs": "Sim",
+  "laiGtfsFonte": "https://www.data.rio/datasets/8ffe62ad3b2f42e49814bf941654ea6c/about",
+  "tma": {
+   "barca": {
+    "estacoes": 1,
+    "km": 2.5
+   },
+   "brt": {
+    "estacoes": 131,
+    "km": 124.3
+   },
+   "metro": {
+    "estacoes": 42,
+    "km": 60.1
+   },
+   "monotrilho": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "trem": {
+    "estacoes": 49,
+    "km": 99.6
+   },
+   "vlt": {
+    "estacoes": 29,
+    "km": 13.9
+   }
+  },
+  "planmobStatus": "Possui",
+  "planmobAno": "2019",
+  "planmobFonte": "https://drive.google.com/file/d/1U_B3jT4hx-lnfGzD0S40y94QfFReD0HN/view"
+ },
+ {
+  "slug": "salvador",
+  "nome": "Salvador",
+  "uf": "BA",
+  "rm": "Região Metropolitana de Salvador",
+  "lat": -12.972218,
+  "lon": -38.501414,
+  "texto": "Capital do estado da Bahia.",
+  "area": 715.503,
+  "areaUrbana": 283.3,
+  "pop2016": 2872347,
+  "densidade": 3723.548329,
+  "densidadeUrbana": 9400.705965,
+  "idhm": 0.759,
+  "faixaIdhm": "Alto",
+  "renda": 2090,
+  "percDr1sm": 0.61,
+  "percNegros": 0.8,
+  "percMulheres": 0.54,
+  "percBrancos": 0.2,
+  "percHomens": 0.46,
+  "laiContrato": "Sim",
+  "laiContratoInicio": "2014",
+  "laiContratoPrazo": "25 anos",
+  "laiContratoFonte": "http://www.compras.salvador.ba.gov.br/esclarecimentos/ANEXO1.3%20-%20Concess%C3%A3o%20007-2014.pdf",
+  "laiGps": "Sim",
+  "laiGpsFrota": "100%",
+  "laiGpsFonte": "Não está público",
+  "laiGtfs": "Sim",
+  "laiGtfsFonte": "Não está público",
+  "tma": {
+   "barca": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "brt": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "metro": {
+    "estacoes": 19,
+    "km": 30.3
+   },
+   "monotrilho": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "trem": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "vlt": {
+    "estacoes": 0,
+    "km": 0
+   }
+  },
+  "planmobStatus": "Possui",
+  "planmobAno": "2018",
+  "planmobFonte": "https://drive.google.com/file/d/17ThXGac-C7NK4DTuQ0AcnCx7McLxJAdh/view"
+ },
+ {
+  "slug": "sao-luis",
+  "nome": "São Luís",
+  "uf": "MA",
+  "rm": "Região Metropolitana de São Luís",
+  "lat": -2.53911,
+  "lon": -44.282905,
+  "texto": "Capital do estado do Maranhão.",
+  "area": 841.276,
+  "areaUrbana": 400.319,
+  "pop2016": 1101884,
+  "densidade": 1202.803836,
+  "densidadeUrbana": 2320.102218,
+  "idhm": 0.768,
+  "faixaIdhm": "Alto",
+  "renda": 1684,
+  "percDr1sm": 0.66,
+  "percNegros": 0.7,
+  "percMulheres": 0.47,
+  "percBrancos": 0.3,
+  "percHomens": 0.53,
+  "laiContrato": "Sim",
+  "laiContratoInicio": "2016",
+  "laiContratoPrazo": "20 anos",
+  "laiContratoFonte": "Não está online",
+  "laiGps": "Sim",
+  "laiGpsFrota": "100%",
+  "laiGpsFonte": "Não está público",
+  "laiGtfs": "Não",
+  "laiGtfsFonte": "NA",
+  "tma": {
+   "barca": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "brt": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "metro": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "monotrilho": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "trem": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "vlt": {
+    "estacoes": 0,
+    "km": 0
+   }
+  },
+  "planmobStatus": "Possui",
+  "planmobAno": "2017",
+  "planmobFonte": "https://drive.google.com/file/d/1mJw_QbRB-2PyO8UlwGGYtmanRFWGXzDN/view"
+ },
+ {
+  "slug": "sao-paulo",
+  "nome": "São Paulo",
+  "uf": "SP",
+  "rm": "Região Metropolitana de São Paulo",
+  "lat": -23.55052,
+  "lon": -46.633309,
+  "texto": "Capital do estado de São Paulo.",
+  "area": 1668.17,
+  "areaUrbana": 1011.6,
+  "pop2016": 12252023,
+  "densidade": 6719.758778,
+  "densidadeUrbana": 10937.228153,
+  "idhm": 0.805,
+  "faixaIdhm": "Muito Alto",
+  "renda": 3323,
+  "percDr1sm": 0.41,
+  "percNegros": 0.19,
+  "percMulheres": 0.47,
+  "percBrancos": 0.81,
+  "percHomens": 0.53,
+  "laiContrato": "Sim",
+  "laiContratoInicio": "2019",
+  "laiContratoPrazo": "20 anos",
+  "laiContratoFonte": "https://www.prefeitura.sp.gov.br/cidade/secretarias/transportes/acesso_a_informacao/index.php?p=284142",
+  "laiGps": "Sim",
+  "laiGpsFrota": "100%",
+  "laiGpsFonte": "http://www.sptrans.com.br/desenvolvedores/",
+  "laiGtfs": "Sim",
+  "laiGtfsFonte": "https://www.sptrans.com.br/desenvolvedores/",
+  "tma": {
+   "barca": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "brt": {
+    "estacoes": 44,
+    "km": 26.6
+   },
+   "metro": {
+    "estacoes": 76,
+    "km": 89.4
+   },
+   "monotrilho": {
+    "estacoes": 11,
+    "km": 14.4
+   },
+   "trem": {
+    "estacoes": 45,
+    "km": 129.8
+   },
+   "vlt": {
+    "estacoes": 0,
+    "km": 0
+   }
+  },
+  "planmobStatus": "Possui",
+  "planmobAno": "2016",
+  "planmobFonte": "https://drive.google.com/file/d/1P3m8wy0teh74OGpSwxDiyA1N3EcjU9SB/view"
+ },
+ {
+  "slug": "teresina",
+  "nome": "Teresina",
+  "uf": "PI",
+  "rm": "Região Metropolitana de Teresina",
+  "lat": -5.044685,
+  "lon": -42.766233,
+  "texto": "Capital do estado do Piauí.",
+  "area": 1407.14,
+  "areaUrbana": 221.447,
+  "pop2016": 864845,
+  "densidade": 576.664014,
+  "densidadeUrbana": 3448.960699,
+  "idhm": 0.751,
+  "faixaIdhm": "Alto",
+  "renda": 1854.25,
+  "percDr1sm": 0.66,
+  "percNegros": 0.71,
+  "percMulheres": 0.47,
+  "percBrancos": 0.29,
+  "percHomens": 0.53,
+  "laiContrato": "Sim",
+  "laiContratoInicio": "2014",
+  "laiContratoPrazo": "15 anos",
+  "laiContratoFonte": "Não está online",
+  "laiGps": "Sim",
+  "laiGpsFrota": "100%",
+  "laiGpsFonte": "Não está público",
+  "laiGtfs": "Sim",
+  "laiGtfsFonte": "https://inthegra.strans.teresina.pi.gov.br/",
+  "tma": {
+   "barca": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "brt": {
+    "estacoes": 37,
+    "km": 21.7
+   },
+   "metro": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "monotrilho": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "trem": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "vlt": {
+    "estacoes": 0,
+    "km": 0
+   }
+  },
+  "planmobStatus": "Possui",
+  "planmobAno": "2008",
+  "planmobFonte": "https://drive.google.com/file/d/0Bw1Tkc7R4118bDh0am45RjZjZ3M/view?resourcekey=0-R32-4Fbx6k7_2qSZF6epnA"
+ },
+ {
+  "slug": "vitoria",
+  "nome": "Vitória",
+  "uf": "ES",
+  "rm": "Região Metropolitana de Vitória",
+  "lat": -20.297618,
+  "lon": -40.295777,
+  "texto": "Capital do estado do Espírito Santo.",
+  "area": 105.234,
+  "areaUrbana": 50.6505,
+  "pop2016": 362097,
+  "densidade": 3104.776023,
+  "densidadeUrbana": 6447.794197,
+  "idhm": 0.845,
+  "faixaIdhm": "Muito Alto",
+  "renda": 3973,
+  "percDr1sm": 0.34,
+  "percNegros": 0.52,
+  "percMulheres": 0.47,
+  "percBrancos": 0.48,
+  "percHomens": 0.53,
+  "laiContrato": "Não",
+  "laiContratoInicio": "NA",
+  "laiContratoPrazo": "NA",
+  "laiContratoFonte": "NA",
+  "laiGps": "Sim",
+  "laiGpsFrota": "100%",
+  "laiGpsFonte": "Não está público",
+  "laiGtfs": "Não",
+  "laiGtfsFonte": "NA",
+  "tma": {
+   "barca": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "brt": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "metro": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "monotrilho": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "trem": {
+    "estacoes": 0,
+    "km": 0
+   },
+   "vlt": {
+    "estacoes": 0,
+    "km": 0
+   }
+  },
+  "planmobStatus": "Em elaboração",
+  "planmobAno": "N/A",
+  "planmobFonte": "N/A"
+ }
+]

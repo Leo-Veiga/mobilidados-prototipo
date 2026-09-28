@@ -1,0 +1,27 @@
+{
+  "name": "mobilidados-site",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Site da MobiliDADOS: indicadores de mobilidade urbana das capitais e regiões metropolitanas brasileiras.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build && node scripts/pos-build.mjs",
+    "typecheck": "tsc --noEmit",
+    "dados": "python scripts/gerar_dados.py"
+  },
+  "dependencies": {
+    "chart.js": "^4.5.1",
+    "next": "^16.3.6",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=20.9"
+  }
+}

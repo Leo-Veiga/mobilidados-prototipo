@@ -1,0 +1,21 @@
+.capa { position: relative; overflow: hidden; padding: 70px 20px 40px; text-align: center; }
+.alta { min-height: calc(100vh - var(--altura-navbar)); min-height: calc(100svh - var(--altura-navbar)); display: flex; align-items: center; justify-content: center; }
+.fundo { position: absolute; inset: 0; background-size: cover; background-position: center; filter: blur(3px) brightness(.45); transform: scale(1.04); }
+.fundo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, .2), rgba(11, 11, 11, .9)); }
+.conteudo { position: relative; max-width: 1000px; margin: 0 auto; }
+.capa h1 { font-size: 38px; font-weight: 700; margin-bottom: 10px; }
+.alta h1 { font-size: 44px; max-width: 900px; margin: 0 auto 24px; }
+.subtitulo { font-size: 18px; font-weight: 700; margin-bottom: 24px; }
+
+.atalhos { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px 40px; margin: 36px auto 0; }
+.atalhos a { display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 13px; text-transform: uppercase; width: 150px; line-height: 1.2; }
+.atalhos a:hover { color: var(--verde); }
+.atalhos img { height: 30px; }
+
+@media (max-width: 900px) {
+  .capa { padding-top: 40px; }
+  .capa h1 { font-size: 28px; }
+  .alta h1 { font-size: 30px; }
+  .atalhos { gap: 16px; }
+  .atalhos a { width: 130px; font-size: 12px; }
+}

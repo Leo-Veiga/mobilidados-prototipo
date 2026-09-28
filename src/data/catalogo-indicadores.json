@@ -1,0 +1,174 @@
+{
+ "TEMPO_MED": {
+  "nome": "Tempo médio de viagem casa-trabalho",
+  "unidade": "min"
+ },
+ "PERC_ACIMA_1H": {
+  "nome": "Pessoas que gastam mais de 1h no trajeto casa-trabalho",
+  "unidade": "%"
+ },
+ "PERC_CALÇADAS": {
+  "nome": "Domicílios com calçadas no entorno",
+  "unidade": "%"
+ },
+ "PERC_RAMPAS": {
+  "nome": "Domicílios com rampas no entorno",
+  "unidade": "%"
+ },
+ "PERC_A PÉ": {
+  "nome": "Viagens a pé",
+  "unidade": "%"
+ },
+ "PERC_A PE": {
+  "nome": "Viagens a pé",
+  "unidade": "%"
+ },
+ "PERC_BICI": {
+  "nome": "Viagens de bicicleta",
+  "unidade": "%"
+ },
+ "PERC_TRANSP_COLETIVO": {
+  "nome": "Viagens de transporte coletivo",
+  "unidade": "%"
+ },
+ "PERC_TRANSP_IND_MOTO": {
+  "nome": "Viagens de transporte individual motorizado",
+  "unidade": "%"
+ },
+ "kgCO2/hab": {
+  "nome": "Emissões de CO₂ por habitante (combustíveis)",
+  "unidade": "kg/hab"
+ },
+ "gMP/hab": {
+  "nome": "Emissões de material particulado por habitante",
+  "unidade": "g/hab"
+ },
+ "TX_MORT_TOT": {
+  "nome": "Taxa de mortalidade no trânsito",
+  "unidade": "por 100 mil hab."
+ },
+ "TX_MORT_PED": {
+  "nome": "Taxa de mortalidade de pedestres",
+  "unidade": "por 100 mil hab."
+ },
+ "TX_MORT_CICL": {
+  "nome": "Taxa de mortalidade de ciclistas",
+  "unidade": "por 100 mil hab."
+ },
+ "TX_MORT_AUTO": {
+  "nome": "Taxa de mortalidade de ocupantes de automóveis",
+  "unidade": "por 100 mil hab."
+ },
+ "TX_MORT_MOTO": {
+  "nome": "Taxa de mortalidade de motociclistas",
+  "unidade": "por 100 mil hab."
+ },
+ "TX_MOTO": {
+  "nome": "Taxa de motorização",
+  "unidade": "veículos por mil hab."
+ },
+ "TX_INTERN_TOT": {
+  "nome": "Taxa de internações por sinistros de trânsito",
+  "unidade": "por 100 mil hab."
+ },
+ "TX_INTERN_PED": {
+  "nome": "Taxa de internações de pedestres",
+  "unidade": "por 100 mil hab."
+ },
+ "TX_INTERN_CIC": {
+  "nome": "Taxa de internações de ciclistas",
+  "unidade": "por 100 mil hab."
+ },
+ "TX_INTERN_AUTO": {
+  "nome": "Taxa de internações de ocupantes de automóveis",
+  "unidade": "por 100 mil hab."
+ },
+ "TX_INTERN_MOTO": {
+  "nome": "Taxa de internações de motociclistas",
+  "unidade": "por 100 mil hab."
+ },
+ "TARIFAxSM": {
+  "nome": "Comprometimento do salário mínimo com a tarifa de transporte",
+  "unidade": "%"
+ },
+ "TARIFAX RENDA_DOM_NEGRA": {
+  "nome": "Comprometimento da renda de trabalhadora doméstica negra com a tarifa",
+  "unidade": "%"
+ },
+ "PNT": {
+  "nome": "População próxima de transporte de média e alta capacidade (PNT)",
+  "unidade": "%"
+ },
+ "PNT_ATE_1/2": {
+  "nome": "PNT — renda até ½ salário mínimo",
+  "unidade": "%"
+ },
+ "PNT_1/2_1": {
+  "nome": "PNT — renda de ½ a 1 salário mínimo",
+  "unidade": "%"
+ },
+ "PNT_1_3": {
+  "nome": "PNT — renda de 1 a 3 salários mínimos",
+  "unidade": "%"
+ },
+ "PNT_ACIMA_3": {
+  "nome": "PNT — renda acima de 3 salários mínimos",
+  "unidade": "%"
+ },
+ "PNT_MULHERES_NEGRAS": {
+  "nome": "PNT — mulheres negras",
+  "unidade": "%"
+ },
+ "PNT_MULHERES_1SM": {
+  "nome": "PNT — mulheres com renda até 1 salário mínimo",
+  "unidade": "%"
+ },
+ "PNB": {
+  "nome": "População próxima da infraestrutura cicloviária (PNB)",
+  "unidade": "%"
+ },
+ "PNB_ATE_1/2": {
+  "nome": "PNB — renda até ½ salário mínimo",
+  "unidade": "%"
+ },
+ "PNB_1/2_1": {
+  "nome": "PNB — renda de ½ a 1 salário mínimo",
+  "unidade": "%"
+ },
+ "PNB_1_3": {
+  "nome": "PNB — renda de 1 a 3 salários mínimos",
+  "unidade": "%"
+ },
+ "PNB_ACIMA_3": {
+  "nome": "PNB — renda acima de 3 salários mínimos",
+  "unidade": "%"
+ },
+ "PNB_MULHERES_NEGRAS": {
+  "nome": "PNB — mulheres negras",
+  "unidade": "%"
+ },
+ "PNB_MULHERES_ATE_2SM": {
+  "nome": "PNB — mulheres responsáveis por domicílio com renda até 2 SM",
+  "unidade": "%"
+ },
+ "PNB_MULHERES_1SM": {
+  "nome": "PNB — mulheres com renda até 1 salário mínimo",
+  "unidade": "%"
+ },
+ "TMA_INFRA_CICLO": {
+  "nome": "Estações de média e alta capacidade próximas de ciclovias (300 m)",
+  "unidade": "%"
+ },
+ "INFRA_CICLO_ESTB_SAÚDE": {
+  "nome": "Estabelecimentos de saúde próximos de ciclovias (300 m)",
+  "unidade": "%"
+ },
+ "PERC_MORTE_NEGROS": {
+  "nome": "Percentual de negros entre as mortes no trânsito",
+  "unidade": "%"
+ },
+ "POP": {
+  "nome": "População",
+  "unidade": "habitantes"
+ }
+}
