@@ -28,7 +28,7 @@ O site é **100% estático**: o build gera arquivos HTML, CSS, JS e CSV que pode
 
 ```
 dados/
-  planilha.xlsx               planilha de origem (abas Info_gerais_* e Indicadores_*)
+  planilha.xlsx               planilha de origem (abas Info_gerais_* e Indicadores_*); qualquer nome .xlsx serve
   catalogo-indicadores.csv    nome e unidade de cada indicador (editável no Excel)
 scripts/
   gerar_dados.py              planilha -> src/data/*.json e public/dados/*.csv
@@ -36,36 +36,46 @@ scripts/
 src/
   app/                        páginas (cada pasta é uma URL)
   components/                 peças reutilizáveis (menu, capa, gráficos, filtros...)
-  data/                       JSON gerados — não edite à mão
+  data/                       JSON gerados a cada build (fora do git)
   lib/                        tipos, formatação e acesso aos dados
 public/
   img/                        imagens, ícones e logos
-  dados/                      CSVs para download (gerados)
+  dados/                      CSVs para download (gerados a cada build, fora do git)
 ```
 
 ## Rodar no computador
 
-Requisitos: [Node.js](https://nodejs.org) 20.9 ou mais novo e Python 3 com `openpyxl`.
+Requisitos: [Node.js](https://nodejs.org) 20.9 ou mais novo e Python 3.
 
 ```bash
-npm install        # uma vez, instala as dependências
-npm run dev        # abre em http://localhost:3000 e recarrega a cada alteração
-npm run build      # gera o site final na pasta out/
+npm install                               # uma vez: dependências do site
+pip install -r scripts/requirements.txt   # uma vez: dependência do conversor
+npm run dev        # converte a planilha e abre em http://localhost:3000
+npm run build      # converte a planilha e gera o site final na pasta out/
 ```
 
-## Atualizar os dados
+## Atualizar os dados (sem instalar nada)
 
-1. Substitua `dados/planilha.xlsx` (mantendo os nomes das abas e colunas).
-2. Se houver indicador novo, acrescente uma linha em `dados/catalogo-indicadores.csv`.
-3. Rode:
+Pelo navegador, no GitHub:
 
-   ```bash
-   pip install -r scripts/requirements.txt   # só na primeira vez
-   npm run dados
-   ```
+1. Abra a pasta [`dados/`](dados/) do repositório.
+2. Clique em **Add file → Upload files** e envie a planilha nova (as abas e colunas precisam seguir o
+   mesmo modelo). Se o nome for diferente de `planilha.xlsx`, **apague a planilha antiga** no mesmo envio
+   ou logo depois: a pasta deve ter uma única `.xlsx`.
+3. Escreva uma descrição (ex.: "Dados de 2025") e clique em **Commit changes**.
+4. Acompanhe na aba **Actions**. Em uns 2 minutos o site está atualizado.
 
-   O script avisa se algum indicador da planilha estiver sem nome no catálogo.
-4. Confira com `npm run dev` e faça o commit dos arquivos alterados.
+Antes de publicar, o conversor confere a planilha: abas e colunas obrigatórias, 27 capitais, 9 regiões
+metropolitanas e anos válidos. **Se algo estiver errado, nada é publicado**: o site continua na versão
+anterior, o GitHub envia um e-mail e o passo "Converter e validar a planilha" mostra a lista de problemas.
+Avisos (por exemplo, indicador novo sem nome) não impedem a publicação.
+
+Indicador novo? Acrescente uma linha em [`dados/catalogo-indicadores.csv`](dados/catalogo-indicadores.csv)
+com código, nome e unidade. Sem isso, o site mostra o código da coluna no lugar do nome.
+
+A data "Dados atualizados em", no rodapé, é a data em que a planilha foi salva pela última vez.
+
+Para testar no computador antes de enviar: `npm run dados` (só confere e converte) ou `npm run dev`.
 
 ## Publicação
 

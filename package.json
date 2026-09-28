@@ -4,10 +4,12 @@
   "private": true,
   "description": "Site da MobiliDADOS: indicadores de mobilidade urbana das capitais e regiões metropolitanas brasileiras.",
   "scripts": {
+    "dados": "python scripts/gerar_dados.py",
+    "predev": "npm run dados",
     "dev": "next dev",
+    "prebuild": "npm run dados",
     "build": "next build && node scripts/pos-build.mjs",
-    "typecheck": "tsc --noEmit",
-    "dados": "python scripts/gerar_dados.py"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "chart.js": "^4.5.1",

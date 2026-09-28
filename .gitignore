@@ -17,3 +17,7 @@ Thumbs.db
 desktop.ini
 .vscode/
 ~$*
+
+# dados gerados a partir da planilha (npm run dados) — criados a cada build
+src/data/
+public/dados/
