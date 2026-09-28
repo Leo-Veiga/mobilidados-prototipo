@@ -8,7 +8,6 @@
 .tipoLocal { display: flex; flex-wrap: wrap; gap: 8px 24px; border: 0; padding: 0; margin: 0 0 20px; }
 .tipoLocal label { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; }
 .tipoLocal input { accent-color: var(--verde-500); width: 16px; height: 16px; }
-.desativado { color: var(--texto-2); cursor: not-allowed !important; }
 .chips { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 .chip { display: inline-flex; align-items: center; height: 40px; padding: 0 10px; border: 1px solid var(--verde-300); border-radius: var(--raio); color: var(--verde-300); }
 .chip:hover { background: var(--neutro-900); }

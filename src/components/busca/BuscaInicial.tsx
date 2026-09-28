@@ -15,7 +15,7 @@ export default function BuscaInicial({ locais, indicadores }: { locais: OpcaoBus
       {aba === 'local'
         ? <BuscaSelecao
             key="local" icone="local" rotulo="Escolha uma localização" placeholder="Selecione uma localização"
-            opcoes={locais} verTodos={{ rotulo: 'Exibir todas as localizações', href: '/capitais/' }}
+            opcoes={locais} verTodos={{ rotulo: 'Exibir todas as localizações', href: '/buscar/' }}
           />
         : <BuscaSelecao
             key="indicador" icone="grafico" rotulo="Escolha um indicador" placeholder="Selecione um indicador"

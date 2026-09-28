@@ -11,11 +11,14 @@ O site é **100% estático**: o build gera arquivos HTML, CSS, JS e CSV que pode
 ## O que já está no ar
 
 - Página inicial, com busca por localização ou indicador
-- Buscar dados (`/buscar/`, `/capitais/`, `/indicadores/`)
+- Buscar dados (`/buscar/`, `/capitais/`, `/regioes-metropolitanas/`, `/indicadores/`)
 - Uma página por capital (`/capitais/recife/`): ficha (informações gerais e mobilidade), valor mais recente
   de cada indicador e distribuição da infraestrutura
-- Uma página por indicador (`/indicadores/pnt/`): comparação entre as capitais e série histórica
-- Regiões metropolitanas: *em breve*
+- Uma página por região metropolitana (`/regioes-metropolitanas/rmr/`): ficha, população e densidade,
+  divisão modal, valor mais recente de cada indicador e distribuição da infraestrutura
+- Uma página por indicador (`/indicadores/pnt/`): comparação entre capitais ou regiões metropolitanas
+  e série histórica
+- Todo gráfico tem o botão "Baixar imagem" (PNG com título, fonte e data dos dados)
 
 O visual segue o design do site MobiliDADOS de 2024–2025 (fundo escuro, verde `#64EAA6`, fonte Open Sans).
 

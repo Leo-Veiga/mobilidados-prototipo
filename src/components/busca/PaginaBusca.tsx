@@ -6,19 +6,27 @@ import Abas from '@/components/Abas';
 import BuscaSelecao from '@/components/BuscaSelecao';
 import { IconeEqualizador } from '@/components/Icones';
 import { asset } from '@/lib/formato';
+import type { Nivel } from '@/lib/tipos';
 import styles from './PaginaBusca.module.css';
 
 export type AbaBusca = 'local' | 'indicador';
+type Local = { slug: string; nome: string; rotulo: string };
 
 interface Props {
   abaInicial: AbaBusca;
-  capitais: { slug: string; nome: string; uf: string }[];
+  nivelInicial?: Nivel;
+  capitais: Local[];
+  rms: Local[];
   indicadores: { slug: string; nome: string; unidade: string }[];
 }
 
-/** "Buscar dados": escolher uma localização (capital) ou um indicador */
-export default function PaginaBusca({ abaInicial, capitais, indicadores }: Props) {
+const CAMINHO: Record<Nivel, string> = { capitais: '/capitais/', rms: '/regioes-metropolitanas/' };
+
+/** "Buscar dados": escolher uma localização (capital ou região metropolitana) ou um indicador */
+export default function PaginaBusca({ abaInicial, nivelInicial = 'capitais', capitais, rms, indicadores }: Props) {
   const [aba, setAba] = useState<AbaBusca>(abaInicial);
+  const [nivel, setNivel] = useState<Nivel>(nivelInicial);
+  const locais = nivel === 'capitais' ? capitais : rms;
 
   return (
     <div className="container">
@@ -32,18 +40,16 @@ export default function PaginaBusca({ abaInicial, capitais, indicadores }: Props
             <div className={styles.colunaLocal}>
               <fieldset className={styles.tipoLocal}>
                 <legend className="sr-only">Tipo de localização</legend>
-                <label><input type="radio" name="tipo" defaultChecked /> Capitais</label>
-                <label className={styles.desativado}>
-                  <input type="radio" name="tipo" disabled /> Regiões metropolitanas <span className="etiqueta">em breve</span>
-                </label>
+                <label><input type="radio" name="tipo" checked={nivel === 'capitais'} onChange={() => setNivel('capitais')} /> Capitais</label>
+                <label><input type="radio" name="tipo" checked={nivel === 'rms'} onChange={() => setNivel('rms')} /> Regiões metropolitanas</label>
               </fieldset>
               <BuscaSelecao
-                icone="local" rotulo="Selecione uma localização" placeholder="Digite uma localização"
-                opcoes={capitais.map(c => ({ rotulo: `${c.nome} (${c.uf})`, href: `/capitais/${c.slug}/` }))}
+                key={nivel} icone="local" rotulo="Selecione uma localização" placeholder="Digite uma localização"
+                opcoes={locais.map(l => ({ rotulo: l.rotulo, href: `${CAMINHO[nivel]}${l.slug}/` }))}
               />
               <div className={styles.chips}>
-                {capitais.map(c => (
-                  <Link key={c.slug} className={styles.chip} href={`/capitais/${c.slug}/`}>{c.nome}</Link>
+                {locais.map(l => (
+                  <Link key={l.slug} className={styles.chip} href={`${CAMINHO[nivel]}${l.slug}/`} title={l.rotulo}>{l.nome}</Link>
                 ))}
               </div>
             </div>

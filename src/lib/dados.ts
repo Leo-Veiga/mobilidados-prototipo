@@ -1,47 +1,85 @@
 /* Acesso aos dados gerados por scripts/gerar_dados.py (pasta src/data), usado nas páginas
-   (no build). Componentes do navegador importam só o que precisam, para não pesar a página. */
+   (no build). Componentes do navegador recebem só a fatia que usam, para não pesar a página. */
 import capitaisJson from '@/data/capitais.json';
 import catalogoJson from '@/data/catalogo-indicadores.json';
 import indicadoresCapitaisJson from '@/data/indicadores-capitais.json';
+import indicadoresRmsJson from '@/data/indicadores-rms.json';
 import metaJson from '@/data/meta.json';
-import { rotulo, slugIndicador, unidade } from './indicadores';
-import type { Capital, Catalogo, Indicadores } from './tipos';
+import rmsJson from '@/data/rms.json';
+import { GRUPOS_INFRA, rotulo, slugIndicador, unidade } from './indicadores';
+import type { Capital, Catalogo, Indicadores, Nivel, RegiaoMetropolitana } from './tipos';
 
 export const capitais = capitaisJson as Capital[];
+export const rms = rmsJson as RegiaoMetropolitana[];
 export const catalogo = catalogoJson as Catalogo;
 export const indicadoresCapitais = indicadoresCapitaisJson as unknown as Indicadores;
+export const indicadoresRms = indicadoresRmsJson as unknown as Indicadores;
 export const meta = metaJson as { geradoEm: string; planilha: string };
+
+export const indicadoresPorNivel: Record<Nivel, Indicadores> = { capitais: indicadoresCapitais, rms: indicadoresRms };
+export const NOME_NIVEL: Record<Nivel, { plural: string; singular: string }> = {
+  capitais: { plural: 'Capitais', singular: 'Capital' },
+  rms: { plural: 'Regiões metropolitanas', singular: 'Região metropolitana' },
+};
 
 export function capitalPorSlug(slug: string): Capital | undefined {
   return capitais.find(c => c.slug === slug);
 }
+export function rmPorSlug(slug: string): RegiaoMetropolitana | undefined {
+  return rms.find(r => r.slug === slug);
+}
 
-/** Resumo de um indicador disponível para as capitais */
+/** Um indicador, com o código da planilha em cada nível em que existe.
+    (O mesmo indicador pode ter códigos diferentes nas duas abas: "PERC_A PE" e "PERC_A PÉ".) */
 export interface InfoIndicador {
-  codigo: string;
   slug: string;
   nome: string;
   unidade: string;
+  codigos: Partial<Record<Nivel, string>>;
 }
 
-/** Indicadores com dados para as capitais, em ordem alfabética (População fica de fora: está na ficha) */
-export const listaIndicadores: InfoIndicador[] = Object.keys(indicadoresCapitais)
-  .filter(k => k !== 'POP' && Object.keys(indicadoresCapitais[k]).length)
-  .map(codigo => ({ codigo, slug: slugIndicador(codigo), nome: rotulo(codigo), unidade: unidade(codigo) }))
-  .sort((a, b) => a.nome.localeCompare(b.nome, 'pt'));
-
-// Dois códigos da planilha não podem virar a mesma URL
-const repetidos = listaIndicadores.filter((x, i) => listaIndicadores.findIndex(y => y.slug === x.slug) !== i);
-if (repetidos.length) throw new Error('Indicadores com a mesma URL: ' + repetidos.map(r => r.codigo).join(', '));
+/** Indicadores com dados, em ordem alfabética (População fica de fora: está na ficha de cada local) */
+export const listaIndicadores: InfoIndicador[] = (() => {
+  const porSlug = new Map<string, InfoIndicador>();
+  for (const nivel of ['capitais', 'rms'] as Nivel[]) {
+    const ind = indicadoresPorNivel[nivel];
+    for (const codigo of Object.keys(ind)) {
+      if (codigo === 'POP' || !Object.keys(ind[codigo]).length) continue;
+      const slug = slugIndicador(codigo);
+      const item = porSlug.get(slug) ?? { slug, nome: rotulo(codigo), unidade: unidade(codigo), codigos: {} };
+      if (item.codigos[nivel]) throw new Error(`Dois indicadores com a mesma URL (${slug}): ${item.codigos[nivel]} e ${codigo}`);
+      item.codigos[nivel] = codigo;
+      porSlug.set(slug, item);
+    }
+  }
+  return [...porSlug.values()].sort((a, b) => a.nome.localeCompare(b.nome, 'pt'));
+})();
 
 export function indicadorPorSlug(slug: string): InfoIndicador | undefined {
   return listaIndicadores.find(i => i.slug === slug);
 }
 
-/** Valor mais recente de um indicador para um local: { ano, valor } */
-export function ultimoValor(codigo: string, local: string): { ano: number; valor: number } | null {
-  const serie = indicadoresCapitais[codigo]?.[local];
+/** Valor mais recente de um indicador (código da planilha) para um local: { ano, valor } */
+export function ultimoValor(nivel: Nivel, codigo: string, local: string): { ano: number; valor: number } | null {
+  const serie = indicadoresPorNivel[nivel][codigo]?.[local];
   if (!serie) return null;
   const ano = Math.max(...Object.keys(serie).map(Number));
   return { ano, valor: serie[ano] };
+}
+
+/** Linhas da lista "Busca por indicadores" de um local, com o valor mais recente */
+export function indicadoresDoLocal(nivel: Nivel, local: string) {
+  return listaIndicadores
+    .filter(i => i.codigos[nivel])
+    .map(i => {
+      const u = ultimoValor(nivel, i.codigos[nivel]!, local);
+      return { slug: i.slug, nome: i.nome, unidade: i.unidade, ...(u && { valor: u.valor, ano: u.ano }) };
+    });
+}
+
+/** Só as séries da seção de infraestrutura (e não o arquivo inteiro), para enviar ao navegador */
+export function indicadoresInfra(nivel: Nivel): Indicadores {
+  const ind = indicadoresPorNivel[nivel];
+  const codigos = new Set(GRUPOS_INFRA.flatMap(g => [g.total, ...g.partes.map(([k]) => k)]));
+  return Object.fromEntries([...codigos].filter(k => ind[k]).map(k => [k, ind[k]]));
 }

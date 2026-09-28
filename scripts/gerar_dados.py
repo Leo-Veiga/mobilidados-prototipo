@@ -302,6 +302,9 @@ def main(caminho):
     salvar_csv('capitais-informacoes-gerais.csv', [campos + tma] + [
         [cel(c[k]) for k in campos] + [cel(c['tma'][m][t]) for m in MODOS_TMA for t in ('estacoes', 'km')] for c in caps])
     salvar_csv('capitais-indicadores.csv', csv_series(ind_caps, caps, catalogo))
+    campos_rm = list(rms[0])
+    salvar_csv('rms-informacoes-gerais.csv', [campos_rm] + [[cel(r[k]) for k in campos_rm] for r in rms])
+    salvar_csv('rms-indicadores.csv', csv_series(ind_rms, rms, catalogo))
 
     print(f'OK: {os.path.basename(caminho)} -> {len(caps)} capitais ({len(ind_caps)} indicadores), '
           f'{len(rms)} RMs ({len(ind_rms)} indicadores)')

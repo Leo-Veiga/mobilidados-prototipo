@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import BuscaInicial from '@/components/busca/BuscaInicial';
-import { capitais, listaIndicadores } from '@/lib/dados';
+import { capitais, listaIndicadores, rms } from '@/lib/dados';
 import { asset } from '@/lib/formato';
 import styles from './page.module.css';
 
@@ -28,7 +28,10 @@ const LOGOS: { grupo: string; logos: Logo[] }[] = [
 ];
 
 export default function Home() {
-  const locais = capitais.map(c => ({ rotulo: `${c.nome} (${c.uf})`, href: `/capitais/${c.slug}/` }));
+  const locais = [
+    ...capitais.map(c => ({ rotulo: `${c.nome} (${c.uf})`, href: `/capitais/${c.slug}/` })),
+    ...rms.map(r => ({ rotulo: `${r.nome} (${r.sigla})`, href: `/regioes-metropolitanas/${r.slug}/` })),
+  ];
   const indicadores = listaIndicadores.map(i => ({ rotulo: i.nome, href: `/indicadores/${i.slug}/` }));
 
   return (

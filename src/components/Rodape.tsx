@@ -30,6 +30,7 @@ export default function Rodape() {
         <nav className={styles.links} aria-label="Rodapé">
           <Link href="/#sobre">Sobre nós</Link>
           <Link href="/capitais/">Capitais</Link>
+          <Link href="/regioes-metropolitanas/">Regiões metropolitanas</Link>
           <Link href="/indicadores/">Indicadores</Link>
           <Link href="/buscar/">Buscar dados</Link>
         </nav>

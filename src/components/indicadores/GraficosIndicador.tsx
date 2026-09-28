@@ -7,24 +7,44 @@ import BotaoDados from '@/components/BotaoDados';
 import Grafico, { COR_SECUNDARIA, PALETA } from '@/components/Grafico';
 import { baixarCSV } from '@/lib/csv';
 import { fmt } from '@/lib/formato';
-import type { Lugar, Serie } from '@/lib/tipos';
+import type { Lugar, Nivel, Serie } from '@/lib/tipos';
 import SecaoSerie from './SecaoSerie';
 import styles from './GraficosIndicador.module.css';
 
-interface Props {
+export interface DadosNivel {
   codigo: string;
-  nome: string;
-  unidade: string;
-  /** { slugDaCapital: { ano: valor } } */
+  /** { slugDoLocal: { ano: valor } } */
   series: Record<string, Serie>;
   lugares: Lugar[];
 }
 
-/** Página de um indicador: ranking entre as capitais (dado mais recente) e série histórica */
-export default function GraficosIndicador({ codigo, nome, unidade, series, lugares }: Props) {
-  // ?local=recife destaca uma capital (vem da página da capital)
+interface Props {
+  nome: string;
+  unidade: string;
+  niveis: Partial<Record<Nivel, DadosNivel>>;
+}
+
+const TEXTO: Record<Nivel, { plural: string; conjunto: string; um: string }> = {
+  capitais: { plural: 'Capitais', conjunto: 'as capitais', um: 'uma capital' },
+  rms: { plural: 'Regiões metropolitanas', conjunto: 'as regiões metropolitanas', um: 'uma região metropolitana' },
+};
+
+/** Página de um indicador: ranking entre os locais (dado mais recente) e série histórica.
+    Quando o indicador existe para capitais e RMs, dá para alternar entre os dois. */
+export default function GraficosIndicador({ nome, unidade, niveis }: Props) {
+  const disponiveis = (['capitais', 'rms'] as Nivel[]).filter(n => niveis[n]);
+  // ?local=recife (ou ?local=rmr) vem da página do local e define o nível e o destaque
   const doEndereco = useSearchParams().get('local') ?? '';
-  const [destaque, setDestaque] = useState(series[doEndereco] ? doEndereco : '');
+  const nivelDoEndereco = disponiveis.find(n => niveis[n]!.series[doEndereco]);
+  const [nivel, setNivel] = useState<Nivel>(nivelDoEndereco ?? disponiveis[0]);
+  const [destaque, setDestaque] = useState(nivelDoEndereco ? doEndereco : '');
+  const { codigo, series, lugares } = niveis[nivel]!;
+  const t = TEXTO[nivel];
+
+  function trocarNivel(n: Nivel) {
+    setNivel(n);
+    setDestaque('');
+  }
 
   const ranking = useMemo(() => lugares
     .filter(l => series[l.slug])
@@ -37,7 +57,7 @@ export default function GraficosIndicador({ codigo, nome, unidade, series, lugar
   const config = useMemo<ChartConfiguration<'bar'>>(() => ({
     type: 'bar',
     data: {
-      labels: ranking.map(x => `${x.l.nome} (${x.ano})`),
+      labels: ranking.map(x => `${x.l.curto ?? x.l.nome} (${x.ano})`),
       datasets: [{
         label: unidade, data: ranking.map(x => x.v), borderRadius: 4,
         backgroundColor: ranking.map(x => (!destaque || x.l.slug === destaque ? PALETA[0] : COR_SECUNDARIA)),
@@ -50,32 +70,46 @@ export default function GraficosIndicador({ codigo, nome, unidade, series, lugar
     },
   }), [ranking, destaque, unidade]);
 
+  const localDestaque = ranking.find(x => x.l.slug === destaque)?.l;
+
   function baixar() {
     const linhas: (string | number)[][] = [['local', 'ano', 'indicador', 'descricao', 'unidade', 'valor']];
     lugares.forEach(l => Object.entries(series[l.slug] ?? {}).forEach(([a, v]) => linhas.push([l.nome, +a, codigo, nome, unidade, v])));
-    baixarCSV('mobilidados_' + codigo.replace(/[^\w]+/g, '_'), linhas);
+    baixarCSV(`mobilidados_${nivel}_${codigo.replace(/[^\w]+/g, '_')}`, linhas);
   }
 
   return (
     <>
-      <div className={styles.destaque}>
-        <label className="rotulo-campo" htmlFor="destaque">Destacar uma capital</label>
-        <select id="destaque" className="campo" value={destaque} onChange={e => setDestaque(e.target.value)}>
-          <option value="">Nenhuma</option>
-          {ranking.map(x => <option key={x.l.slug} value={x.l.slug}>{x.l.nome}</option>)}
-        </select>
+      <div className={styles.controles}>
+        {disponiveis.length > 1 && (
+          <fieldset className={styles.nivel}>
+            <legend className="rotulo-campo">Comparar</legend>
+            {disponiveis.map(n => (
+              <label key={n}>
+                <input type="radio" name="nivel" checked={nivel === n} onChange={() => trocarNivel(n)} /> {TEXTO[n].plural}
+              </label>
+            ))}
+          </fieldset>
+        )}
+        <div className={styles.destaque}>
+          <label className="rotulo-campo" htmlFor="destaque">Destacar {t.um}</label>
+          <select id="destaque" className="campo" value={destaque} onChange={e => setDestaque(e.target.value)}>
+            <option value="">Nenhum destaque</option>
+            {ranking.map(x => <option key={x.l.slug} value={x.l.slug}>{x.l.curto ?? x.l.nome}</option>)}
+          </select>
+        </div>
       </div>
 
       <section className={styles.bloco} aria-labelledby="titulo-ranking">
-        <h2 id="titulo-ranking" className={styles.titulo}>Comparação entre as capitais</h2>
-        <p className={styles.texto}>Valor mais recente de cada capital ({unidade}). Entre parênteses, o ano do dado.</p>
+        <h2 id="titulo-ranking" className={styles.titulo}>Comparação entre {t.conjunto}</h2>
+        <p className={styles.texto}>Valor mais recente de cada local ({unidade}). Entre parênteses, o ano do dado.</p>
         <div className="cartao">
           <Grafico
-            config={config} altura={Math.max(320, ranking.length * 24 + 60)} descricao={`${nome}: comparação entre as capitais`}
+            config={config} altura={Math.max(320, ranking.length * 24 + 60)} descricao={`${nome}: comparação entre ${t.conjunto}`}
             imagem={{
-              titulo: `${nome} — comparação entre as capitais`,
-              subtitulo: `${unidade} · dado mais recente de cada capital (ano entre parênteses)`
-                + (destaque ? ` · em destaque: ${ranking.find(x => x.l.slug === destaque)?.l.nome}` : ''),
+              titulo: `${nome} — comparação entre ${t.conjunto}`,
+              subtitulo: `${unidade} · dado mais recente de cada local (ano entre parênteses)`
+                + (localDestaque ? ` · em destaque: ${localDestaque.curto ?? localDestaque.nome}` : ''),
             }}
           />
         </div>
@@ -84,10 +118,13 @@ export default function GraficosIndicador({ codigo, nome, unidade, series, lugar
       <section className={styles.bloco} aria-labelledby="titulo-serie">
         <h2 id="titulo-serie" className={styles.titulo}>Série histórica</h2>
         <p className={styles.texto}>
-          Compare o desempenho de duas ou mais capitais em um ano específico ou ao longo do tempo.
+          Compare o desempenho de dois ou mais locais em um ano específico ou ao longo do tempo.
           A comparação está sujeita à disponibilidade dos dados.
         </p>
-        <SecaoSerie key={destaque} series={series} titulo={nome} unidade={unidade} lugares={lugares} iniciais={destaque ? [destaque] : []} rotuloLugar="Capitais" />
+        <SecaoSerie
+          key={nivel + destaque} series={series} titulo={nome} unidade={unidade} lugares={lugares}
+          iniciais={destaque ? [destaque] : []} rotuloLugar={t.plural}
+        />
       </section>
 
       <div className="centro"><BotaoDados onClick={baixar} texto="Baixar os dados deste indicador (CSV)" /></div>

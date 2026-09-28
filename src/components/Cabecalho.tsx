@@ -9,6 +9,7 @@ import styles from './Cabecalho.module.css';
 const LINKS = [
   { href: '/#sobre', texto: 'Sobre nós' },
   { href: '/capitais/', texto: 'Capitais' },
+  { href: '/regioes-metropolitanas/', texto: 'Regiões metropolitanas' },
   { href: '/indicadores/', texto: 'Indicadores' },
 ];
 

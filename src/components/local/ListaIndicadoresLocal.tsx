@@ -27,7 +27,7 @@ export default function ListaIndicadoresLocal({ itens, local }: { itens: ItemInd
 
   return (
     <div className={styles.painel}>
-      <p>Acesse todos os indicadores monitorados pela MobiliDADOS. Clique em um indicador para comparar com as outras capitais.</p>
+      <p>Acesse todos os indicadores monitorados pela MobiliDADOS. Clique em um indicador para comparar com os outros locais.</p>
       <label className="rotulo-campo" htmlFor="filtro-indicador">Buscar por um indicador</label>
       <div className={styles.campo}>
         <IconeBusca className={styles.icone} />

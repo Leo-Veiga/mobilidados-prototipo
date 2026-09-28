@@ -13,6 +13,29 @@ export interface Lugar {
   curto?: string;
 }
 
+/** Nível geográfico dos dados */
+export type Nivel = 'capitais' | 'rms';
+
+export interface RegiaoMetropolitana extends Lugar {
+  sigla: string;
+  curto: string;
+  uf: string;
+  lat: number | null;
+  lon: number | null;
+  texto: string;
+  area: number | null;
+  areaUrbana: number | null;
+  pop2016: number | null;
+  densidade: number | null;
+  densidadeUrbana: number | null;
+  idhm: number | null;
+  faixaIdhm: string;
+  renda: number | null;
+  percDr1sm: number | null;
+  percNegros: number | null;
+  percMulheres: number | null;
+}
+
 export const MODOS_TMA = ['barca', 'brt', 'metro', 'monotrilho', 'trem', 'vlt'] as const;
 export type ModoTma = (typeof MODOS_TMA)[number];
 

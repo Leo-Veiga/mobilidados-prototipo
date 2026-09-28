@@ -3,12 +3,10 @@ import { notFound } from 'next/navigation';
 import BotaoDados from '@/components/BotaoDados';
 import CabecalhoPagina from '@/components/CabecalhoPagina';
 import FichaCapital from '@/components/capitais/FichaCapital';
-import ListaIndicadoresLocal from '@/components/capitais/ListaIndicadoresLocal';
 import SecaoInfra from '@/components/indicadores/SecaoInfra';
-import { capitais, capitalPorSlug, indicadoresCapitais, listaIndicadores, ultimoValor } from '@/lib/dados';
+import ListaIndicadoresLocal from '@/components/local/ListaIndicadoresLocal';
+import { capitais, capitalPorSlug, indicadoresDoLocal, indicadoresInfra } from '@/lib/dados';
 import { asset } from '@/lib/formato';
-import { GRUPOS_INFRA } from '@/lib/indicadores';
-import type { Indicadores } from '@/lib/tipos';
 import styles from './pagina.module.css';
 
 type Params = { params: Promise<{ slug: string }> };
@@ -27,21 +25,11 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   };
 }
 
-// Só as séries da seção de infraestrutura vão para o navegador (e não o arquivo inteiro de indicadores)
-const indicadoresInfra: Indicadores = Object.fromEntries(
-  [...new Set(GRUPOS_INFRA.flatMap(g => [g.total, ...g.partes.map(([k]) => k)]))]
-    .filter(k => indicadoresCapitais[k])
-    .map(k => [k, indicadoresCapitais[k]]),
-);
-
 export default async function PaginaCapital({ params }: Params) {
   const c = capitalPorSlug((await params).slug);
   if (!c) notFound();
   const lugares = capitais.map(({ slug, nome }) => ({ slug, nome }));
-  const itens = listaIndicadores.map(i => {
-    const u = ultimoValor(i.codigo, c.slug);
-    return { slug: i.slug, nome: i.nome, unidade: i.unidade, ...(u && { valor: u.valor, ano: u.ano }) };
-  });
+  const itens = indicadoresDoLocal('capitais', c.slug);
 
   return (
     <>
@@ -69,7 +57,7 @@ export default async function PaginaCapital({ params }: Params) {
             desigualdade social nas cidades. Compare a distribuição da infraestrutura entre grupos de renda,
             gênero e raça, e entre as capitais.
           </p>
-          <SecaoInfra ind={indicadoresInfra} lugares={lugares} atual={c.slug} />
+          <SecaoInfra ind={indicadoresInfra('capitais')} lugares={lugares} atual={c.slug} conjunto="as capitais" />
         </section>
       </div>
     </>

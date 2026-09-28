@@ -14,6 +14,8 @@ interface Props {
   lugares: Lugar[];
   /** slug do local em destaque */
   atual: string;
+  /** Como chamar o conjunto comparado: "as capitais", "as regiões metropolitanas" */
+  conjunto: string;
 }
 
 /** Último ano com dado de um indicador em um local */
@@ -23,7 +25,7 @@ function ultimoAno(ind: Indicadores, k: string, lugar: string): number | null {
 }
 
 /** Seção "Distribuição da infraestrutura de mobilidade urbana" */
-export default function SecaoInfra({ ind, lugares, atual }: Props) {
+export default function SecaoInfra({ ind, lugares, atual, conjunto }: Props) {
   const grupos = useMemo(() => GRUPOS_INFRA.filter(g => g.partes.some(([k]) => ind[k])), [ind]);
   const [grupoId, setGrupoId] = useState(grupos[0].id);
   const g = grupos.find(x => x.id === grupoId)!;
@@ -87,7 +89,7 @@ export default function SecaoInfra({ ind, lugares, atual }: Props) {
           <h3>{rotulo(g.total)} — comparação</h3>
           <Grafico
             config={configComparacao} altura={Math.max(300, comparacao.length * 22 + 60)} descricao={`${rotulo(g.total)}: comparação entre locais`}
-            imagem={{ titulo: `${rotulo(g.total)} — comparação entre as capitais`, subtitulo: `% · dado mais recente de cada capital (ano entre parênteses) · em destaque: ${nomeAtual}`, fonte: 'ITDP Brasil / MobiliDADOS' }}
+            imagem={{ titulo: `${rotulo(g.total)} — comparação entre ${conjunto}`, subtitulo: `% · dado mais recente de cada local (ano entre parênteses) · em destaque: ${nomeAtual}`, fonte: 'ITDP Brasil / MobiliDADOS' }}
           />
           <p className="fonte-dado">Em destaque, o local selecionado. Entre parênteses, o ano do dado mais recente.</p>
         </div>

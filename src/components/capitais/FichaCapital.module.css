@@ -1,11 +1,5 @@
 .ficha > [role="tabpanel"] { min-height: 280px; padding: 24px 32px; }
 
-.grade { display: flex; flex-wrap: wrap; justify-content: center; gap: 28px 20px; padding: 16px 0; }
-.numero { width: 200px; text-align: center; }
-.valor { font-size: 25px; line-height: 1.3; }
-.valor small { font-size: 15px; font-weight: 300; }
-.rotulo { font-size: 11px; text-transform: uppercase; letter-spacing: .03em; margin-top: 4px; color: var(--neutro-200); }
-
 .subtitulo { font-size: 16px; font-weight: 600; text-align: center; margin: 24px 0 0; padding-top: 24px; border-top: 1px solid var(--borda); }
 
 .fontes { list-style: none; margin: 24px 0 0; padding: 16px 0 0; border-top: 1px solid var(--borda); font-size: 13px; font-weight: 300; display: grid; gap: 6px; }
@@ -14,6 +8,4 @@
 
 @media (max-width: 600px) {
   .ficha > [role="tabpanel"] { padding: 16px; }
-  .numero { width: calc(50% - 10px); }
-  .valor { font-size: 20px; }
 }
