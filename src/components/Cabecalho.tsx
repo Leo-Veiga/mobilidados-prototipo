@@ -11,6 +11,7 @@ const LINKS = [
   { href: '/capitais/', texto: 'Capitais' },
   { href: '/regioes-metropolitanas/', texto: 'Regiões metropolitanas' },
   { href: '/indicadores/', texto: 'Indicadores' },
+  { href: '/destaques/', texto: 'Destaques' },
 ];
 
 export default function Cabecalho() {

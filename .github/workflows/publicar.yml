@@ -39,6 +39,7 @@ jobs:
           cache: npm
 
       - uses: actions/configure-pages@v6
+        id: pages
 
       - name: Instalar dependências
         run: |
@@ -62,6 +63,8 @@ jobs:
           # Site em https://<usuario>.github.io/<repositorio>/
           # Com domínio próprio, remova esta linha.
           BASE_PATH: /${{ github.event.repository.name }}
+          # Endereço completo do site, usado nas prévias das redes sociais (og:image)
+          SITE_URL: ${{ steps.pages.outputs.base_url }}
           NEXT_TELEMETRY_DISABLED: 1
 
       - uses: actions/upload-pages-artifact@v5

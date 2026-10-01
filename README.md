@@ -1,4 +1,8 @@
-# MobiliDADOS — site
+# MobiliDADOS — site (PROTÓTIPO)
+
+> Versão de teste, separada do site oficial ([Leo-Veiga/mobilidados-site](https://github.com/Leo-Veiga/mobilidados-site)).
+> Testa a seção **Destaques**: cards que viram, com explicação, gráfico, fonte e compartilhamento
+> (imagens geradas no build em `src/app/destaques/[id]/[arquivo]/route.tsx`; conteúdo em `src/lib/destaques.ts`).
 
 Site da [MobiliDADOS](https://github.com/mobilidados/MobiliDADOS), plataforma do ITDP Brasil com indicadores e dados
 abertos de mobilidade urbana das capitais e regiões metropolitanas brasileiras.

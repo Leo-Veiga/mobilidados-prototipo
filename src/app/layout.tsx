@@ -17,6 +17,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt-BR">
       <body>
+        {/* Faixa de aviso: esta é a versão de teste, separada do site oficial */}
+        <div style={{ background: '#f5b841', color: '#111', textAlign: 'center', fontSize: 13, fontWeight: 600, padding: '6px 12px' }}>
+          Protótipo — versão de teste da MobiliDADOS. Os destaques usam dados reais, com textos de exemplo.
+        </div>
         <Cabecalho />
         <main>{children}</main>
         <Rodape />

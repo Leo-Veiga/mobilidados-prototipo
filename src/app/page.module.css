@@ -9,6 +9,11 @@
 .azul { color: var(--azul-300); }
 .azul:hover { text-decoration: underline; }
 
+/* Destaques */
+.destaques { padding: 80px 0 0; }
+.cabecalhoDestaques { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 32px; }
+.cabecalhoDestaques h2 { margin: 0; }
+
 /* Sobre */
 .sobre { padding: 100px 0 80px; }
 .tituloSobre { font-size: 30px; font-weight: 600; margin-bottom: 40px; }

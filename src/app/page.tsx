@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import BuscaInicial from '@/components/busca/BuscaInicial';
+import GradeDestaques from '@/components/destaques/GradeDestaques';
+import { destaques } from '@/lib/destaques';
 import { capitais, listaIndicadores, rms } from '@/lib/dados';
 import { asset } from '@/lib/formato';
 import styles from './page.module.css';
@@ -48,6 +50,16 @@ export default function Home() {
               elaboração e monitoramento de políticas públicas de mobilidade urbana no país.
             </aside>
           </div>
+        </div>
+      </section>
+
+      <section className={styles.destaques} aria-labelledby="titulo-destaques">
+        <div className="container">
+          <div className={styles.cabecalhoDestaques}>
+            <h2 id="titulo-destaques" className={styles.tituloSobre}>Destaques</h2>
+            <Link className="botao-contorno" href="/destaques/">Ver todos os destaques</Link>
+          </div>
+          <GradeDestaques itens={destaques} />
         </div>
       </section>
 

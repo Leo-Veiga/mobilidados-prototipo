@@ -32,6 +32,7 @@ export default function Rodape() {
           <Link href="/capitais/">Capitais</Link>
           <Link href="/regioes-metropolitanas/">Regiões metropolitanas</Link>
           <Link href="/indicadores/">Indicadores</Link>
+          <Link href="/destaques/">Destaques</Link>
           <Link href="/buscar/">Buscar dados</Link>
         </nav>
       </div>

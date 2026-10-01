@@ -1,0 +1,16 @@
+.raiz { position: static; } /* o menu se posiciona sobre o verso do card */
+.botao {
+  height: 36px; padding: 0 16px; border-radius: var(--raio); border: 0;
+  background: var(--verde-300); color: var(--neutro-900); font: 600 14px var(--fonte); cursor: pointer;
+}
+.botao:hover { background: var(--verde-100); }
+.menu {
+  position: absolute; z-index: 30; inset: 10px; overflow: auto;
+  background: #fff; color: #111; border-radius: var(--raio); box-shadow: 0 8px 35px rgba(0, 0, 0, .45);
+  padding: 8px 0; display: flex; flex-direction: column; text-align: left;
+}
+.menu a, .menu button { display: block; padding: 7px 16px; background: none; border: 0; font: 14px var(--fonte); color: #111; cursor: pointer; text-align: left; }
+.menu a:hover, .menu button:hover { background: #e5e5e5; }
+.grupo { margin: 6px 16px 2px; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: #777; }
+.aviso { position: absolute; z-index: 31; left: 10px; right: 10px; bottom: 60px; margin: 0; padding: 10px 12px; background: var(--neutro-900); border: 1px solid var(--verde-300); border-radius: var(--raio); font-size: 13px; }
+.fechar { position: absolute; top: 4px; right: 6px; width: 32px; padding: 4px !important; text-align: center !important; font-size: 16px !important; color: #555 !important; }
