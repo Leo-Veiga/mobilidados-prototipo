@@ -10,6 +10,8 @@ const nextConfig: NextConfig = {
   trailingSlash: true, // /capitais/recife/ -> capitais/recife/index.html
   basePath,
   images: { unoptimized: true },
+  // Gerador de PDF das fichas roda no build, no Node (fora do empacotador)
+  serverExternalPackages: ['@react-pdf/renderer'],
   env: { NEXT_PUBLIC_BASE_PATH: basePath },
 };
 

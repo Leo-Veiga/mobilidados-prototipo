@@ -33,7 +33,14 @@ export default async function PaginaCapital({ params }: Params) {
 
   return (
     <>
-      <CabecalhoPagina titulo={`${c.nome} (${c.uf})`} voltar={{ href: '/capitais/', texto: 'Voltar para localizações' }} />
+      <CabecalhoPagina titulo={`${c.nome} (${c.uf})`} voltar={{ href: '/capitais/', texto: 'Voltar para localizações' }}>
+        <p className="centro" style={{ margin: '16px 0 0' }}>
+          <a className="botao" href={asset(`/capitais/${c.slug}/ficha.pdf`)} target="_blank" rel="noopener">
+            Baixar ficha da cidade (PDF)
+          </a>
+        </p>
+        <p className="centro nota" style={{ margin: '8px 0 0' }}>Resumo de 3 páginas com os principais dados de {c.nome}, gerado automaticamente.</p>
+      </CabecalhoPagina>
 
       <div className="container-texto">
         {c.texto && <p className={styles.apresentacao}>{c.texto}</p>}
