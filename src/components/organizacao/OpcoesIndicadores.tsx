@@ -5,13 +5,13 @@ import { useMemo, useState } from 'react';
 import Abas from '@/components/Abas';
 import Grafico, { PALETA, type ConfigGrafico } from '@/components/Grafico';
 import { TEMAS, type IndicadorPrincipal } from '@/lib/organizacao';
-import type { Serie } from '@/lib/tipos';
+import type { Nivel, Serie } from '@/lib/tipos';
 import styles from './Organizacao.module.css';
 
 export interface DadosOpcoes {
-  /** código -> slug da capital -> série */
-  series: Record<string, Record<string, Serie>>;
-  capitais: { slug: string; nome: string }[];
+  /** nível -> código (o das capitais) -> slug do local -> série */
+  series: Record<Nivel, Record<string, Record<string, Serie>>>;
+  locais: Record<Nivel, { slug: string; nome: string }[]>;
   /** código -> slug da página do indicador */
   links: Record<string, string>;
   nomes: Record<string, { nome: string; unidade: string }>;
@@ -38,27 +38,42 @@ function Explicacao({ como, pros, contras }: { como: string; pros: string; contr
 
 /** Opção 1: lista curta (12 indicadores) e os recortes como botões dentro do indicador */
 function Opcao1({ d, ind, setInd }: { d: DadosOpcoes; ind: IndicadorPrincipal; setInd: (i: IndicadorPrincipal) => void }) {
-  const [capital, setCapital] = useState('recife');
+  const [nivel, setNivel] = useState<Nivel>('capitais');
+  const [local, setLocal] = useState('recife');
   const [recorte, setRecorte] = useState(0); // 0 = total
-  const partes: [string, string][] = recorte === 0 ? [[ind.principal, 'Total']] : ind.recortes[recorte - 1].partes;
-  const nomeCapital = d.capitais.find(c => c.slug === capital)?.nome ?? '';
+  const [de, setDe] = useState<string | null>(null);
+  const [ate, setAte] = useState<string | null>(null);
+  const partes: [string, string][] = recorte === 0 ? [[ind.principal, 'Total']] : ind.recortes[recorte - 1]?.partes ?? [[ind.principal, 'Total']];
+  const series = d.series[nivel];
+  const nomeLocal = d.locais[nivel].find(c => c.slug === local)?.nome ?? '';
+  const temDado = (i: IndicadorPrincipal) => Object.keys(series[i.principal] ?? {}).length > 0;
 
-  const config = useMemo(() => {
-    const anos = [...new Set(partes.flatMap(([c]) => Object.keys(d.series[c]?.[capital] ?? {})))].sort();
-    return {
-      type: 'line',
-      data: {
-        labels: anos,
-        datasets: partes.map(([c, r], i) => ({
-          label: r, data: anos.map(a => d.series[c]?.[capital]?.[a] ?? null),
-          borderColor: PALETA[i], backgroundColor: PALETA[i], spanGaps: true, tension: 0.2, pointRadius: 3,
-        })),
-      },
-      options: { plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 8 } } }, scales: { x: { grid: { display: false } } } },
-    } as unknown as ConfigGrafico;
-  }, [partes, capital, d]);
+  // Anos com dado para o local e o recorte escolhidos; o intervalo "de/até" fica dentro deles
+  const todosAnos = [...new Set(partes.flatMap(([c]) => Object.keys(series[c]?.[local] ?? {})))].sort();
+  const ini = de && todosAnos.includes(de) ? de : todosAnos[0];
+  const fim = ate && todosAnos.includes(ate) && ate >= ini ? ate : todosAnos[todosAnos.length - 1];
+  const anos = todosAnos.filter(a => a >= ini && a <= fim);
+  const chave = `${ind.id}|${recorte}|${nivel}|${local}|${anos.join()}`;
+
+  const config = useMemo(() => ({
+    type: anos.length > 1 ? 'line' : 'bar',
+    data: {
+      labels: anos,
+      datasets: partes.map(([c, r], i) => ({
+        label: r, data: anos.map(a => series[c]?.[local]?.[a] ?? null),
+        borderColor: PALETA[i], backgroundColor: PALETA[i], spanGaps: true, tension: 0.2, pointRadius: 3,
+      })),
+    },
+    options: { plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 8 } } }, scales: { x: { grid: { display: false } } } },
+  } as unknown as ConfigGrafico), [chave]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  function mudarNivel(n: Nivel) {
+    setNivel(n);
+    setLocal(n === 'capitais' ? 'recife' : d.locais.rms.find(r => /recife/i.test(r.nome))?.slug ?? d.locais.rms[0].slug);
+  }
 
   const un = d.nomes[partes[0][0]]?.unidade;
+  const periodo = ini === fim ? ini : `${ini}–${fim}`;
   return (
     <>
       <Explicacao
@@ -72,17 +87,41 @@ function Opcao1({ d, ind, setInd }: { d: DadosOpcoes; ind: IndicadorPrincipal; s
           <select className={styles.select} value={ind.id} onChange={e => { setInd(TODOS.find(i => i.id === e.target.value)!); setRecorte(0); }}>
             {TEMAS.map(t => (
               <optgroup key={t.id} label={t.nome}>
-                {t.indicadores.map(i => <option key={i.id} value={i.id}>{i.nome}</option>)}
+                {t.indicadores.map(i => <option key={i.id} value={i.id}>{i.nome}{temDado(i) ? '' : ' (só capitais)'}</option>)}
               </optgroup>
             ))}
           </select>
         </label>
+        <div className={styles.grupo}>
+          <span className={styles.rotulo}>Nível</span>
+          <div className={styles.botoes} role="radiogroup" aria-label="Nível" style={{ marginBottom: 0 }}>
+            {(['capitais', 'rms'] as Nivel[]).map(n => (
+              <button key={n} type="button" role="radio" aria-checked={nivel === n} className={styles.opcao} onClick={() => mudarNivel(n)}>
+                {n === 'capitais' ? 'Capitais' : 'Regiões metropolitanas'}
+              </button>
+            ))}
+          </div>
+        </div>
         <label className={styles.grupo}>
-          <span className={styles.rotulo}>Capital</span>
-          <select className={styles.select} value={capital} onChange={e => setCapital(e.target.value)}>
-            {d.capitais.map(c => <option key={c.slug} value={c.slug}>{c.nome}</option>)}
+          <span className={styles.rotulo}>{nivel === 'capitais' ? 'Capital' : 'Região metropolitana'}</span>
+          <select className={styles.select} value={local} onChange={e => setLocal(e.target.value)}>
+            {d.locais[nivel].map(c => <option key={c.slug} value={c.slug}>{c.nome}</option>)}
           </select>
         </label>
+        {todosAnos.length > 1 && (
+          <div className={styles.grupo}>
+            <span className={styles.rotulo}>Anos</span>
+            <div className={styles.anos}>
+              <select className={styles.selectAno} aria-label="Ano inicial" value={ini} onChange={e => setDe(e.target.value)}>
+                {todosAnos.map(a => <option key={a}>{a}</option>)}
+              </select>
+              <span>a</span>
+              <select className={styles.selectAno} aria-label="Ano final" value={fim} onChange={e => setAte(e.target.value)}>
+                {todosAnos.filter(a => a >= ini).map(a => <option key={a}>{a}</option>)}
+              </select>
+            </div>
+          </div>
+        )}
       </div>
       <div className={styles.pagina}>
         <p className={styles.tema}>{TEMAS.find(t => t.indicadores.includes(ind))?.nome}</p>
@@ -94,8 +133,10 @@ function Opcao1({ d, ind, setInd }: { d: DadosOpcoes; ind: IndicadorPrincipal; s
             ))}
           </div>
         )}
-        <p className="nota">{nomeCapital}{un ? ` · ${un}` : ''}</p>
-        <Grafico config={config} altura={300} descricao={`${ind.nome} em ${nomeCapital}`} imagem={{ titulo: `${ind.nome} — ${nomeCapital}` }} />
+        <p className="nota">{nomeLocal}{un ? ` · ${un}` : ''}{anos.length ? ` · ${periodo}` : ''}</p>
+        {anos.length
+          ? <Grafico config={config} altura={300} descricao={`${ind.nome} em ${nomeLocal}`} imagem={{ titulo: `${ind.nome} — ${nomeLocal}`, subtitulo: periodo }} />
+          : <p className={styles.vazio}>Sem dados deste recorte para {nomeLocal}{nivel === 'rms' ? ' (a base tem este indicador só para as capitais)' : ''}.</p>}
       </div>
     </>
   );

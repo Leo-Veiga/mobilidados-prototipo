@@ -43,3 +43,7 @@
   .select { min-width: 0; width: 100%; }
   .filtros .grupo, .grupo { width: 100%; }
 }
+
+.anos { display: flex; align-items: center; gap: 8px; }
+.selectAno { background: var(--fundo-painel); color: var(--texto); border: 1px solid var(--borda); border-radius: 8px; padding: 9px 10px; font: inherit; }
+.vazio { padding: 40px 0; text-align: center; color: var(--texto-2); }
