@@ -1,0 +1,209 @@
+id;id_alternativa;rm;projeto;tecnologia;extensao_km;estacoes;estagio;nivel_atualizacao;investimento_mi;embarques_dia;abrangencia;obitos_evitados_ano
+20101;;RIDE Distrito Federal;Extensão do Metrô Linha 1 – Trecho Ceilândia;Metrô;2,4;2;Detalhe obra pública;Atualizado;955,28;11416;Distrito Federal;-0,76
+20102;;RIDE Distrito Federal;Extensão do Metrô Linha 1 – Trecho Asa Norte 1;Metrô;0,7;1;Detalhe obra pública;Atualizado;619,19;6923;Distrito Federal;-0,39
+20103;;RIDE Distrito Federal;Implantação do VLT Linha 2;VLT;65,5;33;Estudo simplificado;Requer ser desenvolvido;5979,09;81511;Distrito Federal;-4,1
+20104;;RIDE Distrito Federal;Extensão do VLT EPCL/Eixo Monumental – Trecho Esplanada dos Ministérios;VLT;5;8;Estudo simplificado;Requer atualização;271,48;2780;Distrito Federal;-0,06
+20105;;RIDE Distrito Federal;Implantação do VLT EPCL/Eixo Monumental;VLT;29,7;25;Estudo simplificado;Requer atualização;2896,5;73366;Distrito Federal;-2,6
+20106;;RIDE Distrito Federal;Implantação do VLT TAN/Aeroporto;VLT;23;27;Estudo de demanda;Requer atualização;1987,98;32175;Distrito Federal;-1,04
+20107;;RIDE Distrito Federal;Extensão do BRT Eixo Oeste – Trecho até a BR-070;BRT Elétrico;7,6;7;Estudo ENMU;Requer ser desenvolvido;401,46;15931;Distrito Federal;-0,37
+20108;;RIDE Distrito Federal;Implantação do BRT Eixo Norte;BRT Elétrico;39;16;Detalhe obra pública;Atualizado;2198,9;87935;Distrito Federal;-5,94
+20110;;RIDE Distrito Federal;Extensão do BRT Eixo Oeste – Trecho Av. Hélio Prates;BRT Elétrico;11,3;15;Detalhe obra pública;Atualizado;600,13;24599;Distrito Federal;-0,49
+20111;;RIDE Distrito Federal;Implantação do BRT Eixo Sudoeste;BRT Elétrico;14,2;12;Detalhe obra pública;Atualizado;930,24;61620;Distrito Federal;-3,43
+20112;;RIDE Distrito Federal;Implantação do BRT Luziânia/Entorno Sul;BRT Elétrico;29,8;10;Estudo simplificado;Requer ser desenvolvido;1639,7;72779;Distrito Federal, Valparaíso de Goiás, Luziânia;-2,14
+20113;;RIDE Distrito Federal;Implantação do BRT Águas Lindas;BRT Elétrico;16,5;8;Estudo simplificado;Requer ser desenvolvido;901,32;74191;Distrito Federal, Águas Lindas de Goiás;-3,41
+20114;;RIDE Distrito Federal;Implantação do BRT Eixo Leste;BRT Elétrico;35;21;Estudo ENMU;Requer ser desenvolvido;1954,76;82664;Distrito Federal;-3,29
+21901;;RIDE Teresina;Extensão do Metrô da Linha 01 Sudeste até Timon (MA);Metrô;2,45;3;Estudo ENMU;Requer ser desenvolvido;285,56;14855;Teresina, Timon;-3,03
+21902;21902;RIDE Teresina;Implantação do BRT Terminal Parque Piauí - Terminal Zoobotânico;BRT Elétrico;16,1;25;Estudo ENMU;Requer ser desenvolvido;660,24;62765;Teresina;-3,21
+21903;21903;RIDE Teresina;Implantação do BRT Terminal Bela Vista – Universidade (UFPI);BRT Elétrico;12,9;18;Estudo ENMU;Requer ser desenvolvido;540,1;52843;Teresina;-3,26
+121902;21902;RIDE Teresina;Implantação do VLT Terminal Parque Piauí - Terminal Zoobotânico;VLT;16,1;25;Estudo ENMU;Requer ser desenvolvido;1843,96;62765;Teresina;-3,86
+121903;21903;RIDE Teresina;Implantação do VLT - Terminal Bela Vista – Universidade (UFPI);VLT;12,9;18;Estudo ENMU;Requer ser desenvolvido;1485;52843;Teresina;-3,83
+20701;;RM Baixada Santista;Extensão do VLT da Baixada Santista – entre Terminal Samaritá e Terminal Tatico ;VLT;6,5;2;Estudo ENMU;Requer ser desenvolvido;671,65;6522;São Vicente, Praia Grande;-0,51
+20702;;RM Baixada Santista;Implantação do VLT Santos - Guarujá;VLT;10,6;9;Estudo ENMU;Requer ser desenvolvido;1166,51;33749;Santos, Guarujá;-1,2
+20703;;RM Baixada Santista;Implantação do BRT Praia Grande – entre Estação São Vicente (VLT) e Terminal Caiçara ;BRT Elétrico;18;31;Estudo simplificado;Requer ser desenvolvido;766,91;55298;São Vicente, Praia Grande;-3,15
+20704;;RM Baixada Santista;Extensão do VLT da Baixada Santista – entre Terminal Barreiros e Terminal Samaritá;VLT;7,5;4;Detalhe obra pública;Requer atualização;818,98;8184;São Vicente;-0,95
+21501;;RM Belo Horizonte;Extensão do Metrô Linha 1 Trecho Beatriz;Metrô;3,6;2;Estudo simplificado;Requer ser desenvolvido;1409,79;34933;Contagem;-0,83
+21502;;RM Belo Horizonte;Implantação do Metrô Linha 2: Ibirité - Barreiro;Metrô;11,5;9;Estudo ENMU;Requer ser desenvolvido;4189,9;42787;Belo Horizonte, Ibirité;-2,66
+21503;;RM Belo Horizonte;Implantação do Metrô Linha 2: Santa Tereza - Calafate;Metrô;5,3;7;Estudo simplificado;Requer ser desenvolvido;4265,16;115048;Belo Horizonte;-2,34
+21506;;RM Belo Horizonte;Implantação do Metrô Linha 3: Lagoinha - Belvedere;Metrô;11,2;11;Estudo de demanda;Requer atualização;8873,04;171895;Belo Horizonte;-5,42
+21507;;RM Belo Horizonte;Implantação do VLT Linha 4: Eldorado - Betim;VLT;22,8;24;Estudo de demanda;Requer atualização;2875,55;94195;Contagem, Betim;-2,33
+21509;;RM Belo Horizonte;Implantação do VLT Lagoinha - Ribeirão das Neves;VLT;30,2;32;Estudo ENMU;Requer ser desenvolvido;4305,21;145782;Belo Horizonte, Ribeirão das Neves;-5,91
+21510;;RM Belo Horizonte;Implantação do VLT Anel Urbano;VLT;38,8;44;Estudo simplificado;Requer ser desenvolvido;4192,82;59913;Contagem, Belo Horizonte, Ribeirão das Neves, Vespasiano, Santa Luzia;-1,68
+21511;;RM Belo Horizonte;Extensão do BRT Cristiano Machado;BRT Elétrico;7,1;14;Estudo simplificado;Requer ser desenvolvido;448,94;81910;Belo Horizonte, Santa Luzia;-1,2
+21512;;RM Belo Horizonte;Implantação do BRT Amazonas;BRT Elétrico;9,4;16;Detalhe obra pública;Atualizado;711,24;279289;Belo Horizonte;-1,42
+21513;;RM Belo Horizonte;Implantação do BRT Anel Rodoviário;BRT Elétrico;21,5;33;Estudo simplificado;Requer ser desenvolvido;1203,03;167685;Belo Horizonte;-2,05
+21514;;RM Belo Horizonte;Implantação do BRT BR 040 Sul;BRT Elétrico;11,4;8;Estudo simplificado;Requer ser desenvolvido;427,93;24948;Belo Horizonte, Nova Lima;-0,21
+21515;;RM Belo Horizonte;Implantação do BRT BR 040 Norte: Ribeirão das Neves - Ressaca;BRT Elétrico;10,6;11;Estudo simplificado;Requer ser desenvolvido;620,38;61383;Ribeirão das Neves, Contagem;-0,7
+21516;;RM Belo Horizonte;Implantação do BRT Sul: Belvedere - Nova Lima;BRT Elétrico;32,6;13;Estudo simplificado;Requer ser desenvolvido;1063,08;16075;Belo Horizonte, Nova Lima;0,09
+21517;;RM Belo Horizonte;Implantação do BRT Confins -Vilarinho;BRT Elétrico;14;20;Estudo simplificado;Requer ser desenvolvido;986,21;121474;Belo Horizonte, Vespasiano, Lagoa Santa, Confins;-1,86
+21602;;RM Belém;Extensão do BRT Metropolitano - Expansão Marituba;BRT Elétrico;4,9;8;Detalhe obra pública;Atualizado;370,54;33921;Marituba;-1,33
+21603;;RM Belém;Implantação do BRT Avenida Julio Cesar;BRT Elétrico;4,9;8;Estudo simplificado;Requer ser desenvolvido;431,01;40933;Belém;-1,31
+21604;;RM Belém;Implantação do BRT Centenário;BRT Elétrico;12,5;21;Estudo simplificado;Requer ser desenvolvido;633,4;76922;Belém;-2,68
+22001;;RM Campinas;Implantação do BRT Orosimbo Maia;BRT Elétrico;6,3;11;Estudo simplificado;Requer ser desenvolvido;239,3;18233;Campinas;-0,88
+22002;;RM Campinas;Implantação do BRT Unicamp;BRT Elétrico;8,03;13;Estudo simplificado;Requer ser desenvolvido;306,45;23134;Campinas;-0,87
+22003;;RM Campinas;Implantação do BRT Miguel Burnier;BRT Elétrico;6,08;10;Estudo simplificado;Requer ser desenvolvido;259,34;74334;Campinas;-1,41
+22004;;RM Campinas;Implantação do VLT Viracopos - Campinas;VLT;22,144;11;Estudo simplificado;Requer ser desenvolvido;2318,62;48822;Campinas;-1,54
+22005;;RM Campinas;Implantação do VLT Sumaré - Campinas;VLT;24,892;11;Estudo simplificado;Requer ser desenvolvido;2632,77;68820;Sumaré, Hortolândia e Campinas;-2,31
+22006;22006;RM Campinas;Implantação do VLT Santos Dumont;VLT;18,01;15;Estudo ENMU;Requer ser desenvolvido;2001,95;57570;Campinas;-2,69
+122006;22006;RM Campinas;Implantação do BRT Santos Dumont;BRT Elétrico;18,01;15;Estudo ENMU;Requer ser desenvolvido;716,06;57570;Campinas;-2,38
+21801;;RM Curitiba;Implantação do VLT Expresso Metropolitano;VLT;19,8;27;Estudo de demanda;Atualizado;2929,21;96778;Curitiba, São José dos Pinhais;-3,18
+21802;21802;RM Curitiba;Implantação do Metrô Norte-Sul;Metrô;20,4;21;Estudo simplificado;Requer ser desenvolvido;16875,15;290142;Curitiba;-5,07
+21803;;RM Curitiba;Extensão do BRT Linha Verde - Colombo - Fazenda Rio Grande;BRT Elétrico;22,8;12;Estudo ENMU;Requer ser desenvolvido;1262,32;109111;Curitiba, Colombo, Fazenda Rio Grande;-2,83
+21804;;RM Curitiba;Implantação do BRT Piraquara - Term. Pinhais- Term. Piraquara;BRT Elétrico;13,6;14;Estudo ENMU;Requer ser desenvolvido;547,08;35522;Piraquara, Pinhais;-2,95
+21805;;RM Curitiba;Implantação do BRT Roça Grande - Term. Roça Grande - Term. Santa Cândida-Atuba;BRT Elétrico;6,6;9;Estudo ENMU;Requer ser desenvolvido;257,02;32660;Curitiba, Colombo;-2,97
+21806;;RM Curitiba;Implantação do BRT São José dos Pinhais - Term. Centenário-Term. Afonso Pena ;BRT Elétrico;6,8;10;Estudo ENMU;Requer ser desenvolvido;303,59;28854;Curitiba, São José dos Pinhais;-3,1
+21807;;RM Curitiba;Implantação do BRT Araucária - Term. CIC Sul - Term. Araucária Central;BRT Elétrico;12,7;12;Estudo ENMU;Requer ser desenvolvido;569,99;31977;Curitiba, Araucária;-2,4
+121802;21802;RM Curitiba;Implantação do VLT Norte-Sul;VLT;20,4;21;Estudo simplificado;Requer ser desenvolvido;5860,59;290142;Curitiba;-5,15
+21201;;RM Florianópolis;Implantação do BRT no Anel Viário Florianópolis - Trecho Sul;BRT Elétrico;9,6;14;Estudo simplificado;Requer atualização;418,26;33216;Florianópolis;-0,38
+21202;;RM Florianópolis;Implantação do BRT no Anel Viário Florianópolis - Trecho Norte;BRT Elétrico;8;9;Estudo simplificado;Requer atualização;451,79;51940;Florianópolis;-0,49
+21203;;RM Florianópolis;Implantação do BRT na BR-282 (Via Expressa);BRT Elétrico;6,6;6;Estudo simplificado;Requer atualização;445,29;60260;Florianópolis e São José;-0,82
+21204;;RM Florianópolis;Implantação do BRT na BR-101;BRT Elétrico;21,3;22;Estudo simplificado;Requer atualização;938,71;41998;São José, Biguaçu e Palhoça;-1,17
+21205;;RM Florianópolis;Implantação do BRT no corredor Norte (SC-401);BRT Elétrico;19,1;17;Estudo simplificado;Requer atualização;948,98;63045;Florianópolis;-1,72
+21206;;RM Florianópolis;Implantação do BRT no corredor Sul (SC-405);BRT Elétrico;12,6;16;Estudo simplificado;Requer atualização;594,62;50206;Florianópolis;-0,65
+20601;;RM Fortaleza;Extensão do Metrô Leste Papicu-CEC;Metrô;5,1;3;Estudo de demanda;Requer atualização;3975,89;33706;Fortaleza;-1,33
+20602;;RM Fortaleza;Requalificação do Metrô da Linha Sul ;Metrô;24,1;20;Estudo de demanda;Requer atualização;4325,5;159534;Fortaleza, Maracanaú;-2,22
+20603;;RM Fortaleza;Requalificação do Metrô da Linha Oeste ;Metrô;19,5;15;Estudo de demanda;Requer atualização;6807,79;122999;Caucaia, Fortaleza;-2,1
+20604;;RM Fortaleza;Extensão do VLT - Parangaba - Term. Conjunto Ceará;VLT;8,9;14;Estudo simplificado;Requer ser desenvolvido;1238,46;43066;Fortaleza;-0,76
+20605;;RM Fortaleza;Extensão e Requalificação do BRT BR-116/Av. Aguanambi;BRT Elétrico;11,24;19;Estudo de demanda;Requer atualização;1096,59;124239;Fortaleza;-1,09
+20606;;RM Fortaleza;Extensão e Requalificação do BRT Bezerra de Menezes-Mr Hull;BRT Elétrico;9,49;10;Estudo de demanda;Requer atualização;1071,22;223084;Fortaleza;-1,68
+20607;;RM Fortaleza;Implantação do BRT Washington Soares;BRT Elétrico;14,2;22;Estudo de demanda;Requer atualização;889,28;120620;Fortaleza;-0,9
+20608;;RM Fortaleza;Implantação do BRT Coité – Parangaba;BRT Elétrico;11,2;;Estudo ENMU;Requer ser desenvolvido;629,73;143743;Fortaleza;-0,84
+20609;;RM Fortaleza;Implantação do BRT Messejana – Siqueira;BRT Elétrico;11,4;;Estudo ENMU;Requer ser desenvolvido;511,13;89204;Fortaleza;-0,55
+20610;;RM Fortaleza;Extensão do BRT Bezerra de Menezes Mr. Hull - Caucaia;BRT Elétrico;6,3;7;Estudo ENMU;Requer ser desenvolvido;315,8;69583;Caucaia, Fortaleza;-0,61
+20611;;RM Fortaleza;Extensão do BRT BR-116 Messejana - Itaitinga;BRT Elétrico;16,4;12;Estudo ENMU;Requer ser desenvolvido;694,12;53572;Eusébio, Fortaleza, Itaitinga;-0,66
+21301;;RM Goiânia;Extensão do BRT Norte Sul no Trecho Isidória – Cruzeiro;BRT Elétrico;4,5;5;Detalhe obra pública;Requer atualização;290,92;37852;Goiânia, Aparecida de Goiânia;-1,25
+21302;;RM Goiânia;Extensão do BRT Norte Sul no Trecho Cruzeiro - Veiga Jardim;BRT Elétrico;5;6;Estudo de demanda;Requer atualização;155,25;18252;Aparecida de Goiânia;-0,34
+21303;;RM Goiânia;Implantação do BRT Anhanguera - Trecho Padre Pelágio até Goianira ;BRT Diesel;20,5;21;Estudo ENMU;Requer ser desenvolvido;1002,17;27499;Goiânia, Goianira;-0,54
+21304;;RM Goiânia;Implantação do BRT Anhanguera - Trecho Padre Pelágio até Trindade;BRT Diesel;16,4;13;Estudo ENMU;Requer ser desenvolvido;823;29203;Goiânia, Trindade;-0,5
+21305;;RM Goiânia;Implantação do BRT Anhanguera- Trecho Novo Mundo até Sen. Canedo;BRT Diesel;14;14;Estudo ENMU;Requer ser desenvolvido;722,74;20933;Goiânia, Senador Canedo;-0,5
+21306;;RM Goiânia;Implantação do BRT Maranata - Bíblia;BRT Elétrico;23,4;35;Estudo ENMU;Requer ser desenvolvido;979,99;76281;Goiânia, Aparecida de Goiânia;-1,52
+21309;;RM Goiânia;Implantação do BRT - Vera Cruz - Isidória;BRT Diesel;20;19;Estudo ENMU;Requer ser desenvolvido;745,55;59783;Goiânia;-0,86
+20401;;RM Grande Vitória;Implantação do BRT Grande Vitória L1;BRT Elétrico;35;62;Estudo de demanda;Requer atualização;2171,97;387616;Vitória, Vila Velha, Serra e Cariacica;-3,27
+20402;;RM Grande Vitória;Implantação do BRT Grande Vitória L2;BRT Elétrico;33,5;57;Estudo ENMU;Requer ser desenvolvido;1873,92;289660;Vitória, Vila Velha, Serra e Cariacica;-3,01
+20403;20403;RM Grande Vitória;Implantação do BRT Vila Velha;BRT Elétrico;8;16;Estudo ENMU;Requer ser desenvolvido;349,19;84028;Vila Velha;-0,34
+20404;;RM Grande Vitória;Implantação do BRT Cariacica;BRT Elétrico;7,7;11;Estudo ENMU;Requer ser desenvolvido;319,73;76895;Cariacica e Vila Velha;-0,3
+120403;20403;RM Grande Vitória;Implantação do VLT Vila Velha;VLT;8;16;Estudo ENMU;Requer ser desenvolvido;827,13;84028;Vila Velha;-0,64
+20801;20801;RM João Pessoa;Implantação do BRT Aeroporto - Bessa;BRT Elétrico;23,1;46;Estudo ENMU;Requer ser desenvolvido;999,54;107694;João Pessoa, Cabedelo, Bayeux, Santa Rita;-1,39
+20802;;RM João Pessoa;Implantação do Corredor Pedro II;Corredor Central;10,1;;Estudo simplificado;Atualizado;197,06;96162;João Pessoa;-0,59
+20803;;RM João Pessoa;Implantação do Corredor Mangabeira;Corredor Central;5,4;;Estudo ENMU;Requer ser desenvolvido;104,39;71293;João Pessoa;-0,19
+20804;;RM João Pessoa;Implantação do Corredor Bessa - Centro;Corredor Central;15,9;;Estudo simplificado;Atualizado;282,32;107096;João Pessoa;-0,65
+20805;;RM João Pessoa;Implantação do Corredor Cruz das Armas;Corredor Central;8,7;;Estudo simplificado;Atualizado;154,09;110610;João Pessoa;-0,14
+120801;20801;RM João Pessoa;Implantação do VLT Aeroporto - Bessa;VLT;23,1;46;Estudo ENMU;Requer ser desenvolvido;2723,1;107694;João Pessoa, Cabedelo, Bayeux, Santa Rita;-1,97
+22101;;RM Maceió;Implantação do BRT Fernandes Lima;BRT Diesel;15,23;43;Detalhe concessão;Atualizado;563,61;66597;Maceió;-1,46
+22102;;RM Maceió;Extensão do BRT Fernandes Lima até Aeroporto;BRT Diesel;2,56;10;Estudo ENMU;Requer ser desenvolvido;116,02;14466;Maceió, Rio Largo;-0,11
+22103;;RM Maceió;Implantação do Corredor Av. Menino Marcelo;Corredor Central;6,52;;Estudo simplificado;Requer ser desenvolvido;109,35;38234;Maceió;-0,11
+22104;22104;RM Maceió;Implantação do BRT Gustavo Paiva;BRT Elétrico;9,3;70;Estudo ENMU;Requer ser desenvolvido;470,03;53530;Maceió;-0,55
+22105;;RM Maceió;Implantação do Corredor Josefa de Melo;Corredor Central;8,8;;Estudo ENMU;Requer ser desenvolvido;142,36;33125;Maceió;-0,17
+122104;22104;RM Maceió;Implantação do VLT Gustavo Paiva;VLT;9,3;70;Estudo ENMU;Requer ser desenvolvido;1144,2;53530;Maceió;-0,65
+21701;;RM Manaus;Implantação do BRT - Extremo Norte;BRT Elétrico;7;6;Estudo simplificado;Requer ser desenvolvido;379,86;44061;Manaus;-0,36
+21702;;RM Manaus;Implantação do BRT – Norte/Leste;BRT Elétrico;28,7;45;Estudo simplificado;Requer ser desenvolvido;1568,51;201596;Manaus;-1,92
+21703;;RM Manaus;Implantação do BRT - Área Central;BRT Elétrico;4;6;Estudo simplificado;Requer ser desenvolvido;465,14;54361;Manaus;-1,29
+21704;;RM Manaus;Implantação do BRT - Extremo Sul;BRT Elétrico;8,2;10;Estudo simplificado;Requer ser desenvolvido;436,92;39678;Manaus;-0,55
+21401;21401;RM Natal;Implantação do BRT Parque dos Coqueiros-Ponta Negra;BRT Elétrico;21,7;43;Estudo ENMU;Requer ser desenvolvido;955,72;107525;Natal, São Gonçalo do Amarante;-2,09
+21402;21402;RM Natal;Implantação do BRT Lagoa Azul - Parnamirim;BRT Elétrico;27,7;55;Estudo ENMU;Requer ser desenvolvido;1099,82;108634;Natal, Parnamirim;-1,64
+21403;;RM Natal;Implantação do Corredor Av. Dr. João Medeiros;Corredor Central;7;;Estudo ENMU;Requer ser desenvolvido;116,57;25352;Natal;-0,18
+21404;;RM Natal;Implantação do Corredor Av. Prudente de Morais;Corredor Central;6,1;;Estudo ENMU;Requer ser desenvolvido;116,99;26838;Natal;-0,19
+21405;;RM Natal;Implantação do Corredor Central - Mangabeira;Corredor Central;14,2;;Estudo ENMU;Requer ser desenvolvido;261,44;48660;Natal, Macaíba;-0,26
+121401;21401;RM Natal;Implantação do VLT Parque dos Coqueiros-Ponta Negra;VLT;21,7;43;Estudo ENMU;Requer ser desenvolvido;2588,59;107525;Natal, São Gonçalo do Amarante;-2,5
+121402;21402;RM Natal;Implantação do VLT Lagoa Azul - Parnamirim;VLT;27,7;55;Estudo ENMU;Requer ser desenvolvido;3106,75;108634;Natal, Parnamirim;-1,99
+20502;;RM Porto Alegre;Implantação do BRT Troncal Jockey Cairú;BRT Elétrico;15,2;29;Estudo simplificado;Requer ser desenvolvido;781,06;157515;Porto Alegre;-2,11
+20503;;RM Porto Alegre;Extensão do BRT Troncal Jockey Cairú - Juca Batista Cairú;BRT Elétrico;9;11;Estudo simplificado;Requer ser desenvolvido;613,93;90015;Porto Alegre;-1,59
+20505;;RM Porto Alegre;Implantação do BRT Troncal Bento Gonçalves;BRT Elétrico;9,1;20;Estudo simplificado;Requer ser desenvolvido;550,65;97457;Porto Alegre;-1,11
+20506;;RM Porto Alegre;Extensão do BRT Troncal Bento Gonçalves - Lomba do Pinheiro;BRT Elétrico;6,3;11;Estudo simplificado;Requer ser desenvolvido;374,45;51992;Porto Alegre;-1,24
+20507;;RM Porto Alegre;Implantação do BRT Troncal Jockey;BRT Elétrico;6,6;15;Estudo simplificado;Requer ser desenvolvido;433,26;61008;Porto Alegre;-0,85
+20509;;RM Porto Alegre;Extensão do BRT Troncal Bento Gonçalves - Juca Batista;BRT Elétrico;12,2;11;Estudo simplificado;Requer ser desenvolvido;941,29;193486;Porto Alegre;-3,51
+20510;;RM Porto Alegre;Implantação do BRT Troncal Protásio Alves;BRT Elétrico;14,8;28;Estudo simplificado;Requer ser desenvolvido;877,56;107546;Porto Alegre;-1,49
+20511;20511;RM Porto Alegre;Implantação do BRT Troncal Assis Brasil;BRT Elétrico;9,8;20;Estudo simplificado;Requer ser desenvolvido;552,16;78810;Porto Alegre;-0,89
+20512;;RM Porto Alegre;Extensão do BRT Troncal Jockey - Juca Batista Tristeza;BRT Elétrico;8,7;10;Estudo simplificado;Requer ser desenvolvido;486,51;48432;Porto Alegre;-1,22
+20514;20514;RM Porto Alegre;Extensão do BRT Troncal Assis Brasil - Gravataí;BRT Elétrico;22,4;18;Estudo simplificado;Requer ser desenvolvido;1136,04;62100;Porto Alegre, Cachoeirinha e Gravataí;-2,03
+20516;20516;RM Porto Alegre;Extensão do BRT Troncal Assis Brasil - Alvorada;BRT Elétrico;10,2;29;Estudo simplificado;Requer ser desenvolvido;536,42;50477;Porto Alegre e Alvorada;-1,53
+20517;;RM Porto Alegre;Extensão do BRT Troncal Bento Gonçalves - Viamão;BRT Elétrico;13,8;18;Estudo simplificado;Requer ser desenvolvido;753,04;80765;Porto Alegre e Viamão;-1,51
+120511;20511;RM Porto Alegre;Implantação do VLT Troncal Assis Brasil;VLT;9,8;20;Estudo simplificado;Requer ser desenvolvido;1226,44;78810;Porto Alegre;-1,17
+120514;20514;RM Porto Alegre;Extensão do VLT Troncal Assis Brasil - Gravataí;VLT;22,4;18;Estudo simplificado;Requer ser desenvolvido;2175,56;62100;Porto Alegre, Cachoeirinha e Gravataí;-2,26
+120516;20516;RM Porto Alegre;Extensão do VLT Troncal Assis Brasil - Alvorada;VLT;10,2;29;Estudo simplificado;Requer ser desenvolvido;1127,39;50477;Porto Alegre e Alvorada;-1,71
+20301;20301;RM Recife;Implantação do BRT TI Abreu e Lima - Cajueiro Seco;BRT Elétrico;30,5;59;Estudo simplificado;Requer atualização;1309,13;102349;Jaboatão dos Guararapes, Recife e Paulista;-1,19
+20302;20302;RM Recife;Implantação do VLT Avenida Norte;VLT;9,8;20;Estudo simplificado;Requer atualização;1146,06;62591;Recife;-0,64
+20303;20303;RM Recife;Implantação do VLT Boa Viagem - Olinda;VLT;20,6;37;Estudo simplificado;Atualizado;2643,64;139559;Recife, Olinda;-1,89
+20304;20304;RM Recife;Implantação do VLT Igarassu - Joana Bezerra;VLT;35,4;51;Estudo simplificado;Requer atualização;4569,95;162030;Igarassu, Abreu e Lima, Paulista, Olinda e Recife;-3,22
+20306;20306;RM Recife;Implantação do VLT Centro (Sto. Antônio) - São Lourenço;VLT;22,87;40;Estudo simplificado;Requer atualização;2877,77;114101;São Lourenço da Mata, Camaragibe e Recife;-1,95
+20307;;RM Recife;Requalificação do Metrô Linhas Centro e Sul e dos Trens urbanos Diesel;Metrô/Trem Urbano;37,7;36;Detalhe concessão;Atualizado;3344,1;257299;Recife, Camaragibe, Jaboataão dos Guararapes, Cabo de Santo Agostinho;
+120301;20301;RM Recife;Implantação do VLT TI Abreu e Lima - Cajueiro Seco;VLT;30,5;59;Estudo simplificado;Requer ser desenvolvido;3588,36;102349;Jaboatão dos Guararapes, Recife e Paulista;-1,7
+120302;20302;RM Recife;Implantação do BRT Avenida Norte;BRT Elétrico;9,8;20;Estudo simplificado;Requer ser desenvolvido;425,71;62591;Recife;-0,48
+120303;20303;RM Recife;Implantação do BRT Boa Viagem - Olinda;BRT Elétrico;20,6;37;Estudo simplificado;Requer ser desenvolvido;1010,66;139559;Recife, Olinda;-1,37
+120304;20304;RM Recife;Implantação do BRT Igarassu - Joana Bezerra;BRT Elétrico;35,4;51;Estudo ENMU;Requer ser desenvolvido;1755,3;162030;Igarassu, Abreu e Lima, Paulista, Olinda e Recife;-2,3
+120306;20306;RM Recife;Implantação do BRT Centro (Sto. Antônio) - São Lourenço;BRT Elétrico;22,87;40;Estudo ENMU;Requer ser desenvolvido;1113,14;114101;São Lourenço da Mata, Camaragibe e Recife;-1,35
+21101;;RM Rio de Janeiro;Implantação do Metrô Alvorada - Cocotá;Metrô;32,2;20;Estudo de demanda;Requer ser desenvolvido;11787,24;225379;Rio de Janeiro;-6,7
+21102;;RM Rio de Janeiro;Implantação do Metrô Gávea até Del Castilho;Metrô;13,4;7;Estudo de demanda;Requer ser desenvolvido;10636,96;173963;Rio de Janeiro;-3,82
+21103;;RM Rio de Janeiro;Extensão da Linha 02 do Metrô até Praça XV;Metrô;3,5;4;Estudo de demanda;Requer ser desenvolvido;3396,7;131048;Rio de Janeiro;-1,43
+21104;;RM Rio de Janeiro;Implantação do Metrô do Centro do Rio até Deodoro;Metrô;25,7;20;Estudo de demanda;Requer ser desenvolvido;9575,94;256718;Rio de Janeiro;-3,43
+21105;;RM Rio de Janeiro;Implantação do Metrô da Praça XV a São Gonçalo;Metrô;19,4;12;Estudo de demanda;Requer ser desenvolvido;12314,9;348092;Rio de Janeiro, Niterói e São Gonçalo;-8,23
+21106;;RM Rio de Janeiro;Requalificação do BRT TransOeste em VLT;VLT;44,6;44;Detalhe RDC;Atualizado;4728,35;351088;Rio de Janeiro;-3,86
+21107;;RM Rio de Janeiro;Requalificação do BRT TransCarioca em VLT;VLT;35,6;51;Detalhe RDC;Atualizado;4989,69;440263;Rio de Janeiro;-5,38
+21108;;RM Rio de Janeiro;Implantação do VLT Botafogo - Leblon - Gávea;VLT;10,4;20;Detalhe RDC;Atualizado;1090,87;66871;Rio de Janeiro;-1,06
+21109;;RM Rio de Janeiro;Implantação do VLT Niterói - Centro - Charitas;VLT;11,8;18;Estudo simplificado;Requer atualização;1225,21;24132;Niterói;-0,57
+21110;;RM Rio de Janeiro;Implantação do BRT TransBaixada;BRT Elétrico;14,2;37;Estudo simplificado;Requer ser desenvolvido;736,1;55432;Duque de Caxias, Belford Roxo, São João de Meriti, Mesquita e Nilópolis;-1,32
+21111;;RM Rio de Janeiro;Extensão do BRT TransBrasil até Santa Cruz;BRT Elétrico;35,5;22;Estudo simplificado;Requer ser desenvolvido;1935,01;129035;Rio de Janeiro;-4,1
+21112;;RM Rio de Janeiro;Implantação do BRT transversal Campo Grande - Magarça;BRT Elétrico;11,8;17;Estudo simplificado;Requer ser desenvolvido;709,8;91986;Rio de Janeiro;-1,06
+21113;;RM Rio de Janeiro;Implantação do BRT de Jd. Oceânico até Taquara e Freguesia;BRT Elétrico;16,6;24;Estudo simplificado;Requer ser desenvolvido;1173,79;221128;Rio de Janeiro;-2,63
+21114;;RM Rio de Janeiro;Requalificação do Trem Urbano ;Trem;270;76;Estudo simplificado;Requer atualização;3585,12;576778;Rio de Janeiro, Duque de Caxias, Belford Roxo, São João de Meriti, Mesquita, Nilópolis, Nova Iguaçu, Queimados, Japeri, Paracambi, Magé e Guapimirim.;-4,88
+20201;;RM Salvador;Extensão do Metrô Linha 1 - Lapa-Barra;Metrô;3;4;Estudo de demanda;Atualizado;2534,71;120323;Salvador;-1,45
+20202;;RM Salvador;Implantação do VLT de Salvador Trecho 2 entre Paripe e Águas Claras e Trecho 3 entre Águas Claras e Piatã;VLT;18;17;Detalhe obra pública;Atualizado;2017,04;89134;Salvador;-1,1
+20203;;RM Salvador;Implantação do VLT Expansão Norte – Salvador-Camaçari;VLT;30;8;Estudo simplificado;Requer ser desenvolvido;2503,71;44817;Camaçari, Salvador e Simões Filho;-0,68
+20204;;RM Salvador;Extensão do VLT de Salvador – Calçada-Comércio-Lapa;VLT;4,8;6;Estudo simplificado;Requer ser desenvolvido;1060,7;137209;Salvador;-0,96
+20205;20205;RM Salvador;Implantação do VLT Lauro de Freitas ;VLT;7,3;12;Estudo simplificado;Requer ser desenvolvido;824,96;112007;Salvador, Lauro de Freitas;-1,72
+20206;20206;RM Salvador;Implantação do Corredor Central Baixa do Fiscal-Terminal Rodoviária;Corredor Central;7,06;10;Estudo simplificado;Requer ser desenvolvido;188,22;144463;Salvador;-0,47
+20207;;RM Salvador;Implantação do BRT Transversal Avenida Gal Costa ;BRT Elétrico;10,3;11;Estudo de demanda;Requer atualização;412,27;55665;Salvador;-0,42
+20208;20208;RM Salvador;Implantação do VLT Orla - Aeroporto-Barra;VLT;26,2;49;Estudo ENMU;Requer ser desenvolvido;2911,65;221726;Salvador;-2,06
+20209;20206;RM Salvador;Implantação do VLT San Martin;VLT;3,44;5;Estudo de demanda;Requer atualização;682;45305;Salvador;-1,41
+120205;20205;RM Salvador;Implantação do BRT Lauro de Freitas ;BRT Elétrico;7,3;12;Estudo simplificado;Requer ser desenvolvido;462,3;112007;Salvador, Lauro de Freitas;-1,59
+120208;20208;RM Salvador;Implantação do BRT Orla - Aeroporto-Barra;BRT Elétrico;26,2;49;Estudo ENMU;Requer ser desenvolvido;1611,8;221726;Salvador;-1,64
+20901;20901;RM São Luís;Implantação do BRT TI Calhau - TI São Cristovão;BRT Elétrico;12,6;21;Estudo ENMU;Requer ser desenvolvido;580,75;149089;São Luís;-1,58
+20902;20902;RM São Luís;Implantação do BRT TI São Cristovão - Praia Grande;BRT Elétrico;12,71;27;Estudo ENMU;Requer ser desenvolvido;560,75;114772;São Luís;-1,47
+20903;20903;RM São Luís;Implantação do BRT Term. Anjo da Guarda - Term. Calhau;BRT Elétrico;12,45;20;Estudo ENMU;Requer ser desenvolvido;475,96;72534;São Luís;-0,71
+20904;;RM São Luís;Implantação do Corredor Cidade Operaria - TI São Cristóvão;Corredor Central;2,07;;Estudo ENMU;Requer ser desenvolvido;43,85;72897;São Luís;-0,03
+20905;;RM São Luís;Implantação do Corredor Estrada do Ribamar;Corredor Central;5,3;;Estudo ENMU;Requer ser desenvolvido;100,16;56751;São Luís, São José de Ribamar, Paço do Lumiar;-0,06
+20906;20906;RM São Luís;Implantação do BRT Calhau - Holandeses;BRT Elétrico;8,08;14;Estudo ENMU;Requer ser desenvolvido;288,49;39158;São Luís;-0,56
+120901;20901;RM São Luís;Implantação do VLT TI Calhau - TI São Cristovão;VLT;12,6;21;Estudo ENMU;Requer ser desenvolvido;1539,17;149089;São Luís;-1,9
+120902;20902;RM São Luís;Implantação do VLT TI São Cristovão - Praia Grande;VLT;12,71;27;Estudo ENMU;Requer ser desenvolvido;1522,7;114772;São Luís;-1,75
+120903;20903;RM São Luís;Implantação do VLT Term. Anjo da Guarda - Term. Calhau;VLT;12,45;20;Estudo ENMU;Requer ser desenvolvido;1347,64;72534;São Luís;-0,86
+120906;20906;RM São Luís;Implantação do VLT Calhau - Holandeses;VLT;8,08;14;Estudo ENMU;Requer ser desenvolvido;850,17;39158;São Luís;-0,63
+21001;;RM São Paulo;Extensão do Metrô Linha 2 - Verde | Trecho Cerro Corá - Vila Madalena;Metrô;1,3;1;Detalhe concessão;Atualizado;1186,28;20229;São Paulo;-0,23
+21002;;RM São Paulo;Extensão do Metrô Linha 2 - Verde | Trecho Penha - Dutra;Metrô;6;5;Detalhe concessão;Atualizado;5555,22;184286;São Paulo, Guarulhos;-2,16
+21003;;RM São Paulo;Extensão do Metrô Linha 4 - Amarela | Trecho Vila Sônia - Taboão da Serra;Metrô;3,3;2;Detalhe concessão;Atualizado;2968,62;114036;São Paulo, Taboão da Serra;-1,72
+21004;;RM São Paulo;Extensão do Metrô Linha 5 - Lilás | Trecho Capão Redondo - Jardim Ângela;Metrô;4,3;2;Detalhe concessão;Atualizado;3922,5;133971;São Paulo;-3,64
+21005;;RM São Paulo;Extensão do Metrô Linha 5 - Lilás | Trecho São Carlos - Chácara Klabin;Metrô;4;3;Estudo simplificado;Requer ser desenvolvido;3564,68;42920;São Paulo;-0,68
+21006;;RM São Paulo;Extensão do Metrô Linha 6 - Laranja | Trecho Brasilândia - Vila Clarice;Metrô;5;3;Estudo de demanda;Requer ser desenvolvido;4247,65;69364;São Paulo;-1,01
+21007;;RM São Paulo;Extensão do Metrô Linha 6 - Laranja | Trecho São Joaquim - São Carlos;Metrô;3,8;4;Estudo de demanda;Requer ser desenvolvido;3136,61;98187;São Paulo;-1
+21008;;RM São Paulo;Extensão do Trem Linha 11 - Coral | Trecho Estudantes - César de Souza;Trem;3,71;1;Detalhe concessão;Atualizado;1065,14;15208;Mogi das Cruzes;-0,44
+21009;;RM São Paulo;Extensão do Trem Linha 12 - Safira | Trecho Calmon Viana - Suzano;Trem;2,69;1;Detalhe concessão;Atualizado;796,51;19358;Poá, Suzano;-0,64
+21010;;RM São Paulo;Extensão do Trem Linha 13 - Jade | Trecho Engenheiro Goulart - Gabriela Mistral;Trem;4,73;2;Detalhe concessão;Atualizado;1333,77;8971;São Paulo;-0,51
+21011;;RM São Paulo;Extensão do Trem Linha 13 - Jade | Trecho Aeroporto Guarulhos - Bonsucesso;Trem;10,54;4;Detalhe concessão;Atualizado;2495,77;61149;Guarulhos;-1,31
+21012;;RM São Paulo;Extensão do Trem Linha 13 - Jade | Trecho Gabriela Mistral - São Carlos;Trem;8,73;6;Estudo simplificado;Requer ser desenvolvido;5603,09;44856;São Paulo;-0,81
+21013;;RM São Paulo;Implantação do VLT Linha 14 - Ônix;VLT;40,8;24;Detalhe concessão;Atualizado;5007,5;264844;Guarulhos, São Paulo, Santo André, São Bernardo do Campo;-3,04
+21014;;RM São Paulo;Extensão do Monotrilho Linha 15 - Prata | Trecho Jacú-Pêssego - Cidade Tiradentes;Monotrilho;4,9;3;Detalhe concessão;Atualizado;2326,62;28951;São Paulo;-0,82
+21015;;RM São Paulo;Extensão do Monotrilho Linha 15 - Prata | Trecho Cidade Tiradentes - Hospital Cidade Tiradentes;Monotrilho;2;1;Detalhe concessão;Requer atualização;993,5;17324;São Paulo;0,53
+21016;;RM São Paulo;Implantação do Metrô Linha 16 - Violeta;Metrô;32,6;23;Detalhe concessão;Atualizado;26956,27;511820;São Paulo;-6,17
+21017;;RM São Paulo;Extensão do Monotrilho Linha 17 - Ouro | Trecho São Paulo-Morumbi - Morumbi;Monotrilho;6,9;5;Estudo de demanda;Atualizado;3117,85;151738;São Paulo;-1,8
+21018;;RM São Paulo;Extensão do Monotrilho Linha 17 - Ouro | Trecho Washington Luiz - Jabaquara;Monotrilho;4,3;5;Estudo de demanda;Atualizado;1965,36;60153;São Paulo;-0,74
+21019;;RM São Paulo;Implantação do Metrô Linha 19 - Celeste;Metrô;17,6;15;Detalhe concessão;Atualizado;13889,45;206977;Guarulhos, São Paulo;-2,78
+21020;;RM São Paulo;Extensão do Metrô Linha 19 - Celeste | Trecho Anhangabaú - Campo Belo;Metrô;9,2;10;Estudo simplificado;Requer ser desenvolvido;7893,4;507818;São Paulo;-4,61
+21021;;RM São Paulo;Implantação do Metrô Linha 20 - Rosa;Metrô;31;24;Detalhe concessão;Atualizado;24618,94;617411;São Paulo, São Bernardo do Campo, Santo André;-6,18
+21022;;RM São Paulo;Implantação do Metrô Linha 22 - Marrom;Metrô;28,6;19;Detalhe concessão;Atualizado;23137,12;389182;Cotia, Osasco, São Paulo;-6,11
+21023;;RM São Paulo;Implantação do Trem Linha 24 - Quartzo;Trem;23,86;20;Estudo simplificado;Requer atualização;6064,56;363511;São Paulo, Taboão da Serra, Osasco, Carapicuíba, Barueri;-3,92
+21024;;RM São Paulo;Implantação do Trem Linha 25 - Topázio;Trem;41,8;24;Estudo simplificado;Requer atualização;9781,82;458397;Embu das Artes, São Paulo, Diadema, São Bernardo do Campo, Santo André;-6,07
+21025;;RM São Paulo;Implantação do VLT de São Paulo | Linha Vermelha e Linha Azul;VLT;12;26;Estudo de demanda;Atualizado;1208,79;60098;São Paulo;-0,38
+21027;;RM São Paulo;Implantação do VLT Guarulhos;VLT;10,3;20;Estudo de demanda;Atualizado;1057,13;46903;Guarulhos;-0,55
+21028;;RM São Paulo;Ampliação do BRT Radial Leste | Trechos 2 e 3;BRT Elétrico;15,2;28;Detalhe obra pública;Atualizado;1220,24;108040;São Paulo;-0,8
+21030;;RM São Paulo;Implantação do BRT Aricanduva;BRT Elétrico;13,7;22;Detalhe obra pública;Atualizado;945,37;115266;São Paulo;-1,53
+21031;;RM São Paulo;Implantação do BRT Perimetral Alto Tietê;BRT Elétrico;20,2;27;Detalhe obra pública;Atualizado;1210,93;105094;Arujá, Itaquaquecetuba, Poá, Ferraz de Vasconcelos;-0,96
+21032;;RM São Paulo;Implantação do BRT Itapecerica - Taboão da Serra;BRT Elétrico;18,9;27;Estudo simplificado;Requer ser desenvolvido;1047,81;71157;Itapecerica da Serra, Embu das Artes, Taboão da Serra, São Paulo;-1,09
+21033;;RM São Paulo;Implantação do BRT Arco Norte;BRT Elétrico;30,6;52;Estudo simplificado;Requer ser desenvolvido;1605,32;139548;Barueri, Osasco, São Paulo;-1,67
+21034;;RM São Paulo;Implantação do BRT Santana de Parnaíba - Barueri;BRT Elétrico;10,2;18;Estudo simplificado;Requer ser desenvolvido;542,81;73807;Santana de Parnaíba, Barueri;-0,79
+21035;;RM São Paulo;Implantação do BRT Cajamar - São Paulo;BRT Elétrico;16,4;18;Estudo simplificado;Requer ser desenvolvido;804,51;37163;Cajamar, São Paulo;-0,77
+21036;;RM São Paulo;Implantação do BRT Itapecerica - São Paulo;BRT Elétrico;16,6;27;Estudo simplificado;Requer ser desenvolvido;1002,76;99681;Itapecerica da Serra, São Paulo;-0,61
+21037;;RM São Paulo;Implantação do BRT Arco Sul | Trecho ABD;BRT Elétrico;11,3;25;Estudo simplificado;Requer ser desenvolvido;609,37;83455;São Paulo, Diadema;-0,61
+21038;;RM São Paulo;Implantação do BRT Arco Sul | Trecho São Bernardo - Jurubatuba;BRT Elétrico;22,5;40;Estudo simplificado;Requer ser desenvolvido;1242,1;95552;São Paulo, Diadema, São Bernardo do Campo;-1,05
+21039;;RM São Paulo;Extensão do Corredor Guarulhos | Trecho Terminal Vila Galvão - Estação Tucuruvi;Corredor Central;4,69;8;Estudo de demanda;Atualizado;152,19;73906;São Paulo, Guarulhos;0,59
+21040;;RM São Paulo;Ampliação do Corredor Norte-Sul | Trechos 1 e 3;Corredor Central;17,7;;Detalhe obra pública;Atualizado;465,35;308971;São Paulo;-0,57
+21042;;RM São Paulo;Implantação do Corredor Celso Garcia;Corredor Central;25,8;;Estudo de demanda;Requer atualização;612,84;262386;São Paulo;0,38
+21045;;RM São Paulo;Extensão do Corredor M'Boi Mirim;Corredor Central;5,3;;Estudo de demanda;Atualizado;157,51;121235;São Paulo;-0,33
+21046;;RM São Paulo;Implantação do Corredor TEBAS Eixo 2 | Trecho Embu das Artes - Taboão da Serra - São Paulo;Corredor Central;10,29;;Estudo simplificado;Requer ser desenvolvido;203,06;75756;Embu das Artes, Taboão da Serra, São Paulo;-0,36

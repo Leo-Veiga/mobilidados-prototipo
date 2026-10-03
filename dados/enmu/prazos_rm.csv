@@ -1,0 +1,22 @@
+rm;projetos_boletim;investimento_min_mi;investimento_max_mi;prazo_min_anos;prazo_max_anos
+RM Baixada Santista;4;3424;3424;11;11
+RM Belém;3;1434;1434;6;6
+RM Belo Horizonte;14;35572;35572;33;33
+RM Campinas;6;6472;7758;7;8
+RM Curitiba;7;11729;22744;14;26
+RIDE Distrito Federal;13;21336;21336;16;16
+RM Florianópolis;6;3797;3797;15;15
+RM Fortaleza;11;21555;21555;41;41
+RM Goiânia;7;4719;4719;12;12
+RM Grande Vitória;4;4714;5192;12;13
+RM João Pessoa;5;1737;3460;12;22
+RM Maceió;5;1401;2075;10;14
+RM Manaus;4;2850;2850;7;7
+RM Natal;5;2550;6190;15;34
+RM Porto Alegre;13;8036;10341;10;12
+RM Recife;6;5613;14825;11;27
+RM Rio de Janeiro;15;68444;68444;23;23
+RM Salvador;9;11472;13135;20;22
+RM São Luís;6;2049;5403;12;30
+RM São Paulo;41;175716;175716;27;27
+RIDE Teresina;3;1485;3614;13;31

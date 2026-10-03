@@ -12,6 +12,7 @@ const LINKS = [
   { href: '/regioes-metropolitanas/', texto: 'Regiões metropolitanas' },
   { href: '/indicadores/', texto: 'Indicadores' },
   { href: '/tma/', texto: 'TMA' },
+  { href: '/enmu/', texto: 'ENMU' },
   { href: '/destaques/', texto: 'Destaques' },
 ];
 
