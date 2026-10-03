@@ -27,11 +27,13 @@ export const COR_SECUNDARIA = '#2f5f48';
 
 /** Escreve os valores no gráfico. Barras: todos. Linhas: primeiro e último ponto de cada série; o ponto do meio
     quando a série tem 7 anos ou mais; e o maior e o menor valor quando a opção picoVale estiver ligada
-    (usada quando o gráfico mostra uma só localidade). Como é desenhado no próprio canvas, sai na imagem baixada. */
+    e o gráfico tiver uma única linha visível. Como é desenhado no próprio canvas, sai na imagem baixada. */
 const pluginValores: Plugin = {
   id: 'valores',
   afterDatasetsDraw(chart, _args, opcoes: { picoVale?: boolean }) {
     const rotulos: { x: number; y: number; texto: string; cor: string; alinhar: CanvasTextAlign }[] = [];
+    // Pico e vale só quando há uma única linha visível no gráfico
+    const umaLinha = chart.data.datasets.filter((_, i) => chart.isDatasetVisible(i)).length === 1;
     chart.data.datasets.forEach((ds, i) => {
       const meta = chart.getDatasetMeta(i);
       if (meta.hidden || !chart.isDatasetVisible(i)) return;
@@ -44,7 +46,7 @@ const pluginValores: Plugin = {
       if (!barra) {
         const escolhidos = [primeiro, ultimo];
         if (comValor.length >= 7) escolhidos.push(comValor[Math.floor((comValor.length - 1) / 2)]);
-        if (opcoes?.picoVale) {
+        if (opcoes?.picoVale && umaLinha) {
           const valor = (k: number) => dados[k] as number;
           escolhidos.push(comValor.reduce((a, b) => (valor(b) > valor(a) ? b : a)), comValor.reduce((a, b) => (valor(b) < valor(a) ? b : a)));
         }
