@@ -150,7 +150,7 @@ function Opcao1({ d, ind, setInd }: { d: DadosOpcoes; ind: IndicadorPrincipal; s
         {!locais.length
           ? <p className={styles.vazio}>Escolha pelo menos um local.</p>
           : anos.length
-            ? <Grafico config={config} altura={320} descricao={`${titulo}: ${locais.map(nomeDe).join(', ')}`} imagem={{ titulo, subtitulo: `${locais.map(nomeDe).join(', ')} · ${periodo}` }} />
+            ? <Grafico config={config} altura={320} valores descricao={`${titulo}: ${locais.map(nomeDe).join(', ')}`} imagem={{ titulo, subtitulo: `${locais.map(nomeDe).join(', ')} · ${periodo}` }} />
             : <p className={styles.vazio}>Sem dados deste recorte para {legendaLocais}{temRm ? ' (alguns indicadores existem só para as capitais)' : ''}.</p>}
         {anos.length > 0 && semDado.length > 0 && (
           <p className="nota">Sem dados para: {semDado.join(', ')}{temRm ? ' (alguns indicadores existem só para as capitais)' : ''}.</p>
