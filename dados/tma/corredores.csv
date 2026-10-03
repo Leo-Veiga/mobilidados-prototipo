@@ -1,0 +1,306 @@
+Modo;Cidade_n;Situação;Ano;TMA;Extensão
+BRT;Belém;Operacional;2018;Sim;4.04
+BRT;Belém;Operacional;2017;Sim;5.91
+BRT;Belém;Operacional  ;2025;NI;15.58
+BRT;Belém;Operacional;2017;Sim;3.07
+BRT;Belém;Operacional;2019;Sim;5.76
+BRT;Belo Horizonte;Operacional;2014;Sim;1.3
+BRT;Belo Horizonte;Operacional;2014;Sim;8.98
+BRT;Belo Horizonte;Operacional;2014;Sim;3.37
+BRT;Belo Horizonte;Operacional;2014;Sim;2.28
+BRT;Belo Horizonte;Operacional;2014;Sim;6.72
+BRT;Belo Horizonte;Planejado;2030;NI;8.2
+BRT;Belo Horizonte;Planejado;2030;NI;13.26
+BRT;Belo Horizonte;Planejado;2030;NI;4.48
+BRT;Belo Horizonte;Planejado;2030;NI;6.27
+BRT;Brasília;Operacional;2014;Sim;15.3
+BRT;Brasília;Operacional;2014;Sim;8.24
+BRT;Brasília;Planejado;9999;NI;8.25
+BRT;Brasília;Em construção;9999;NI;6.83
+BRT;Brasília;Em construção;9999;NI;11.61
+BRT;Brasília;Planejado;9999;NI;5.48
+BRT;Brasília;Planejado;9999;NI;3.6
+BRT;Brasília;Planejado;9999;NI;36.61
+BRT;Brasília;Planejado;9999;NI;5.51
+BRT;Brasília;Planejado;9999;NI;20.95
+BRT;Brasília;Planejado;9999;NI;37.92
+BRT;Brasília;Planejado;9999;NI;38.62
+BRT;Brasília;Operacional não TMA;2014;Não;12.81
+BRT;Brasília;Planejado;9999;NI;5.03
+BRT;Brasília;Planejado;9999;NI;2.09
+BRT;Brasília;Planejado;9999;NI;3
+BRT;Brasília;Planejado;9999;NI;1.67
+BRT;Campinas;Operacional;2023;Sim;4.36
+BRT;Campinas;Operacional;2020;Sim;3.29
+BRT;Campinas;Operacional;2023;Sim;8.68
+BRT;Campinas;Operacional;2022;Sim;11.21
+BRT;Criciúma;Operacional;1996;Sim;6.86
+BRT;Curitiba;Operacional;1974;Sim;11.05
+BRT;Curitiba;Operacional;1980;Sim;8.59
+BRT;Curitiba;Operacional;1977;Sim;10.05
+BRT;Curitiba;Operacional;1974;Sim;8.35
+BRT;Curitiba;Operacional;1980;Sim;8.72
+BRT;Curitiba;Operacional;1980;Sim;2.52
+BRT;Curitiba;Operacional;2012;Sim;6.68
+BRT;Curitiba;Operacional;1999;Sim;4.62
+BRT;Curitiba;Operacional;1999;Sim;4.07
+BRT;Curitiba;Operacional não TMA;1;Não;1.77
+BRT;Curitiba;Operacional;1999;Sim;5.23
+BRT;Curitiba;Operacional;1980;Sim;0.95
+BRT;Curitiba;Operacional;2021;Sim;2.28
+BRT;Curitiba;Operacional;2010;Sim;3.22
+BRT;Curitiba;Operacional;2015;Sim;2.01
+BRT;Curitiba;Operacional;2021;Sim;0.82
+BRT;Curitiba;Operacional;2024;Sim;2.79
+BRT;Feira de Santana;Operacional;2020;Sim;5.44
+BRT;Feira de Santana;Fechado;2020;Não;2.61
+BRT;Florianópolis;Planejado;9999;NI;2.98
+BRT;Florianópolis;Planejado;9999;NI;5.12
+BRT;Florianópolis;Planejado;9999;NI;16.52
+BRT;Florianópolis;Planejado;9999;NI;2.47
+BRT;Florianópolis;Planejado;9999;NI;5.14
+BRT;Florianópolis;Planejado;9999;NI;1.9
+BRT;Fortaleza;Operacional não TMA;2015;Não;2.77
+BRT;Fortaleza;Operacional não TMA;2019;Não;1.9
+BRT;Fortaleza;Operacional não TMA;2015;Não;0.77
+BRT;Goiânia;Operacional;1976;Sim;13.36
+BRT;Goiânia;Operacional;2024;Sim;
+BRT;João Pessoa;Cancelado;9999;NI;6.67
+BRT;João Pessoa;Cancelado;9999;NI;2.04
+BRT;João Pessoa;Cancelado;9999;NI;0.45
+BRT;João Pessoa;Cancelado;9999;NI;5.14
+BRT;João Pessoa;Cancelado;9999;NI;4.93
+BRT;João Pessoa;Cancelado;9999;NI;4.46
+BRT;João Pessoa;Cancelado;9999;NI;4.94
+BRT;João Pessoa;Cancelado;9999;NI;7.89
+BRT;Juiz de Fora;Operacional;1982;Sim;3.45
+BRT;Maceió;Planejado;9999;NI;28
+BRT;Niterói;Operacional;2019;Sim;9.35
+BRT;Porto Alegre;Operacional não TMA;1980;Não;2.49
+BRT;Porto Alegre;Operacional;1980;Sim;3.63
+BRT;Porto Alegre;Operacional;1990;Sim;4.71
+BRT;Porto Alegre;Operacional;2003;Sim;10.85
+BRT;Porto Alegre;Operacional não TMA;1981;Não;1.48
+BRT;Porto Alegre;Operacional;1990;Sim;2.14
+BRT;Porto Alegre;Operacional;1981;Sim;1.6
+BRT;Porto Alegre;Operacional não TMA;2008;Não;5.18
+BRT;Porto Alegre;Operacional;1982;Sim;3.45
+BRT;Porto Alegre;Operacional;1990;Sim;2.06
+BRT;Porto Alegre;Operacional não TMA;1981;Não;1.05
+BRT;Porto Alegre;Operacional não TMA;2014;Não;1.88
+BRT;Porto Alegre;Operacional;1990;Sim;3.37
+BRT;Porto Alegre;Operacional;1990;Sim;0.78
+BRT;Porto Alegre;Operacional;1981;Sim;1.07
+BRT;Porto Alegre;Operacional;1981;Sim;1.82
+BRT;Porto Alegre;Operacional;1981;Sim;0.29
+BRT;Porto Alegre;Operacional;1981;Sim;2.09
+BRT;Porto Alegre;Operacional;1981;Sim;1.21
+BRT;Recife;Operacional;2016;Sim;21.65
+BRT;Recife;Operacional;2016;Sim;8.16
+BRT;Recife;Planejado;9999;NI;4.1
+BRT;Recife;Operacional não TMA;2016;Não;3.01
+BRT;Recife;Operacional não TMA;2016;Não;8.65
+BRT;Recife;Operacional não TMA;2016;Não;3.41
+BRT;Recife;Operacional não TMA;2016;Não;0.96
+BRT;Rio de Janeiro;Planejado;9999;NI;11.49
+BRT;Rio de Janeiro;Operacional;2016;Sim;5.45
+BRT;Rio de Janeiro;Operacional;2012;Sim;38.81
+BRT;Rio de Janeiro;Operacional;2014;Sim;40.99
+BRT;Rio de Janeiro;Operacional;2024;Sim;22.76
+BRT;Rio de Janeiro;Operacional;2016;Sim;22.64
+BRT;Rio de Janeiro;Operacional;2016;Sim;1.7
+BRT;Rio de Janeiro;Operacional;2024;Sim;2.15
+BRT;Rio de Janeiro;Operacional;2012;Sim;15.99
+BRT;Rio de Janeiro;Cancelado;9999;NI;3.24
+BRT;Salvador;Operacional    ;2024;Sim;6.76
+BRT;Salvador;Operacional;2022;Sim;3.6
+BRT;Salvador;Operacional    ;2024;Sim;0.69
+BRT;São Paulo;Operacional;2010;Sim;11.12
+BRT;São Paulo;Operacional;1988;Sim;28.32
+BRT;São Paulo;Operacional;2007;Sim;7.66
+BRT;São Paulo;Operacional;2007;Sim;2.16
+BRT;São Paulo;Operacional;1990;Sim;2.6
+BRT;São Paulo;Operacional;2014;Sim;6.61
+BRT;São Paulo;Operacional;2013;Sim;3.61
+BRT;São Paulo;Planejado;9999;NI;4.46
+BRT;São Paulo;Operacional;2010;Sim;1.38
+BRT;São Paulo;Operacional não TMA;2018;Não;4.8
+BRT;São Paulo;Operacional não TMA;2;Não;8.55
+BRT;São Paulo;Em construção;2026;NI;2.31
+BRT;São Paulo;Planejado;9999;NI;14.42
+BRT;São Paulo;Planejado;9999;NI;4.63
+BRT;São Paulo;Planejado;9999;NI;6
+BRT;São Paulo;Planejado;9999;NI;7.78
+BRT;São Paulo;Planejado;9999;NI;12.03
+BRT;São Paulo;Planejado;9999;NI;7.22
+BRT;São Paulo;Planejado;9999;NI;27.3
+BRT;São Paulo;Operacional;2014;Sim;3.57
+BRT;São Paulo;Planejado;9999;NI;2
+BRT;São Paulo;Planejado;9999;NI;13.73
+BRT;São Paulo;Planejado;9999;NI;25.36
+BRT;São Paulo;Planejado;9999;NI;0.49
+BRT;São Paulo;Em construção;2026;NI;9.13
+BRT;Sorocaba;Operacional;2020;Sim;5.85
+BRT;Sorocaba;Operacional;2021;Sim;5.84
+BRT;Teresina;Fechado;2018;Sim;5.39
+BRT;Teresina;Fechado;2018;Sim;3.04
+BRT;Teresina;Fechado;2020;Não;2.36
+BRT;Teresina;Fechado;2020;Não;2.44
+BRT;Teresina;Fechado;2019;Sim;4.15
+BRT;Teresina;Cancelado;9999;NI;5.23
+BRT;Teresina;Fechado;2019;Sim;3.81
+VLT;Rio de Janeiro;Planejado;9999;NI;1.74
+BRT;Teresina;Fechado;2019;Sim;3.4
+BRT;Teresina;Fechado;2018;Sim;1.97
+BRT;Uberaba;Operacional;2016;Sim;5.02
+BRT;Uberaba;Operacional não TMA;2018;Não;3.82
+BRT;Uberaba;Operacional não TMA;2018;Não;6.59
+BRT;Uberlândia;Operacional;2006;Sim;7.32
+BRT;Uberlândia;Planejado;9999;NI;5.18
+BRT;Uberlândia;Planejado;9999;NI;3.86
+BRT;Uberlândia;Operacional;2018;Sim;6.25
+Metrô;São Paulo;Operacional;2010;Sim;8.95
+Metrô;São Paulo;Operacional;1974;Sim;20.29
+Metrô;São Paulo;Operacional;1991;Sim;14.72
+Metrô;São Paulo;Operacional;1979;Sim;22.15
+Metrô;São Paulo;Operacional;2002;Sim;9.35
+Metrô;São Paulo;Operacional;2002;Sim;0.8
+Trem;São Paulo;Operacional;1875;Sim;37.43
+Trem;São Paulo;Operacional;1867;Sim;19
+Trem;São Paulo;Operacional;1957;Sim;30.18
+Trem;São Paulo;Operacional não TMA;1867;Não;41.38
+Trem;São Paulo;Operacional;1867;Sim;8.92
+Trem;São Paulo;Operacional;1867;Sim;25.92
+Trem;São Paulo;Operacional;1890;Sim;37.17
+Trem;São Paulo;Operacional;1934;Sim;38.4
+Trem;São Paulo;Operacional não TMA;1890;Não;14.55
+Metrô;São Paulo;Operacional não TMA;2021;Não;2.21
+Metrô;São Paulo;Em construção;2027;NI;9.85
+Metrô;São Paulo;Em construção;2026;NI;13.11
+Metrô;São Paulo;Operacional;2018;Sim;7.71
+Metrô;São Paulo;Planejado;2027;NI;6.14
+Metrô;São Paulo;Planejado;2027;NI;15.3
+Metrô;São Paulo;Em construção;2027;NI;0.99
+Metrô;São Paulo;Planejado;2028;NI;1.66
+Metrô;São Paulo;Planejado;2028;NI;3.3
+Metrô;São Paulo;Planejado;2026;NI;26.35
+Metrô;São Paulo;Planejado;2030;NI;12.31
+Trem;São Paulo;Operacional  ;2024;NI;1.84
+Trem;São Paulo;Operacional;2018;Sim;9.18
+Trem;São Paulo;Planejado;9999;NI;31.03
+Metrô;Recife;Operacional;1985;Sim;6.49
+Metrô;Recife;Operacional;1987;Sim;6.48
+Metrô;Recife;Operacional;1986;Sim;3.82
+Metrô;Recife;Operacional;1986;Sim;3.29
+Metrô;Recife;Operacional;2002;Sim;4.71
+Metrô;Recife;Operacional;2005;Sim;4.14
+Metrô;Recife;Operacional;2008;Sim;3.64
+Metrô;Recife;Operacional;2009;Sim;5.9
+Metrô;São Paulo;Operacional;2018;Sim;2.48
+Metrô;Porto Alegre;Operacional;1985;Sim;43.06
+Metrô;Salvador;Operacional;2014;Sim;10.8
+Metrô;Salvador;Planejado;9999;NI;3.12
+Trem;Salvador;Fechado;1860;Não;13.57
+Metrô;Rio de Janeiro;Operacional;1981;Sim;30.26
+Metrô;Rio de Janeiro;Operacional;1979;Sim;16.98
+Metrô;Rio de Janeiro;Operacional;2014;Sim;1.12
+Metrô;Rio de Janeiro;Operacional;2016;Sim;1.88
+Metrô;Rio de Janeiro;Operacional;2016;Sim;9.89
+Metrô;Rio de Janeiro;Em construção;2028;NI;0.67
+Metrô;Rio de Janeiro;Planejado;9999;NI;2.18
+Trem;Rio de Janeiro;Operacional;1878;Sim;53.85
+Trem;Rio de Janeiro;Operacional não TMA;1;Não;15.28
+Trem;Rio de Janeiro;Operacional;1945;Sim;48.13
+Trem;Rio de Janeiro;Operacional não TMA;1;Não;40.48
+Trem;Rio de Janeiro;Operacional não TMA;1993;Não;32.9
+Trem;Rio de Janeiro;Operacional não TMA;1;Não;10.76
+Trem;Rio de Janeiro;Operacional;1945;Sim;24.55
+Trem;Rio de Janeiro;Operacional não TMA;1;Não;8.17
+Trem;Rio de Janeiro;Operacional não TMA;1;Não;13.19
+Metrô;Belo Horizonte;Operacional;1986;Sim;28.33
+Metrô;Brasília;Operacional;2001;Sim;12.93
+Metrô;Brasília;Operacional;2001;Sim;7.54
+Metrô;Brasília;Operacional;2001;Sim;18.72
+Metrô;Fortaleza;Operacional;2017;Sim;23.54
+Metrô;Fortaleza;Operacional não TMA;2010;Não;18.54
+Barca;Rio de Janeiro;Operacional não TMA;2006;Não;13.13
+Barca;Rio de Janeiro;Operacional;1998;Sim;5.01
+Barca;Rio de Janeiro;Operacional não TMA;2004;Não;8.49
+Barca;Rio de Janeiro;Operacional não TMA;1998;Não;19.43
+Trem;São Paulo;Operacional não TMA;1875;Não;4.43
+Trem;João Pessoa;Operacional não TMA;1984;Não;30.35
+Metrô;Salvador;Operacional;2017;Sim;8.47
+Metrô;São Paulo;Operacional;2017;Sim;2.94
+Metrô;Teresina;Operacional não TMA;2018;Não;13.6
+Metrô;Salvador;Operacional;2018;Sim;3.6
+Metrô;Salvador;Operacional;2017;Sim;7.47
+Metrô;Brasília;Planejado;9999;NI;2.12
+Metrô;Brasília;Planejado;9999;NI;6.52
+Metrô;Brasília;Planejado;9999;NI;3.71
+Metrô;Fortaleza;Em construção;2028;NI;12.34
+VLT;Recife;Operacional não TMA;2012;Não;15.38
+Metrô;Juazeiro do Norte;Operacional não TMA;2009;Não;13.82
+VLT;Recife;Operacional não TMA;2012;Não;18.29
+Barca;Belém;Operacional não TMA;1;Não;3.86
+Barca;Belém;Operacional não TMA;1;Não;11.29
+Barca;Belém;Operacional não TMA;1;Não;23.6
+Barca;Belém;Operacional não TMA;1;Não;12
+Barca;Belém;Operacional não TMA;1;Não;1.83
+Barca;São Luís;Operacional não TMA;1970;Não;19.12
+Barca;São Luís;Operacional não TMA;1;Não;22.71
+Trem;Natal;Operacional não TMA;1984;Não;38.58
+Barca;Salvador;Operacional não TMA;1970;Não;13.62
+Trem;Natal;Operacional não TMA;1984;Não;17.83
+Barca;Salvador;Operacional não TMA;2007;Não;1.05
+Trem;São Paulo;Operacional não TMA;2021;Não;2.19
+Trem;Natal;Operacional não TMA;2022;Não;4.58
+Trem;Maceió;Operacional não TMA;2017;Não;1.97
+Trem;Maceió;Operacional não TMA;2011;Não;26.7
+Trem;Maceió;Fechado;2011;Não;3.1
+Trem;Maceió;Operacional não TMA;2011;Não;3.37
+Monotrilho;São Paulo;Cancelado;9999;NI;20.66
+Monotrilho;São Paulo;Operacional;2019;Sim;4.91
+Monotrilho;São Paulo;Planejado;9999;NI;26.19
+Monotrilho;São Paulo;Em construção;2027;NI;1.86
+VLT;Santos;Operacional;2016;Sim;6.38
+VLT;Santos;Operacional;2017;Sim;1.18
+VLT;Santos;Operacional;2017;Sim;2.74
+VLT;Rio de Janeiro;Planejado;9999;NI;1.02
+Monotrilho;São Paulo;Planejado;9999;NI;4.87
+Monotrilho;São Paulo;Em construção;2026;NI;6.3
+Monotrilho;São Paulo;Planejado;9999;NI;6.89
+Monotrilho;São Paulo;Planejado;9999;NI;9.5
+VLT;Fortaleza;Operacional;2017;Sim;4.8
+VLT;Santos;Planejado;9999;NI;7.91
+VLT;Santos;Em construção;2026;NI;7.86
+VLT;Fortaleza;Operacional;2020;Sim;2.38
+Monotrilho;São Paulo;Operacional;2018;Sim;7.67
+VLT;Fortaleza;Operacional;2018;Sim;6.04
+VLT;Salvador;Em construção;2028;NI;17.82
+Monotrilho;Rio de Janeiro;Operacional não TMA;1896;Não;4.55
+VLT;Sobral;Operacional;2016;Sim;6.04
+VLT;Sobral;Operacional;2016;Sim;5.52
+VLT;Rio de Janeiro;Operacional;2016;Sim;2.57
+VLT;Rio de Janeiro;Operacional;2016;Sim;2.07
+VLT;Rio de Janeiro;Operacional;2017;Sim;1.43
+VLT;Rio de Janeiro;Operacional;2017;Sim;3.64
+VLT;Rio de Janeiro;Operacional;2019;Sim;1.48
+Monotrilho;Rio de Janeiro;Operacional não TMA;1;Não;0.4
+VLT;Rio de Janeiro;Operacional;2016;Sim;2.21
+VLT;Rio de Janeiro;Operacional;2017;Sim;0.49
+Monotrilho;São Paulo;Operacional;2021;Sim;1.79
+VLT;Rio de Janeiro;Operacional  ;2024;Sim;0.37
+Trem;Natal;Operacional não TMA;2023;Não;15.7
+VLT;Salvador;Em construção;2028;NI;18
+BRT;Uberlândia;Planejado;9999;NI;8.14
+Barca;Rio de Janeiro;Planejado;9999;NI;
+BRT;Uberlândia;Planejado;9999;NI;4.75
+Metrô;Belo Horizonte;Em construção;2029;NI;
+BRT;Campinas;Operacional;2024;Sim;
+BRT;Contagem;Em construção;2026;NI;
+BRT;Cuiabá;Em construção;9999;NI;
+BRT;Cuiabá;Em construção;9999;NI;
+BRT;Campinas;Operacional;2025;Sim;4
+BRT;Rio de Janeiro;Em construção;2026;NI;
+VLT;Niterói;Planejado;9999;NI;5
+Metrô ;São Paulo;Planejado;9999;NI;5

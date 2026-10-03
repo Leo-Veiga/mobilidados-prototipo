@@ -1,0 +1,33 @@
+.info {
+  display: grid; grid-template-columns: 1fr 1.1fr; gap: 32px 48px;
+  background: var(--fundo-painel); border-radius: var(--raio); padding: 36px;
+}
+.texto h2 { font-size: 24px; color: var(--destaque); margin-bottom: 12px; }
+.texto ul { padding-left: 20px; margin: 0 0 16px; }
+.texto li { margin-bottom: 10px; }
+.nao { color: var(--texto-2); }
+
+.grande strong { display: block; font-size: 64px; line-height: 1; color: var(--destaque); font-weight: 700; }
+.grande span { font-size: 18px; }
+.trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 24px 0; }
+.trio div { border-left: 3px solid var(--verde-500); padding-left: 12px; }
+.trio strong { display: block; font-size: 32px; line-height: 1.1; }
+.trio span { font-size: 13px; color: var(--texto-2); }
+.crescimento { font-size: 15px; }
+.crescimento strong { color: var(--destaque); }
+
+.numeros h3 { font-size: 16px; margin: 20px 0 10px; }
+.barras { list-style: none; padding: 0; margin: 0; }
+.barras li { display: grid; grid-template-columns: 96px 1fr 44px; align-items: center; gap: 10px; margin-bottom: 8px; }
+.rotulo { font-size: 14px; text-align: right; }
+.trilho { height: 16px; background: var(--neutro-900); border-radius: 4px; overflow: hidden; }
+.trilho span { display: block; height: 100%; border-radius: 4px; }
+.valor { font-size: 14px; font-weight: 600; }
+
+.fonte { grid-column: 1 / -1; margin: 0; }
+
+@media (max-width: 860px) {
+  .info { grid-template-columns: 1fr; padding: 24px 20px; }
+  .grande strong { font-size: 48px; }
+  .trio strong { font-size: 26px; }
+}

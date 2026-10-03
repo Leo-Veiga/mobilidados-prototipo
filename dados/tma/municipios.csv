@@ -1,0 +1,61 @@
+"code_muni";"name_muni";"abbrev_state";"km";"Modo";"Cidade_n";"estacoes"
+3304557;"Rio de Janeiro";"RJ";324,898498710517;"BRT, Metrô, Trem, VLT";"Rio de Janeiro";269
+3550308;"São Paulo";"SP";260,845454036427;"BRT, Metrô, Monotrilho, Trem";"São Paulo";176
+4106902;"Curitiba";"PR";81,7150719611244;"BRT";"Curitiba";124
+5300108;"Brasília";"DF";62,8700382418745;"BRT, Metrô";"Brasília";36
+3106200;"Belo Horizonte";"MG";50,8092190452193;"BRT, Metrô";"Belo Horizonte";63
+4314902;"Porto Alegre";"RS";48,0930596233822;"BRT, Metrô";"Porto Alegre";81
+2927408;"Salvador";"BA";41,8634075727488;"BRT, Metrô";"Salvador";31
+2611606;"Recife";"PE";35,2418181424194;"BRT, Metrô";"Recife";35
+3509502;"Campinas";"SP";33,9500678313068;"BRT";"Campinas";29
+2304400;"Fortaleza";"CE";29,1881790628934;"Metrô, VLT";"Fortaleza";25
+3518800;"Guarulhos";"SP";19,5151400341373;"BRT, Trem";"São Paulo";25
+1501402;"Belém";"PA";18,8479314775137;"BRT";"Belém";24
+3547809;"Santo André";"SP";18,6529960810895;"BRT, Trem";"São Paulo";24
+3170206;"Uberlândia";"MG";13,5836947017548;"BRT";"Uberlândia";27
+5208707;"Goiânia";"GO";13,3676608078703;"BRT";"Goiânia";54
+3303500;"Nova Iguaçu";"RJ";13,1797185000877;"Trem";"Rio de Janeiro";3
+2312908;"Sobral";"CE";11,7355141801027;"VLT";"Sobral";12
+3552205;"Sorocaba";"SP";11,7286645419036;"BRT";"Sorocaba";24
+2607901;"Jaboatão dos Guararapes";"PE";11,5596792377572;"Metrô";"Recife";9
+4304606;"Canoas";"RS";11,5472859007738;"Metrô";"Porto Alegre";6
+3303302;"Niterói";"RJ";9,42326840554684;"Barca, BRT";"Niterói, Rio de Janeiro";14
+3513801;"Diadema";"SP";8,21645069643275;"BRT";"São Paulo";14
+3529401;"Mauá";"SP";8,17738496838709;"BRT, Trem";"São Paulo";3
+4318705;"São Leopoldo";"RS";8,10506424693829;"Metrô";"Porto Alegre";3
+2307650;"Maracanaú";"CE";7,66979902183281;"Metrô";"Fortaleza";5
+3548708;"São Bernardo do Campo";"SP";7,61981815221598;"BRT";"São Paulo";16
+2610707;"Paulista";"PE";6,87498393155814;"BRT";"Recife";4
+4204608;"Criciúma";"SC";6,8660225094484;"BRT";"Criciúma";17
+3523107;"Itaquaquecetuba";"SP";6,70008593049241;"Trem";"São Paulo";3
+3534401;"Osasco";"SP";6,57481896601931;"Trem";"São Paulo";5
+2606804;"Igarassu";"PE";6,3121298348158;"BRT";"Recife";1
+3543303;"Ribeirão Pires";"SP";6,00350236311573;"Trem";"São Paulo";1
+3301702;"Duque de Caxias";"RJ";5,88547533287825;"Trem";"Rio de Janeiro";3
+3505708;"Barueri";"SP";5,72725295360158;"Trem";"São Paulo";4
+3551009;"São Vicente";"SP";5,60118597916631;"VLT";"Santos";8
+2609600;"Olinda";"PE";5,58500713105708;"BRT";"Recife";3
+2910800;"Feira de Santana";"BA";5,44180552082653;"BRT";"Feira de Santana";10
+3539806;"Poá";"SP";5,42450033863317;"Trem";"São Paulo";2
+3522505;"Itapevi";"SP";5,16964008838894;"Trem";"São Paulo";3
+4313409;"Novo Hamburgo";"RS";5,14838147859275;"Metrô";"Porto Alegre";4
+4320008;"Sapucaia do Sul";"RS";5,09351998236732;"Metrô";"Porto Alegre";2
+3170107;"Uberaba";"MG";5,0302490714622;"BRT";"Uberaba";12
+3515707;"Ferraz de Vasconcelos";"SP";4,93660475469444;"Trem";"São Paulo";2
+3548500;"Santos";"SP";4,70319875779003;"VLT";"Santos";7
+4307708;"Esteio";"RS";4,15855699302848;"Metrô";"Porto Alegre";1
+3510609;"Carapicuíba";"SP";4,13556872593006;"Trem";"São Paulo";2
+2600054;"Abreu E Lima";"PE";3,88418964583714;"BRT";"Recife";0
+3302858;"Mesquita";"RJ";3,70621563739095;"Trem";"Rio de Janeiro";3
+3136702;"Juiz de Fora";"MG";3,49681468787675;"BRT";"Juiz de Fora";8
+3548807;"São Caetano do Sul";"SP";3,28717956443959;"Trem";"São Paulo";1
+3303203;"Nilópolis";"RJ";2,92665636905194;"Trem";"Rio de Janeiro";2
+3525003;"Jandira";"SP";2,68034026674135;"Trem";"São Paulo";2
+3552502;"Suzano";"SP";2,28290435545899;"Trem";"São Paulo";1
+3544103;"Rio Grande da Serra";"SP";2,18824120464069;"Trem";"São Paulo";1
+3304144;"Queimados";"RJ";1,40703669667138;"Trem";"Rio de Janeiro";1
+2603454;"Camaragibe";"PE";1,03923867064891;"BRT, Metrô";"Recife";2
+3118601;"Contagem";"MG";0,917307768375357;"Metrô";"Belo Horizonte";1
+2309706;"Pacatuba";"CE";0,655707197640131;"Metrô";"Fortaleza";1
+4119152;"Pinhais";"PR";0,359704904565198;"BRT";"Curitiba";3
+2919207;"Lauro de Freitas";"BA";0,172098432299472;"Metrô";"Salvador";1
