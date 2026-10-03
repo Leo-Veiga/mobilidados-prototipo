@@ -17,7 +17,7 @@ interface Props {
   nivelInicial?: Nivel;
   capitais: Local[];
   rms: Local[];
-  indicadores: { slug: string; nome: string; unidade: string }[];
+  indicadores: { slug: string; nome: string; unidade: string; tema: string; recortes: string }[];
 }
 
 const CAMINHO: Record<Nivel, string> = { capitais: '/capitais/', rms: '/regioes-metropolitanas/' };
@@ -62,15 +62,23 @@ export default function PaginaBusca({ abaInicial, nivelInicial = 'capitais', cap
               icone="grafico" rotulo="Selecione um indicador" placeholder="Digite um indicador"
               opcoes={indicadores.map(i => ({ rotulo: i.nome, href: `/indicadores/${i.slug}/` }))}
             />
-            <ul className={styles.listaIndicadores}>
-              {indicadores.map(i => (
-                <li key={i.slug}>
-                  <Link href={`/indicadores/${i.slug}/`}>
-                    <IconeEqualizador /> <span>{i.nome}</span> <small>{i.unidade}</small>
-                  </Link>
-                </li>
+            <div className={styles.temas}>
+              {[...new Set(indicadores.map(i => i.tema))].map(tema => (
+                <div key={tema} className={styles.tema}>
+                  <h2 className={styles.nomeTema}>{tema}</h2>
+                  <ul className={styles.listaIndicadores}>
+                    {indicadores.filter(i => i.tema === tema).map(i => (
+                      <li key={i.slug}>
+                        <Link href={`/indicadores/${i.slug}/`}>
+                          <IconeEqualizador /> <span>{i.nome}</span> <small>{i.unidade}</small>
+                        </Link>
+                        {i.recortes && <p className={styles.recortes}>Recortes: {i.recortes}</p>}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         )}
       </Abas>

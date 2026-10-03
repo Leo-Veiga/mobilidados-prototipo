@@ -131,7 +131,7 @@ const pluginValores: Plugin = {
   },
 };
 
-/** Todos os gráficos do site mostram valores (com pico e vale quando há uma só linha); use valores={false} para desligar */
+/** Todos os gráficos do site têm o botão "Mostrar valores" (escondidos de início; pico e vale quando há uma só linha). valores={false} tira o botão */
 const PADRAO_VALORES = { picoVale: true };
 
 /** Configuração aceita pelo componente: gráficos de barras ou de linhas */
@@ -145,14 +145,14 @@ interface Props {
   descricao: string;
   /** Título, subtítulo e fonte da imagem baixada pelo botão "Baixar imagem" */
   imagem: InfoImagem;
-  /** Mostra os valores no gráfico e o botão para escondê-los. picoVale: rotula também o maior e o menor valor das linhas */
+  /** Botão "Mostrar valores" (valores escondidos de início). picoVale: rotula também o maior e o menor valor das linhas */
   valores?: boolean | { picoVale?: boolean };
 }
 
 export default function Grafico({ config, altura = 300, descricao, imagem, valores = PADRAO_VALORES }: Props) {
   const canvas = useRef<HTMLCanvasElement>(null);
   const [gerando, setGerando] = useState(false);
-  const [mostrarValores, setMostrarValores] = useState(true);
+  const [mostrarValores, setMostrarValores] = useState(false);
   const comValores = !!valores && mostrarValores;
 
   useEffect(() => {

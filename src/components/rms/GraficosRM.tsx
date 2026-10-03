@@ -100,12 +100,12 @@ export default function GraficosRM({ nome, sigla, populacao, densidade, densidad
         <p className={styles.texto}>
           A divisão modal é a participação de cada modo de transporte no total de viagens realizadas no território:
           a pé, de bicicleta, de transporte coletivo e de transporte individual motorizado, segundo as pesquisas
-          Origem-Destino disponíveis.
+          Origem-Destino. O gráfico mostra a pesquisa mais recente; o arquivo de dados traz todas.
         </p>
         {configsModal.length ? (
           <>
-            <div className={styles.lado}>
-              {configsModal.map(({ ano, config }) => (
+            <div>
+              {configsModal.slice(-1).map(({ ano, config }) => (
                 <div key={ano} className="cartao">
                   <h3>Pesquisa Origem-Destino {ano}</h3>
                   <Grafico config={config} altura={240} descricao={`Divisão modal da ${nome} em ${ano}`}

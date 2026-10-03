@@ -1,0 +1,21 @@
+.barra {
+  display: flex; flex-wrap: wrap; gap: 16px 28px; align-items: flex-end;
+  position: sticky; top: var(--altura-header); z-index: 5; background: var(--fundo); padding: 12px 0; border-bottom: 1px solid var(--borda);
+}
+.grupo { display: flex; flex-direction: column; gap: 6px; }
+.rotulo { font-size: 13px; color: var(--texto-2); }
+.botoes { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--borda); border-radius: 8px; overflow: hidden; }
+.opcao { background: transparent; color: var(--texto); border: 0; padding: 9px 16px; font: inherit; font-size: 14px; cursor: pointer; }
+.opcao + .opcao { border-left: 1px solid var(--borda); }
+.opcao[aria-checked='true'] { background: var(--destaque); color: var(--neutro-1000); font-weight: 600; }
+.select { background: var(--fundo-painel); color: var(--texto); border: 1px solid var(--borda); border-radius: 8px; padding: 9px 12px; font: inherit; min-width: 220px; }
+
+.bloco { margin-top: 40px; }
+.titulo { font-size: 26px; margin-bottom: 8px; }
+.texto { color: var(--texto-2); font-size: 15px; }
+
+@media (max-width: 600px) {
+  .barra { position: static; }
+  .grupo, .select { width: 100%; }
+  .opcao { flex: 1; padding: 9px 8px; }
+}

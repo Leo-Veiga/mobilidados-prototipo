@@ -1,0 +1,11 @@
+.filtros { display: flex; flex-wrap: wrap; gap: 16px 24px; margin-bottom: 12px; }
+.grupo { display: flex; flex-direction: column; gap: 6px; }
+.rotulo { font-size: 13px; color: var(--texto-2); }
+.multi { min-width: 320px; }
+.anos { display: flex; align-items: center; gap: 8px; }
+.select { background: var(--fundo-painel); color: var(--texto); border: 1px solid var(--borda); border-radius: 8px; padding: 9px 10px; font: inherit; }
+.vazio { padding: 40px 0; text-align: center; color: var(--texto-2); }
+
+@media (max-width: 600px) {
+  .grupo, .multi { width: 100%; min-width: 0; }
+}

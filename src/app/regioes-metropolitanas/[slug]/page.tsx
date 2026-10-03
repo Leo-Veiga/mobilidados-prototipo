@@ -2,11 +2,10 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import BotaoDados from '@/components/BotaoDados';
 import CabecalhoPagina from '@/components/CabecalhoPagina';
-import SecaoInfra from '@/components/indicadores/SecaoInfra';
 import ListaIndicadoresLocal from '@/components/local/ListaIndicadoresLocal';
 import FichaRM from '@/components/rms/FichaRM';
 import GraficosRM from '@/components/rms/GraficosRM';
-import { indicadoresDoLocal, indicadoresInfra, indicadoresRms, rmPorSlug, rms } from '@/lib/dados';
+import { indicadoresDoLocal, indicadoresRms, rmPorSlug, rms } from '@/lib/dados';
 import { asset } from '@/lib/formato';
 import styles from '../../capitais/[slug]/pagina.module.css';
 
@@ -66,19 +65,6 @@ export default async function PaginaRM({ params }: Params) {
           <ListaIndicadoresLocal itens={indicadoresDoLocal('rms', r.slug)} local={r.slug} />
         </section>
 
-        <section className={styles.bloco} aria-labelledby="titulo-infra">
-          <h2 id="titulo-infra" className={styles.titulo}>Distribuição da infraestrutura de mobilidade urbana</h2>
-          <p className={styles.texto}>
-            O acesso às oportunidades de trabalho, estudo, saúde e lazer acontece em grande parte pela infraestrutura
-            de transportes disponível no território. Quando ela é distribuída de forma desigual, uma parcela
-            significativa da população tem mais dificuldade de acessar essas oportunidades. Compare a distribuição
-            da infraestrutura entre grupos de renda, gênero e raça, e entre as regiões metropolitanas.
-          </p>
-          <SecaoInfra
-            ind={indicadoresInfra('rms')} lugares={rms.map(({ slug, nome, curto }) => ({ slug, nome, curto }))}
-            atual={r.slug} conjunto="as regiões metropolitanas"
-          />
-        </section>
       </div>
     </>
   );

@@ -22,6 +22,8 @@ interface Props {
   nome: string;
   unidade: string;
   niveis: Partial<Record<Nivel, DadosNivel>>;
+  /** Mostra a seção "Série histórica" (padrão: sim) */
+  serie?: boolean;
 }
 
 const TEXTO: Record<Nivel, { plural: string; conjunto: string; um: string }> = {
@@ -31,7 +33,7 @@ const TEXTO: Record<Nivel, { plural: string; conjunto: string; um: string }> = {
 
 /** Página de um indicador: ranking entre os locais (dado mais recente) e série histórica.
     Quando o indicador existe para capitais e RMs, dá para alternar entre os dois. */
-export default function GraficosIndicador({ nome, unidade, niveis }: Props) {
+export default function GraficosIndicador({ nome, unidade, niveis, serie = true }: Props) {
   const disponiveis = (['capitais', 'rms'] as Nivel[]).filter(n => niveis[n]);
   // ?local=recife (ou ?local=rmr) vem da página do local e define o nível e o destaque
   const doEndereco = useSearchParams().get('local') ?? '';
@@ -115,7 +117,7 @@ export default function GraficosIndicador({ nome, unidade, niveis }: Props) {
         </div>
       </section>
 
-      <section className={styles.bloco} aria-labelledby="titulo-serie">
+      {serie && <section className={styles.bloco} aria-labelledby="titulo-serie">
         <h2 id="titulo-serie" className={styles.titulo}>Série histórica</h2>
         <p className={styles.texto}>
           Compare o desempenho de dois ou mais locais em um ano específico ou ao longo do tempo.
@@ -125,7 +127,7 @@ export default function GraficosIndicador({ nome, unidade, niveis }: Props) {
           key={nivel + destaque} series={series} titulo={nome} unidade={unidade} lugares={lugares}
           iniciais={destaque ? [destaque] : []} rotuloLugar={t.plural}
         />
-      </section>
+      </section>}
 
       <div className="centro"><BotaoDados onClick={baixar} texto="Baixar os dados deste indicador (CSV)" /></div>
     </>
