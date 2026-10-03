@@ -24,7 +24,7 @@ export default function PaginaOrganizacao() {
     },
     locais: {
       capitais: capitais.map(c => ({ slug: c.slug, nome: c.nome })).sort((a, b) => a.nome.localeCompare(b.nome, 'pt')),
-      rms: rms.map(r => ({ slug: r.slug, nome: r.nome })).sort((a, b) => a.nome.localeCompare(b.nome, 'pt')),
+      rms: rms.map(r => ({ slug: r.slug, nome: r.nome, curto: r.curto })).sort((a, b) => a.nome.localeCompare(b.nome, 'pt')),
     },
     links: Object.fromEntries(codigos.map(c => [c, listaIndicadores.find(i => Object.values(i.codigos).includes(c))?.slug ?? ''])),
     nomes: Object.fromEntries(codigos.map(c => [c, catalogo[c] ?? { nome: c, unidade: '' }])),
