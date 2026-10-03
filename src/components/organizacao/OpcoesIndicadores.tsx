@@ -47,7 +47,7 @@ function Opcao1({ d, ind, setInd }: { d: DadosOpcoes; ind: IndicadorPrincipal; s
   const [ate, setAte] = useState<string | null>(null);
 
   const opcoesLocais = useMemo(() => (['capitais', 'rms'] as Nivel[]).flatMap(n =>
-    d.locais[n].map(l => ({ valor: `${n}:${l.slug}`, rotulo: n === 'capitais' ? l.nome : `RM ${l.curto ?? l.nome}` }))), [d]);
+    d.locais[n].map(l => ({ valor: `${n}:${l.slug}`, rotulo: n === 'capitais' ? l.nome : `RM ${l.curto ?? l.nome}`, grupo: n === 'capitais' ? 'Capitais' : 'Regiões metropolitanas' }))), [d]);
   const nomeDe = (k: string) => opcoesLocais.find(o => o.valor === k)?.rotulo ?? k;
   const serieDe = (k: string, codigo: string) => {
     const [n, slug] = k.split(':') as [Nivel, string];
@@ -110,7 +110,7 @@ function Opcao1({ d, ind, setInd }: { d: DadosOpcoes; ind: IndicadorPrincipal; s
         <div className={styles.grupo}>
           <label className={styles.rotulo} htmlFor="op1-locais">Capitais e regiões metropolitanas</label>
           <div className={styles.multi}>
-            <MultiSelect id="op1-locais" opcoes={opcoesLocais} selecionados={locais} aoMudar={setLocais} placeholder="Escolha um ou mais locais" />
+            <MultiSelect id="op1-locais" opcoes={opcoesLocais} selecionados={locais} aoMudar={setLocais} placeholder="Escolha um ou mais locais" escuro />
           </div>
         </div>
         {todosAnos.length > 1 && (

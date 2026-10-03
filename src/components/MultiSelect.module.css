@@ -10,3 +10,15 @@
 .lista input { accent-color: var(--verde-500); }
 .acoes { display: flex; gap: 16px; padding: 8px 14px; border-bottom: 1px solid #e5e5e5; }
 .acoes button { background: none; border: 0; color: var(--verde-600); font: 600 13px var(--fonte); cursor: pointer; padding: 0; }
+
+.grupo { margin: 0; padding: 10px 14px 4px; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--verde-600); }
+
+/* Variante escura (filtros sobre fundo escuro) */
+.escuro .botao {
+  height: auto; padding: 9px 12px; background: var(--fundo-painel); color: var(--texto);
+  border: 1px solid var(--borda); border-radius: 8px; font-size: 16px;
+}
+.escuro .lista { background: var(--fundo-painel); color: var(--texto); border: 1px solid var(--borda); }
+.escuro .lista label:hover { background: var(--neutro-900); }
+.escuro .acoes { border-bottom-color: var(--borda); }
+.escuro .acoes button, .escuro .grupo { color: var(--verde-300); }
