@@ -4,12 +4,15 @@ import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import { IconeBusca, IconeEqualizador } from '@/components/Icones';
 import { fmt } from '@/lib/formato';
+import { agruparPorTema } from '@/lib/temas';
 import styles from './ListaIndicadoresLocal.module.css';
 
 export interface ItemIndicador {
   slug: string;
   nome: string;
   unidade: string;
+  tema: string;
+  ordem: number;
   /** Valor mais recente neste local (ausente se não houver dado) */
   valor?: number;
   ano?: number;
@@ -40,22 +43,27 @@ export default function ListaIndicadoresLocal({ itens, local }: { itens: ItemInd
         <span>Nome do indicador</span>
         <span>Valor mais recente</span>
       </div>
-      <ul className={styles.lista}>
-        {filtrados.map(i => (
-          <li key={i.slug}>
-            <Link href={`/indicadores/${i.slug}/?local=${local}`}>
-              <IconeEqualizador />
-              <span className={styles.nome}>{i.nome}</span>
-              <span className={styles.valor}>
-                {i.valor != null
-                  ? <>{fmt(i.valor, 2)} <small>{i.unidade} · {i.ano}</small></>
-                  : <small>sem dado</small>}
-              </span>
-            </Link>
-          </li>
-        ))}
-        {!filtrados.length && <li className="nota">Nenhum indicador encontrado.</li>}
-      </ul>
+      {agruparPorTema(filtrados).map(g => (
+        <section key={g.tema} className={styles.tema}>
+          <h3 className={styles.nomeTema}>{g.tema}</h3>
+          <ul className={styles.lista}>
+            {g.itens.map(i => (
+              <li key={i.slug}>
+                <Link href={`/indicadores/${i.slug}/?local=${local}`}>
+                  <IconeEqualizador />
+                  <span className={styles.nome}>{i.nome}</span>
+                  <span className={styles.valor}>
+                    {i.valor != null
+                      ? <>{fmt(i.valor, 2)} <small>{i.unidade} · {i.ano}</small></>
+                      : <small>sem dado</small>}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+      {!filtrados.length && <p className="nota">Nenhum indicador encontrado.</p>}
     </div>
   );
 }

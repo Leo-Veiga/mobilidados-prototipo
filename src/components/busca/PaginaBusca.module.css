@@ -27,8 +27,7 @@
   .titulo { font-size: 30px; }
 }
 
-.temas { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; margin-top: 28px; }
-.tema { background: var(--fundo-painel); border-radius: var(--raio); padding: 18px 20px; }
-.nomeTema { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--destaque); margin-bottom: 8px; }
-.tema .listaIndicadores { display: block; columns: auto; margin: 0; }
-.recortes { margin: 2px 0 10px 30px; font-size: 13px; color: var(--texto-2); }
+/* Indicadores agrupados por tema (mesmos temas da ficha em PDF) */
+.tema { margin-top: 32px; }
+.nomeTema { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--destaque); padding: 0 8px 8px; border-bottom: 1px solid var(--borda); }
+.tema .listaIndicadores { margin-top: 4px; }

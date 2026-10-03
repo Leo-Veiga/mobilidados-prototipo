@@ -4,7 +4,7 @@
   "private": true,
   "description": "Site da MobiliDADOS: indicadores de mobilidade urbana das capitais e regiões metropolitanas brasileiras.",
   "scripts": {
-    "dados": "python scripts/gerar_dados.py && python scripts/gerar_tma.py && python scripts/gerar_enmu.py",
+    "dados": "python scripts/gerar_dados.py && python scripts/gerar_tma.py && python scripts/gerar_enmu.py && python scripts/gerar_mapa.py",
     "predev": "npm run dados",
     "dev": "next dev",
     "prebuild": "npm run dados",

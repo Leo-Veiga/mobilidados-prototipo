@@ -5,16 +5,8 @@ import { capitais, indicadoresCapitais, meta } from './dados';
 import { rotulo, unidade } from './indicadores';
 import type { Capital } from './tipos';
 
-/** Temas das seções da ficha, por código da planilha (ordem = ordem no PDF) */
-export const TEMAS: { titulo: string; codigos: string[] }[] = [
-  { titulo: 'Segurança viária: mortes', codigos: ['TX_MORT_TOT', 'TX_MORT_PED', 'TX_MORT_CICL', 'TX_MORT_MOTO', 'TX_MORT_AUTO', 'PERC_MORTE_NEGROS'] },
-  { titulo: 'Segurança viária: internações', codigos: ['TX_INTERN_TOT', 'TX_INTERN_PED', 'TX_INTERN_CIC', 'TX_INTERN_MOTO', 'TX_INTERN_AUTO'] },
-  { titulo: 'Transporte de média e alta capacidade', codigos: ['PNT', 'PNT_ATE_1/2', 'PNT_1/2_1', 'PNT_1_3', 'PNT_ACIMA_3', 'PNT_MULHERES_NEGRAS', 'PNT_MULHERES_1SM'] },
-  { titulo: 'Infraestrutura cicloviária', codigos: ['PNB', 'PNB_ATE_1/2', 'PNB_1/2_1', 'PNB_1_3', 'PNB_ACIMA_3', 'PNB_MULHERES_NEGRAS', 'PNB_MULHERES_1SM', 'PNB_MULHERES_ATE_2SM', 'TMA_INFRA_CICLO'] },
-  { titulo: 'Deslocamentos e divisão modal', codigos: ['TEMPO_MED', 'PERC_ACIMA_1H', 'PERC_A PE', 'PERC_A PÉ', 'PERC_BICI', 'PERC_TRANSP_COLETIVO', 'PERC_TRANSP_IND_MOTO'] },
-  { titulo: 'Motorização, emissões e custo', codigos: ['TX_MOTO', 'kgCO2/hab', 'gMP/hab', 'TARIFAxSM', 'TARIFAX RENDA_DOM_NEGRA'] },
-  { titulo: 'Entorno dos domicílios', codigos: ['PERC_CALÇADAS', 'PERC_RAMPAS'] },
-];
+export { TEMAS } from './temas';
+import { TEMAS } from './temas';
 
 /** Indicadores com série longa o bastante para um gráfico de evolução na ficha */
 export const SERIES_GRAFICO = ['TX_MORT_TOT', 'TX_INTERN_TOT', 'TX_MOTO', 'PNT'];

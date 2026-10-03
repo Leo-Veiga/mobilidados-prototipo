@@ -2,8 +2,7 @@ import Link from 'next/link';
 import BuscaInicial from '@/components/busca/BuscaInicial';
 import GradeDestaques from '@/components/destaques/GradeDestaques';
 import { destaques } from '@/lib/destaques';
-import { capitais, rms } from '@/lib/dados';
-import { TEMAS } from '@/lib/organizacao';
+import { capitais, listaIndicadores, rms } from '@/lib/dados';
 import { asset } from '@/lib/formato';
 import styles from './page.module.css';
 
@@ -35,7 +34,7 @@ export default function Home() {
     ...capitais.map(c => ({ rotulo: `${c.nome} (${c.uf})`, href: `/capitais/${c.slug}/` })),
     ...rms.map(r => ({ rotulo: `${r.nome} (${r.sigla})`, href: `/regioes-metropolitanas/${r.slug}/` })),
   ];
-  const indicadores = TEMAS.flatMap(t => t.indicadores.map(i => ({ rotulo: i.nome, href: `/indicadores/${i.id}/` })));
+  const indicadores = listaIndicadores.map(i => ({ rotulo: i.nome, href: `/indicadores/${i.slug}/` }));
 
   return (
     <>

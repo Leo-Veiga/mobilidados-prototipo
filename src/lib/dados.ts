@@ -8,6 +8,7 @@ import metaJson from '@/data/meta.json';
 import rmsJson from '@/data/rms.json';
 import { GRUPOS_INFRA, rotulo, slugIndicador, unidade } from './indicadores';
 import type { Capital, Catalogo, Indicadores, Nivel, RegiaoMetropolitana } from './tipos';
+import { temaDoIndicador } from './temas';
 
 export const capitais = capitaisJson as Capital[];
 export const rms = rmsJson as RegiaoMetropolitana[];
@@ -73,7 +74,7 @@ export function indicadoresDoLocal(nivel: Nivel, local: string) {
     .filter(i => i.codigos[nivel])
     .map(i => {
       const u = ultimoValor(nivel, i.codigos[nivel]!, local);
-      return { slug: i.slug, nome: i.nome, unidade: i.unidade, ...(u && { valor: u.valor, ano: u.ano }) };
+      return { slug: i.slug, nome: i.nome, unidade: i.unidade, ...temaDoIndicador(i.slug), ...(u && { valor: u.valor, ano: u.ano }) };
     });
 }
 
