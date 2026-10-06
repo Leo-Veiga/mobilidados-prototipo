@@ -1,0 +1,15 @@
+id;nome;detalhe;link
+sim;Sistema de Informações sobre Mortalidade (SIM/DATASUS);Microdados das declarações de óbito, arquivos definitivos;https://datasus.saude.gov.br/
+populacao-ibge;População residente (IBGE);Censos, Contagem 2007 e estimativas anuais (SIDRA, tabelas 200, 793, 1378, 4709 e 6579);https://sidra.ibge.gov.br/
+censo2022-deslocamento;Censo Demográfico 2022 — amostra (IBGE);SIDRA, tabela 10330: tempo habitual de deslocamento para o trabalho;https://sidra.ibge.gov.br/tabela/10330
+mapa-tma;Mapa de transporte de média e alta capacidade (ITDP Brasil);Um mapa por ano, com as estações em operação e a classificação TMA;https://itdpbrasil.org/
+osm;OpenStreetMap (Geofabrik);Extratos de 1º de janeiro do ano seguinte ao indicador;https://download.geofabrik.de/south-america/brazil.html
+setores;Setores censitários (IBGE);Censo 2010 e Censo 2022, pelos pacotes censobr e geobr;https://ipeagit.github.io/censobr/
+malha;Malha municipal 2022 (IBGE);Limites dos municípios, pelo pacote geobr;https://ipeagit.github.io/geobr/
+sih;Sistema de Informações Hospitalares (SIH/SUS — DATASUS);TabNet, morbidade hospitalar por causas externas, por local de internação;http://tabnet.datasus.gov.br/cgi/deftohtm.exe?sih/cnv/fibr.def
+senatran;Frota de veículos (SENATRAN);Frota por município e tipo de veículo, posição de dezembro;https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/estatisticas-frota-de-veiculos-senatran
+tarifas-curadas;Tabela de tarifas das capitais (MobiliDADOS);Cada mudança de tarifa desde 2018, com data, valor e fonte;https://github.com/mobilidados/mobilidados-indicadores/blob/main/dados/tarifas/tarifas_capitais.csv
+salario-minimo;Salário mínimo (Ipeadata);Série mensal MTE12_SALMIN12;http://www.ipeadata.gov.br/
+anp;Vendas de combustíveis (ANP);Vendas de gasolina, etanol e diesel por município;https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos
+iema;Instituto de Energia e Meio Ambiente (IEMA);Fatores de emissão e método de cálculo;https://energiaeambiente.org.br/
+censo2010-entorno;Censo Demográfico 2010 — entorno dos domicílios (IBGE);SIDRA, tabela 3359: características do entorno dos domicílios;https://sidra.ibge.gov.br/tabela/3359

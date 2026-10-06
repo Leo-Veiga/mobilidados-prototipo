@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 import CabecalhoPagina from '@/components/CabecalhoPagina';
@@ -6,6 +7,7 @@ import type { DadosNivel } from '@/components/indicadores/GraficosIndicador';
 import PaginaIndicador from '@/components/indicadores/PaginaIndicador';
 import { capitais, catalogo, indicadoresPorNivel, listaIndicadores, rms } from '@/lib/dados';
 import { slugIndicador } from '@/lib/indicadores';
+import { enderecoFicha, fichaDoCodigo } from '@/lib/metodologia';
 import { codigosDe, TEMAS, type IndicadorPrincipal } from '@/lib/organizacao';
 import type { Nivel } from '@/lib/tipos';
 
@@ -76,12 +78,15 @@ export default async function Pagina({ params }: Params) {
     }
   }
   const temRm = Object.keys(series.rms).length > 0;
+  const ficha = fichaDoCodigo(ind.principal);
+  const temFicha = ficha && !ficha.pendente;
 
   return (
     <>
       <CabecalhoPagina titulo={ind.nome} voltar={{ href: '/indicadores/', texto: 'Voltar para indicadores' }}>
         <p className="centro nota" style={{ marginTop: 12 }}>
           {temaDe(ind).nome} · Unidade: {catalogo[ind.principal]?.unidade} · {temRm ? 'Capitais e regiões metropolitanas' : 'Só capitais'}
+          {temFicha && <> · <Link href={enderecoFicha(ficha)} style={{ color: 'var(--verde-300)', fontWeight: 600 }}>Como é calculado →</Link></>}
         </p>
       </CabecalhoPagina>
       <div className="container-texto" style={{ padding: '24px 20px 80px' }}>
