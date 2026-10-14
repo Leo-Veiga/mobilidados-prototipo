@@ -6,7 +6,7 @@ import SecaoInfra from '@/components/indicadores/SecaoInfra';
 import ListaIndicadoresLocal from '@/components/local/ListaIndicadoresLocal';
 import FichaRM from '@/components/rms/FichaRM';
 import GraficosRM from '@/components/rms/GraficosRM';
-import { indicadoresDoLocal, indicadoresInfra, indicadoresRms, rmPorSlug, rms } from '@/lib/dados';
+import { dadosFicha, indicadoresDoLocal, indicadoresInfra, indicadoresRms, rmPorSlug, rms } from '@/lib/dados';
 import { asset } from '@/lib/formato';
 import styles from '../../capitais/[slug]/pagina.module.css';
 
@@ -34,8 +34,7 @@ export default async function PaginaRM({ params }: Params) {
   if (!r) notFound();
 
   const populacao = indicadoresRms.POP?.[r.slug] ?? {};
-  const anoPop = Math.max(...Object.keys(populacao).map(Number));
-  const popAtual = Number.isFinite(anoPop) ? { valor: populacao[anoPop], ano: anoPop } : { valor: r.pop2016, ano: 2016 };
+  const ficha = dadosFicha('rms', r.slug);
 
   const serieModo = (codigos: string[]) => codigos.map(c => indicadoresRms[c]?.[r.slug]).find(Boolean) ?? {};
   const series = CODIGOS_MODAL.map(serieModo);
@@ -52,13 +51,13 @@ export default async function PaginaRM({ params }: Params) {
         {r.texto && <p className={styles.apresentacao}>{r.texto}</p>}
 
         <section className={styles.bloco} aria-label="Dados da região metropolitana">
-          <FichaRM rm={r} populacao={popAtual} />
+          <FichaRM rm={r} ficha={ficha} />
           <div className="centro"><BotaoDados href={asset('/dados/rms-informacoes-gerais.csv')} /></div>
         </section>
 
         <GraficosRM
           nome={r.nome} sigla={r.sigla} populacao={populacao}
-          densidade={r.densidade} densidadeUrbana={r.densidadeUrbana} modal={modal}
+          densidade={ficha.DENS} densidadeUrbana={ficha.DENS_URB} modal={modal}
         />
 
         <section className={styles.bloco} aria-labelledby="titulo-indicadores">

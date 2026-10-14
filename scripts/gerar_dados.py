@@ -42,7 +42,7 @@ COLUNAS_ID = {'CD_UF', 'UF', 'CD_RM', 'RM', 'ANO', 'CD_MUN', 'COD_MUN6', 'CAPITA
 
 # Estrutura mínima que a planilha precisa ter
 COLUNAS_OBRIGATORIAS = {
-    'Info_gerais_capitais': {'CAPITAL', 'UF', 'TXT APRESENTACAO', 'Área total (km²)', 'Pop_2016', 'IDH-M'},
+    'Info_gerais_capitais': {'CAPITAL', 'UF', 'TXT APRESENTACAO', 'IDH-M'},
     'Info_gerais_RMs': {'SIGLA', 'RM', 'UF', 'TXT APRESENTACAO'},
     'Indicadores_capitais': {'CAPITAIS', 'ANO'},
     'Indicadores_RMs': {'RM', 'ANO'},
@@ -187,12 +187,7 @@ def ler_rms(wb):
         rms.append({
             'slug': s, 'sigla': sig, 'nome': txt(r['RM']), 'curto': NOME_CURTO[s], 'uf': txt(r['UF']),
             'lat': num(r['LAT']), 'lon': num(r['LONG']), 'texto': txt(r['TXT APRESENTACAO']),
-            'area': num(r.get('Área total (km²)')), 'areaUrbana': num(r.get('Área urbana (km²)')),
-            'pop2016': num(r.get('Pop_2016')), 'densidade': num(r.get('Densidade (hab./km²)')),
-            'densidadeUrbana': num(r.get('Densidade urbana (hab./km²)')), 'idhm': num(r.get('IDHM')),
-            'faixaIdhm': txt(r.get('Faixa do IDHM')), 'renda': num(r.get('Renda média')),
-            'percDr1sm': num(r.get('Perc_DR_<1SM')), 'percNegros': num(r.get('Perc_Negros')),
-            'percMulheres': num(r.get('Perc_Mulheres')),
+            'idhm': num(r.get('IDHM')), 'faixaIdhm': txt(r.get('Faixa do IDHM')),
         })
     rms.sort(key=lambda x: list(RMS.values()).index(x['slug']))
     return rms
@@ -208,18 +203,13 @@ def ler_capitais(wb):
         caps.append({
             'slug': slug(nome), 'nome': nome, 'uf': txt(g('UF')), 'rm': txt(g('RM')),
             'lat': num(g('LAT')), 'lon': num(g('LONG')), 'texto': txt(g('TXT APRESENTACAO')),
-            'area': num(g('Área total (km²)')), 'areaUrbana': num(g('Área urbana (km²)')),
-            'pop2016': num(g('Pop_2016')), 'densidade': num(g('Densidade (hab./km²)')),
-            'densidadeUrbana': num(g('Densidade urbana (hab./km²)')), 'idhm': num(g('IDH-M')),
-            'faixaIdhm': txt(g('Faixa de IDH-M')), 'renda': num(g('Renda média')),
-            'percDr1sm': num(g('Perc_DR_<1SM')), 'percNegros': num(g('Perc_Negros')),
-            'percMulheres': num(g('Perc_Mulheres')), 'percBrancos': num(g('Perc_Brancos')),
-            'percHomens': num(g('Perc_Homens')),
+            'idhm': num(g('IDH-M')), 'faixaIdhm': txt(g('Faixa de IDH-M')),
             'laiContrato': txt(g('lai_contrato')), 'laiContratoInicio': txt(g('lai_contrato_inicio')),
             'laiContratoPrazo': txt(g('lai_contrato_prazo')), 'laiContratoFonte': txt(g('lai_contrato_fonte')),
             'laiGps': txt(g('lai_gps')), 'laiGpsFrota': txt(g('lai_gps_frota')), 'laiGpsFonte': txt(g('lai_gps_fonte')),
             'laiGtfs': txt(g('lai_gtfs')), 'laiGtfsFonte': txt(g('lai_gtfs_fonte')),
-            'tma': {m: {'estacoes': num(g('tma_estacao_' + m)), 'km': num(g('tma_km_' + m))} for m in MODOS_TMA},
+            # Estações por modo vêm das séries TMA_ESTACOES_<MODO>; a extensão (km) fica na ficha
+            'tmaKm': {m: num(g('tma_km_' + m)) for m in MODOS_TMA},
             'planmobStatus': txt(g('planmob_status')), 'planmobAno': txt(g('planmob_ano_aprovacao')),
             'planmobFonte': txt(g('planmob_fonte')),
         })
@@ -297,10 +287,10 @@ def main(caminho):
     salvar_json('rms.json', rms)
     salvar_json('indicadores-rms.json', ind_rms)
 
-    campos = [k for k in caps[0] if k != 'tma']
-    tma = [f'tma_{t}_{m}' for m in MODOS_TMA for t in ('estacoes', 'km')]
+    campos = [k for k in caps[0] if k != 'tmaKm']
+    tma = [f'tma_km_{m}' for m in MODOS_TMA]
     salvar_csv('capitais-informacoes-gerais.csv', [campos + tma] + [
-        [cel(c[k]) for k in campos] + [cel(c['tma'][m][t]) for m in MODOS_TMA for t in ('estacoes', 'km')] for c in caps])
+        [cel(c[k]) for k in campos] + [cel(c['tmaKm'][m]) for m in MODOS_TMA] for c in caps])
     salvar_csv('capitais-indicadores.csv', csv_series(ind_caps, caps, catalogo))
     campos_rm = list(rms[0])
     salvar_csv('rms-informacoes-gerais.csv', [campos_rm] + [[cel(r[k]) for k in campos_rm] for r in rms])

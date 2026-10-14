@@ -6,7 +6,7 @@ import BotaoDados from '@/components/BotaoDados';
 import Grafico, { PALETA } from '@/components/Grafico';
 import { baixarCSV } from '@/lib/csv';
 import { fmt } from '@/lib/formato';
-import type { Serie } from '@/lib/tipos';
+import type { Serie, ValorAno } from '@/lib/tipos';
 import styles from './GraficosRM.module.css';
 
 /** Modos da divisão modal: [rótulo, cor] na ordem dos gráficos */
@@ -18,8 +18,9 @@ interface Props {
   nome: string;
   sigla: string;
   populacao: Serie;
-  densidade: number | null;
-  densidadeUrbana: number | null;
+  /** Densidade (população mais recente ÷ área) e densidade urbana (Censo ÷ área urbanizada), com o ano */
+  densidade: ValorAno;
+  densidadeUrbana: ValorAno;
   /** Divisão modal por ano da pesquisa Origem-Destino: { ano: [a pé, bicicleta, coletivo, individual] } (%) */
   modal: Record<string, (number | null)[]>;
 }
@@ -41,8 +42,8 @@ export default function GraficosRM({ nome, sigla, populacao, densidade, densidad
   const configDens = useMemo<ChartConfiguration<'bar'>>(() => ({
     type: 'bar',
     data: {
-      labels: ['Densidade oficial', 'Densidade urbana'],
-      datasets: [{ label: 'hab/km²', data: [densidade, densidadeUrbana], backgroundColor: [PALETA[1], PALETA[0]], borderRadius: 4 }],
+      labels: [`Densidade${densidade ? ` (${densidade.ano})` : ''}`, `Densidade urbana${densidadeUrbana ? ` (${densidadeUrbana.ano})` : ''}`],
+      datasets: [{ label: 'hab/km²', data: [densidade?.valor ?? null, densidadeUrbana?.valor ?? null], backgroundColor: [PALETA[1], PALETA[0]], borderRadius: 4 }],
     },
     options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { callback: v => fmt(Number(v), 0) } } } },
   }), [densidade, densidadeUrbana]);
@@ -64,7 +65,8 @@ export default function GraficosRM({ nome, sigla, populacao, densidade, densidad
 
   const baixarPop = () => baixarCSV(`mobilidados_populacao_densidade_${sigla.toLowerCase()}`, [
     ['regiao', 'ano', 'populacao'], ...anosPop.map(a => [nome, a, populacao[a]]),
-    [], ['regiao', 'densidade_oficial_hab_km2', 'densidade_urbana_hab_km2'], [nome, densidade, densidadeUrbana],
+    [], ['regiao', 'densidade_hab_km2', 'ano_densidade', 'densidade_urbana_hab_km2', 'ano_densidade_urbana'],
+    [nome, densidade?.valor, densidade?.ano, densidadeUrbana?.valor, densidadeUrbana?.ano],
   ]);
   const baixarModal = () => baixarCSV(`mobilidados_divisao_modal_${sigla.toLowerCase()}`, [
     ['regiao', 'ano', 'modo', 'percentual_viagens'],
@@ -77,8 +79,9 @@ export default function GraficosRM({ nome, sigla, populacao, densidade, densidad
         <h2 id="titulo-pop" className={styles.titulo}>População e densidade</h2>
         <p className={styles.texto}>
           A população é o total de pessoas que habitam a região; a densidade demográfica é a relação entre a população
-          e a área do território, em habitantes por km². A densidade oficial considera a área total da região
-          metropolitana; a densidade urbana considera só a população urbana e a área urbanizada, segundo o IBGE.
+          e a área do território, em habitantes por km². A densidade considera a população mais recente e a área
+          total da região metropolitana; a densidade urbana considera a população do Censo 2022 e a área
+          urbanizada mapeada pelo IBGE em 2022.
         </p>
         <div className={styles.lado}>
           <div className="cartao">
@@ -89,7 +92,7 @@ export default function GraficosRM({ nome, sigla, populacao, densidade, densidad
           <div className="cartao">
             <h3>Densidade</h3>
             <Grafico config={configDens} descricao={`Densidade oficial e urbana da ${nome}`}
-              imagem={{ titulo: `Densidade oficial e urbana — ${nome}`, subtitulo: 'hab/km² · 2010', fonte: 'IBGE / MobiliDADOS' }} />
+              imagem={{ titulo: `Densidade oficial e urbana — ${nome}`, subtitulo: `hab/km² · ${[densidade?.ano, densidadeUrbana?.ano].filter(Boolean).join(' e ')}`, fonte: 'IBGE / MobiliDADOS' }} />
           </div>
         </div>
         <div className="centro"><BotaoDados onClick={baixarPop} /></div>

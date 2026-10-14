@@ -23,17 +23,9 @@ export interface RegiaoMetropolitana extends Lugar {
   lat: number | null;
   lon: number | null;
   texto: string;
-  area: number | null;
-  areaUrbana: number | null;
-  pop2016: number | null;
-  densidade: number | null;
-  densidadeUrbana: number | null;
+  /** IDHM 2010 (Atlas do Desenvolvimento Humano): o último disponível por município */
   idhm: number | null;
   faixaIdhm: string;
-  renda: number | null;
-  percDr1sm: number | null;
-  percNegros: number | null;
-  percMulheres: number | null;
 }
 
 export const MODOS_TMA = ['barca', 'brt', 'metro', 'monotrilho', 'trem', 'vlt'] as const;
@@ -45,19 +37,9 @@ export interface Capital extends Lugar {
   lat: number | null;
   lon: number | null;
   texto: string;
-  area: number | null;
-  areaUrbana: number | null;
-  pop2016: number | null;
-  densidade: number | null;
-  densidadeUrbana: number | null;
+  /** IDHM 2010 (Atlas do Desenvolvimento Humano): o último disponível por município */
   idhm: number | null;
   faixaIdhm: string;
-  renda: number | null;
-  percDr1sm: number | null;
-  percNegros: number | null;
-  percMulheres: number | null;
-  percBrancos: number | null;
-  percHomens: number | null;
   laiContrato: string;
   laiContratoInicio: string;
   laiContratoPrazo: string;
@@ -67,8 +49,12 @@ export interface Capital extends Lugar {
   laiGpsFonte: string;
   laiGtfs: string;
   laiGtfsFonte: string;
-  tma: Record<ModoTma, { estacoes: number | null; km: number | null }>;
+  /** Extensão da rede de TMA por modo (km), do levantamento anterior do ITDP */
+  tmaKm: Record<ModoTma, number | null>;
   planmobStatus: string;
   planmobAno: string;
   planmobFonte: string;
 }
+
+/** Valor mais recente de um dado da ficha, com o ano */
+export type ValorAno = { valor: number; ano: number } | null;

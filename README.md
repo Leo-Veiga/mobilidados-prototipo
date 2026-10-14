@@ -77,6 +77,11 @@ metropolitanas e anos válidos. **Se algo estiver errado, nada é publicado**: o
 anterior, o GitHub envia um e-mail e o passo "Converter e validar a planilha" mostra a lista de problemas.
 Avisos (por exemplo, indicador novo sem nome) não impedem a publicação.
 
+Os valores calculados no repositório de cálculo (`mobilidados-indicadores`, pasta `saida/`) entram na
+planilha com `python scripts/importar_indicadores.py <pasta saida/>`, que diz o que mudou. População,
+área, densidades, perfil (Censo 2022) e estações de TMA ficam nas abas `Indicadores_*` como séries e
+aparecem na ficha de cada local com o ano do dado (não na lista de indicadores).
+
 Indicador novo? Acrescente uma linha em [`dados/catalogo-indicadores.csv`](dados/catalogo-indicadores.csv)
 com código, nome e unidade. Sem isso, o site mostra o código da coluna no lugar do nome.
 

@@ -8,6 +8,16 @@ export function pct(v: number | null | undefined): string {
   return v == null ? '–' : fmt(v * 100, 0) + ' %';
 }
 
+/** Percentual de 0 a 100 de um dado da ficha ("60,8 %") */
+export function pct100(v: { valor: number } | null | undefined): string {
+  return v == null ? '–' : fmt(v.valor, 1) + ' %';
+}
+
+/** Rótulo com o ano do dado: "População (2026)" */
+export function comAno(rotulo: string, v: { ano: number } | null | undefined): string {
+  return v ? `${rotulo} (${v.ano})` : rotulo;
+}
+
 /** Caminho de um arquivo em public/, respeitando o basePath do GitHub Pages.
     (next/link já faz isso sozinho; <img> e url() em CSS precisam deste helper.) */
 export function asset(caminho: string): string {

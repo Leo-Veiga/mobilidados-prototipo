@@ -21,27 +21,38 @@ export interface GrupoInfra {
   partes: [string, string][];
 }
 
+/** Dados que aparecem na ficha de cada local (e não na lista de indicadores) */
+export const CODIGOS_FICHA = new Set([
+  'POP', 'AREA_KM2', 'AREA_URB_KM2', 'DENS', 'DENS_URB', 'PERC_NEGROS', 'PERC_BRANCOS', 'PERC_MULHERES',
+  'PERC_HOMENS', 'RENDA_MED_PC', 'PERC_ATE_1SM_PC',
+  'TMA_ESTACOES_BARCA', 'TMA_ESTACOES_BRT', 'TMA_ESTACOES_METRO', 'TMA_ESTACOES_MONOTRILHO',
+  'TMA_ESTACOES_TREM', 'TMA_ESTACOES_VLT',
+]);
+
+/** Faixas de renda do responsável por morador (Censo 2022) nos gráficos de distribuição */
+const RENDA_RESP: [string, string][] = [['RESP_ATE_1/2', 'Até ½ SM'], ['RESP_1/2_1', '½ a 1 SM'], ['RESP_1_3', '1 a 3 SM'], ['RESP_ACIMA_3', 'Acima de 3 SM']];
+
 /** Grupos da seção "Distribuição da infraestrutura de mobilidade urbana" */
 export const GRUPOS_INFRA: GrupoInfra[] = [
   {
     id: 'pnt-renda', total: 'PNT',
-    nome: 'Proximidade do transporte de média e alta capacidade (PNT) por renda',
-    partes: [['PNT_ATE_1/2', 'Até ½ SM'], ['PNT_1/2_1', '½ a 1 SM'], ['PNT_1_3', '1 a 3 SM'], ['PNT_ACIMA_3', 'Acima de 3 SM']],
+    nome: 'Proximidade do transporte de média e alta capacidade (PNT) por renda do responsável por morador',
+    partes: RENDA_RESP.map(([k, r]) => [`PNT_${k}`, r]),
   },
   {
     id: 'pnt-grupos', total: 'PNT',
     nome: 'Proximidade do transporte de média e alta capacidade (PNT) por gênero e raça',
-    partes: [['PNT', 'População total'], ['PNT_MULHERES_NEGRAS', 'Mulheres negras'], ['PNT_MULHERES_1SM', 'Mulheres com renda até 1 SM']],
+    partes: [['PNT', 'População total'], ['PNT_MULHERES_NEGRAS', 'Mulheres negras']],
   },
   {
     id: 'pnb-renda', total: 'PNB',
-    nome: 'Proximidade da infraestrutura cicloviária (PNB) por renda',
-    partes: [['PNB_ATE_1/2', 'Até ½ SM'], ['PNB_1/2_1', '½ a 1 SM'], ['PNB_1_3', '1 a 3 SM'], ['PNB_ACIMA_3', 'Acima de 3 SM']],
+    nome: 'Proximidade da infraestrutura cicloviária (PNB) por renda do responsável por morador',
+    partes: RENDA_RESP.map(([k, r]) => [`PNB_${k}`, r]),
   },
   {
     id: 'pnb-grupos', total: 'PNB',
     nome: 'Proximidade da infraestrutura cicloviária (PNB) por gênero e raça',
-    partes: [['PNB', 'População total'], ['PNB_MULHERES_NEGRAS', 'Mulheres negras'], ['PNB_MULHERES_1SM', 'Mulheres com renda até 1 SM'], ['PNB_MULHERES_ATE_2SM', 'Mulheres chefes de domicílio até 2 SM']],
+    partes: [['PNB', 'População total'], ['PNB_MULHERES_NEGRAS', 'Mulheres negras']],
   },
   {
     id: 'tma-ciclo', total: 'TMA_INFRA_CICLO',

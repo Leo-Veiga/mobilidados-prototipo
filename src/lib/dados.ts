@@ -6,8 +6,8 @@ import indicadoresCapitaisJson from '@/data/indicadores-capitais.json';
 import indicadoresRmsJson from '@/data/indicadores-rms.json';
 import metaJson from '@/data/meta.json';
 import rmsJson from '@/data/rms.json';
-import { GRUPOS_INFRA, rotulo, slugIndicador, unidade } from './indicadores';
-import type { Capital, Catalogo, Indicadores, Nivel, RegiaoMetropolitana } from './tipos';
+import { CODIGOS_FICHA, GRUPOS_INFRA, rotulo, slugIndicador, unidade } from './indicadores';
+import { MODOS_TMA, type Capital, type Catalogo, type Indicadores, type ModoTma, type Nivel, type RegiaoMetropolitana, type ValorAno } from './tipos';
 
 export const capitais = capitaisJson as Capital[];
 export const rms = rmsJson as RegiaoMetropolitana[];
@@ -38,13 +38,13 @@ export interface InfoIndicador {
   codigos: Partial<Record<Nivel, string>>;
 }
 
-/** Indicadores com dados, em ordem alfabética (População fica de fora: está na ficha de cada local) */
+/** Indicadores com dados, em ordem alfabética (população, perfil, área e estações ficam de fora: estão na ficha) */
 export const listaIndicadores: InfoIndicador[] = (() => {
   const porSlug = new Map<string, InfoIndicador>();
   for (const nivel of ['capitais', 'rms'] as Nivel[]) {
     const ind = indicadoresPorNivel[nivel];
     for (const codigo of Object.keys(ind)) {
-      if (codigo === 'POP' || !Object.keys(ind[codigo]).length) continue;
+      if (CODIGOS_FICHA.has(codigo) || !Object.keys(ind[codigo]).length) continue;
       const slug = slugIndicador(codigo);
       const item = porSlug.get(slug) ?? { slug, nome: rotulo(codigo), unidade: unidade(codigo), codigos: {} };
       if (item.codigos[nivel]) throw new Error(`Dois indicadores com a mesma URL (${slug}): ${item.codigos[nivel]} e ${codigo}`);
@@ -82,4 +82,23 @@ export function indicadoresInfra(nivel: Nivel): Indicadores {
   const ind = indicadoresPorNivel[nivel];
   const codigos = new Set(GRUPOS_INFRA.flatMap(g => [g.total, ...g.partes.map(([k]) => k)]));
   return Object.fromEntries([...codigos].filter(k => ind[k]).map(k => [k, ind[k]]));
+}
+
+/** Dados da ficha de um local: valor mais recente de cada código, com o ano */
+export function dadosFicha(nivel: Nivel, local: string): Record<string, ValorAno> {
+  return Object.fromEntries([...CODIGOS_FICHA].map(c => [c, ultimoValor(nivel, c, local)]));
+}
+
+/** Estações de TMA por modo no ano mais recente do mapa TMA (modos sem estação ficam de fora) */
+export function estacoesTma(nivel: Nivel, local: string): { ano: number | null; modos: Partial<Record<ModoTma, number>> } {
+  const series = MODOS_TMA.map(m => [m, indicadoresPorNivel[nivel][`TMA_ESTACOES_${m.toUpperCase()}`]] as const);
+  const anos = series.flatMap(([, ind]) => Object.values(ind ?? {}).flatMap(s => Object.keys(s).map(Number)));
+  if (!anos.length) return { ano: null, modos: {} };
+  const ano = Math.max(...anos);
+  const modos: Partial<Record<ModoTma, number>> = {};
+  for (const [m, ind] of series) {
+    const v = ind?.[local]?.[ano];
+    if (v) modos[m] = v;
+  }
+  return { ano, modos };
 }
