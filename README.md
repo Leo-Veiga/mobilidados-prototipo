@@ -80,7 +80,10 @@ Avisos (por exemplo, indicador novo sem nome) não impedem a publicação.
 Os valores calculados no repositório de cálculo (`mobilidados-indicadores`, pasta `saida/`) entram na
 planilha com `python scripts/importar_indicadores.py <pasta saida/>`, que diz o que mudou. População,
 área, densidades, perfil (Censo 2022) e estações de TMA ficam nas abas `Indicadores_*` como séries e
-aparecem na ficha de cada local com o ano do dado (não na lista de indicadores).
+aparecem na ficha de cada local com o ano do dado (não na lista de indicadores). Os campos da aba
+Mobilidade da ficha das capitais (contrato de ônibus, GTFS e GPS públicos, Plano de Mobilidade) vêm de
+`saida/ficha_mobilidade.csv` e ficam na aba `Ficha_mobilidade_capitais`, uma linha por capital, ano e
+campo, com a fonte; o site mostra o ano mais recente de cada campo.
 
 Indicador novo? Acrescente uma linha em [`dados/catalogo-indicadores.csv`](dados/catalogo-indicadores.csv)
 com código, nome e unidade. Sem isso, o site mostra o código da coluna no lugar do nome.

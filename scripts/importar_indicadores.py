@@ -9,6 +9,7 @@ Regras (configuradas abaixo):
     METODO_NOVO -> apaga a coluna inteira e grava só a série nova, a partir de ANO_MINIMO
     NOVOS       -> como METODO_NOVO, criando a coluna se a aba ainda não tiver
     REMOVER     -> colunas apagadas das abas de indicadores e de informações gerais
+    FICHA       -> ficha_mobilidade.csv (se houver na pasta) substitui inteira a aba FICHA_ABA
 Acrescenta as linhas de anos novos de cada capital e RM e diz o que mudou. Locais que o
 cálculo novo não cobre (ex.: RM de Porto Alegre) ficam intactos. Fórmulas viram valores (o
 conversor do site lê só valores, e o openpyxl não recalcula fórmulas ao salvar).
@@ -49,12 +50,19 @@ REMOVER = {
     'Área total (km²)', 'Área urbana (km²)', 'Pop_2016', 'Densidade (hab./km²)', 'Densidade urbana (hab./km²)',
     'Renda média', 'Perc_DR_<1SM', 'Perc_Negros', 'Perc_Mulheres', 'Perc_Brancos', 'Perc_Homens',
     *(f'tma_estacao_{m}' for m in ('barca', 'brt', 'metro', 'monotrilho', 'trem', 'vlt')),
+    # Campos de mobilidade da ficha: agora na aba FICHA_ABA, com ano e fonte
+    'lai_contrato', 'lai_contrato_inicio', 'lai_contrato_prazo', 'lai_contrato_fonte', 'lai_gps', 'lai_gps_frota',
+    'lai_gps_fonte', 'lai_gtfs', 'lai_gtfs_fonte', 'planmob_status', 'planmob_ano_aprovacao', 'planmob_fonte',
 }
 ARQUIVOS = ['populacao', 'mortalidade', 'internacoes', 'motorizacao', 'pnb', 'pnt', 'tarifas', 'tma_ciclo',
             'tempo_deslocamento', 'censo2022', 'tma_modos']
 # aba -> coluna com o código do local (código IBGE da capital ou CD_RM)
 ABAS = {'Indicadores_capitais': 'CD_MUN', 'Indicadores_RMs': 'CD_RM'}
 ABAS_INFO = ['Info_gerais_capitais', 'Info_gerais_RMs']
+# Ficha da capital (aba Mobilidade): campos em texto, um por linha, com fonte e camada
+FICHA = 'ficha_mobilidade'
+FICHA_ABA = 'Ficha_mobilidade_capitais'
+FICHA_COLUNAS = ['CD_MUN', 'CAPITAL', 'ANO', 'CAMPO', 'VALOR', 'FONTE', 'CAMADA']
 COLUNAS_ID = {'CD_UF', 'UF', 'CD_MUN', 'COD_MUN6', 'CAPITAIS', 'CD_RM', 'RM', 'CD_MUN_6'}
 
 
@@ -140,6 +148,29 @@ def atualizar_aba(ws, col_local, dados):
     return resumo
 
 
+def importar_ficha(wb, arquivo):
+    """Regrava a aba da ficha a partir do CSV longo (o campo, <CAMPO>_FONTE e <CAMPO>_CAMADA)."""
+    cab = cabecalho(wb['Info_gerais_capitais'])
+    nomes = {int(r[cab['CD_MUN'] - 1]): r[cab['CAPITAL'] - 1]
+             for r in wb['Info_gerais_capitais'].iter_rows(min_row=2, values_only=True) if r[cab['CD_MUN'] - 1]}
+    campos = {}
+    with open(arquivo, encoding='utf-8-sig', newline='') as f:
+        for r in csv.DictReader(f, delimiter=';'):
+            ind, extra = r['indicador'], ''
+            for sufixo in ('_FONTE', '_CAMADA'):
+                if ind.endswith(sufixo):
+                    ind, extra = ind[:-len(sufixo)], sufixo[1:]
+            campos.setdefault((int(r['local']), int(r['ano']), ind), {})[extra or 'VALOR'] = r['valor']
+    if FICHA_ABA in wb.sheetnames:
+        del wb[FICHA_ABA]
+    ws = wb.create_sheet(FICHA_ABA)
+    ws.append(FICHA_COLUNAS)
+    for (local, ano, campo), v in sorted(campos.items()):
+        ws.append([local, nomes.get(local), ano, campo, v.get('VALOR'), v.get('FONTE') or None, v.get('CAMADA')])
+    print(f'{FICHA_ABA}: {len(campos)} valores de {len({k[0] for k in campos})} capitais, '
+          f'{min(k[1] for k in campos)}-{max(k[1] for k in campos)}')
+
+
 def main():
     if len(sys.argv) < 2:
         sys.exit(__doc__)
@@ -161,6 +192,9 @@ def main():
         for ind, (a0, a1, n, apagadas) in sorted(atualizar_aba(wb[aba], col_local, dados).items()):
             extra = f'; {apagadas} valor(es) antigo(s) apagado(s)' if apagadas else ''
             print(f'  {ind:24} {a0}-{a1}  {n} valores{extra}')
+    ficha = os.path.join(pasta, FICHA + '.csv')
+    if os.path.exists(ficha):
+        importar_ficha(wb, ficha)
     wb.save(caminho)
 
 

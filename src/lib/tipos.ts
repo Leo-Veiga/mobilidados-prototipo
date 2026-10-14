@@ -40,21 +40,19 @@ export interface Capital extends Lugar {
   /** IDHM 2010 (Atlas do Desenvolvimento Humano): o último disponível por município */
   idhm: number | null;
   faixaIdhm: string;
-  laiContrato: string;
-  laiContratoInicio: string;
-  laiContratoPrazo: string;
-  laiContratoFonte: string;
-  laiGps: string;
-  laiGpsFrota: string;
-  laiGpsFonte: string;
-  laiGtfs: string;
-  laiGtfsFonte: string;
   /** Extensão da rede de TMA por modo (km), do levantamento anterior do ITDP */
   tmaKm: Record<ModoTma, number | null>;
-  planmobStatus: string;
-  planmobAno: string;
-  planmobFonte: string;
+  /** Campos da aba Mobilidade da ficha, no ano mais recente de cada um */
+  mobilidade: Partial<Record<CampoMob, TextoAno>>;
 }
+
+/** Campos da ficha de mobilidade (aba Ficha_mobilidade_capitais da planilha) */
+export type CampoMob =
+  | 'CONTRATO' | 'CONTRATO_INICIO' | 'CONTRATO_PRAZO' | 'GTFS_PUBLICO' | 'GPS_PUBLICO' | 'GPS_FROTA'
+  | 'PLANMOB_STATUS' | 'PLANMOB_ANO';
+
+/** Dado em texto da ficha, com o ano de verificação e o link da fonte */
+export type TextoAno = { valor: string; ano: number; fonte: string };
 
 /** Valor mais recente de um dado da ficha, com o ano */
 export type ValorAno = { valor: number; ano: number } | null;
