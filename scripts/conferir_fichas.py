@@ -22,10 +22,9 @@ caps = json.load(open(os.path.join(RAIZ, 'src/data/capitais.json'), encoding='ut
 
 
 def br(v):
-    """Mesmo formato do PDF: até 1 casa decimal (5 arredonda para cima), vírgula, ponto de milhar."""
+    """Mesmo formato do PDF: sempre 1 casa decimal (5 arredonda para cima), vírgula, ponto de milhar."""
     d = Decimal(repr(v)).quantize(Decimal('0.1'), rounding=ROUND_HALF_UP)
-    s = f'{d:,.1f}'.replace(',', 'X').replace('.', ',').replace('X', '.')
-    return s[:-2] if s.endswith(',0') else s
+    return f'{d:,.1f}'.replace(',', 'X').replace('.', ',').replace('X', '.')
 
 
 erros, conferidos = [], 0
