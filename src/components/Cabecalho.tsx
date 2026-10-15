@@ -11,6 +11,7 @@ const LINKS = [
   { href: '/capitais/', texto: 'Capitais' },
   { href: '/regioes-metropolitanas/', texto: 'Regiões metropolitanas' },
   { href: '/indicadores/', texto: 'Indicadores' },
+  { href: '/metodologia/', texto: 'Metodologia' },
   { href: '/tma/', texto: 'TMA' },
   { href: '/enmu/', texto: 'ENMU' },
   { href: '/destaques/', texto: 'Destaques' },

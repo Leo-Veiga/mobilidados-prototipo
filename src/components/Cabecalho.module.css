@@ -6,14 +6,14 @@
 .logo img { height: 39px; width: auto; display: block; }
 
 .menu { display: flex; align-items: center; gap: 8px; }
-.menu > a:not(:global(.botao)) { display: flex; align-items: center; height: 40px; padding: 0 16px; border-radius: var(--raio) var(--raio) 0 0; }
+.menu > a:not(:global(.botao)) { display: flex; align-items: center; height: 40px; padding: 0 12px; white-space: nowrap; border-radius: var(--raio) var(--raio) 0 0; }
 .menu > a:not(:global(.botao)):hover, .ativo { color: var(--verde-300); }
 .menu :global(.botao) { margin-left: 10px; }
 
 .botaoMenu { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; background: none; border: 0; cursor: pointer; padding: 10px; }
 .botaoMenu span { display: block; height: 2px; background: var(--neutro-400); border-radius: 2px; }
 
-@media (max-width: 1140px) {
+@media (max-width: 1240px) {
   .botaoMenu { display: flex; }
   .menu {
     display: none; position: fixed; top: var(--altura-header); left: 0; right: 0; bottom: 0;
