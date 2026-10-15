@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Chart from 'chart.js/auto';
 import type { ChartConfiguration, ChartType, Plugin, TooltipItem } from 'chart.js';
-import { fmt } from '@/lib/formato';
+import { fmtDado } from '@/lib/formato';
 import { baixarImagemGrafico, type InfoImagem } from '@/lib/imagemGrafico';
 import { IconeImagem } from './Icones';
 import styles from './Grafico.module.css';
@@ -16,7 +16,7 @@ Chart.defaults.maintainAspectRatio = false;
 Chart.defaults.plugins.tooltip.callbacks.label = (c: TooltipItem<ChartType>) => {
   const p = c.parsed as { x: number; y: number };
   const v = c.chart.options.indexAxis === 'y' ? p.x : p.y;
-  return ` ${c.dataset.label ? c.dataset.label + ': ' : ''}${fmt(v, 2)}`;
+  return ` ${c.dataset.label ? c.dataset.label + ': ' : ''}${fmtDado(v)}`;
 };
 
 // Começa pelo verde e o azul da marca
@@ -58,7 +58,7 @@ const pluginValores: Plugin = {
       for (const k of indices) {
         const el = meta.data[k] as unknown as { x: number; y: number; base?: number; width?: number; height?: number };
         if (!el) continue;
-        const texto = fmt(dados[k] as number, 1);
+        const texto = fmtDado(dados[k] as number);
         if (barra) {
           // Espessura da barra (largura nas verticais, altura nas horizontais) e comprimento do segmento
           const espessura = (horizontal ? el.height : el.width) ?? 30;

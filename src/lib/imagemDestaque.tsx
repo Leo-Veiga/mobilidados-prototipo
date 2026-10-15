@@ -26,7 +26,7 @@ const FONTES = [
 ];
 const LOGO = `data:image/png;base64,${readFileSync(join(process.cwd(), 'public/img/logo-mobilidados.png')).toString('base64')}`;
 
-const fmt = (v: number) => v.toLocaleString('pt-BR', { maximumFractionDigits: 1 });
+const fmt = (v: number) => v.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 
 /** Mini-gráfico desenhado com caixas (barras horizontais ou colunas) */
 function Grafico({ g, largura, altura }: { g: GraficoDestaque; largura: number; altura: number }) {

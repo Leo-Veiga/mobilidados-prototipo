@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import { IconeBusca, IconeEqualizador } from '@/components/Icones';
-import { fmt } from '@/lib/formato';
+import { fmtDado } from '@/lib/formato';
 import { agruparPorTema } from '@/lib/temas';
 import styles from './ListaIndicadoresLocal.module.css';
 
@@ -57,7 +57,7 @@ export default function ListaIndicadoresLocal({ itens, local }: { itens: ItemInd
                   <span className={styles.nome}>{i.nome}</span>
                   <span className={styles.valor}>
                     {i.valor != null
-                      ? <>{fmt(i.valor, 2)} <small>{i.unidade} · {i.ano}</small></>
+                      ? <>{fmtDado(i.valor)} <small>{i.unidade} · {i.ano}</small></>
                       : <small>sem dado</small>}
                   </span>
                 </Link>

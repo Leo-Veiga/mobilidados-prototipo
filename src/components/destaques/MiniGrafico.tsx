@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
 import type { GraficoDestaque } from '@/lib/destaques';
-import { fmt } from '@/lib/formato';
+import { fmtDado } from '@/lib/formato';
 
 const VERDE = '#64eaa6';
 const SECUNDARIA = '#2f5f48';
@@ -26,7 +26,7 @@ export default function MiniGrafico({ g, altura = 150 }: { g: GraficoDestaque; a
         animation: false,
         plugins: {
           legend: { display: false },
-          tooltip: { callbacks: { label: c => ` ${fmt(Number(c.raw), 1)} ${g.unidade}` } },
+          tooltip: { callbacks: { label: c => ` ${fmtDado(Number(c.raw))} ${g.unidade}` } },
         },
         scales: {
           x: { display: horizontal ? false : true, grid: { display: false }, ticks: { color: '#a0a8a3', font: { size: 10 }, maxRotation: 0, autoSkip: true, maxTicksLimit: 4 } },
@@ -39,7 +39,7 @@ export default function MiniGrafico({ g, altura = 150 }: { g: GraficoDestaque; a
 
   return (
     <div style={{ position: 'relative', height: altura }}>
-      <canvas ref={canvas} role="img" aria-label={`${g.titulo}: ${g.pontos.map(p => `${p.rotulo} ${fmt(p.valor, 1)}`).join('; ')}`} />
+      <canvas ref={canvas} role="img" aria-label={`${g.titulo}: ${g.pontos.map(p => `${p.rotulo} ${fmtDado(p.valor)}`).join('; ')}`} />
     </div>
   );
 }

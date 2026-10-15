@@ -3,6 +3,11 @@ export function fmt(v: number | null | undefined, casas = 1): string {
   return v == null || isNaN(v) ? '–' : v.toLocaleString('pt-BR', { maximumFractionDigits: casas });
 }
 
+/** Valor de indicador: sempre com 1 casa decimal (29,0; 449,0), em todo o site */
+export function fmtDado(v: number | null | undefined): string {
+  return v == null || isNaN(v) ? '–' : v.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+}
+
 /** Fração (0.42) como percentual ("42 %") */
 export function pct(v: number | null | undefined): string {
   return v == null ? '–' : fmt(v * 100, 0) + ' %';

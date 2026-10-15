@@ -52,6 +52,9 @@ const s = StyleSheet.create({
 
 const num = (v: number | null | undefined, casas = 1) =>
   v == null || Number.isNaN(v) ? 'sem dado' : v.toLocaleString('pt-BR', { maximumFractionDigits: casas, minimumFractionDigits: 0 });
+/** Valor de indicador: sempre com 1 casa decimal, como no site */
+const dado = (v: number | null | undefined) =>
+  v == null || Number.isNaN(v) ? 'sem dado' : v.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 const pct = (v: number | null | undefined) => (v == null ? 'sem dado' : `${num(v * 100, 0)}%`);
 const data = (iso: string) => new Date(iso + 'T12:00:00').toLocaleDateString('pt-BR');
 const valido = (v: string) => Boolean(v) && !['-', 'NA', 'N/A'].includes(v.trim());
@@ -71,9 +74,9 @@ function Linha({ l }: { l: LinhaIndicador }) {
     <View style={s.linha} wrap={false}>
       <Text style={s.colNome}>{l.nome}</Text>
       <Text style={s.colUnid}>{l.unidade}</Text>
-      <Text style={s.colValor}>{num(l.valor)}</Text>
+      <Text style={s.colValor}>{dado(l.valor)}</Text>
       <Text style={s.colAno}>{l.ano}</Text>
-      <Text style={s.colMedia}>{num(l.mediana)}</Text>
+      <Text style={s.colMedia}>{dado(l.mediana)}</Text>
       <Text style={s.colPos}>{l.posicao}ª de {l.totalComDado}</Text>
     </View>
   );
@@ -94,8 +97,8 @@ function Colunas({ serie }: { serie: SerieGrafico }) {
         ))}
       </View>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 3, fontSize: 6.5, color: CINZA }}>
-        <Text>{serie.pontos[0].ano}: {num(serie.pontos[0].valor)}</Text>
-        <Text>{ultimo.ano}: {num(ultimo.valor)}</Text>
+        <Text>{serie.pontos[0].ano}: {dado(serie.pontos[0].valor)}</Text>
+        <Text>{ultimo.ano}: {dado(ultimo.valor)}</Text>
       </View>
     </View>
   );
