@@ -18,13 +18,19 @@ export default function Rodape() {
       <div className={styles.principal}>
         <div className={styles.marca}>
           <img src={asset('/img/logo-mobilidados.png')} alt="MobiliDADOS" width={120} height={48} />
-          <strong>Instituto de Políticas de Transporte e Desenvolvimento (ITDP Brasil)</strong>
-          <div className={styles.redes}>
-            {REDES.map(([nome, icone, url]) => (
-              <a key={icone} href={url} target="_blank" rel="noopener" aria-label={`ITDP Brasil no ${nome}`}>
-                <img src={asset(`/img/icones/rede-${icone}.svg`)} alt="" width={22} height={22} />
-              </a>
-            ))}
+          {/* Assinatura do ITDP, com as redes sociais do instituto na mesma linha */}
+          <div className={styles.assinatura}>
+            <img
+              className={styles.itdp} src={asset('/img/logos/itdp-horizontal-branco.png')} width={198} height={30}
+              alt="ITDP Brasil — Instituto de Políticas de Transporte e Desenvolvimento"
+            />
+            <div className={styles.redes}>
+              {REDES.map(([nome, icone, url]) => (
+                <a key={icone} href={url} target="_blank" rel="noopener" aria-label={`ITDP Brasil no ${nome}`}>
+                  <img src={asset(`/img/icones/rede-${icone}.svg`)} alt="" width={22} height={22} />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
         <nav className={styles.links} aria-label="Rodapé">

@@ -3,7 +3,8 @@
 .principal { max-width: 1000px; margin: 0 auto; padding: 32px 20px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 32px 40px; }
 .marca { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
 .marca > img { width: 120px; height: auto; }
-.marca strong { font-size: 14px; }
+.assinatura { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
+.itdp { width: 198px; height: auto; display: block; }
 .redes { display: flex; gap: 12px; }
 .redes img { width: 22px; height: 22px; filter: invert(1); opacity: .9; }
 .redes a:hover img { opacity: 1; filter: invert(84%) sepia(28%) saturate(700%) hue-rotate(90deg); }

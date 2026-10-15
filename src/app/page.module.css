@@ -21,19 +21,9 @@
 .textoSobre { border-left: 1px solid var(--verde-500); padding-left: 16px; max-width: 1000px; font-size: 18px; font-weight: 300; line-height: 1.55; }
 .textoSobre p:last-child { margin: 0; }
 
-/* Logos em faixa branca (os arquivos originais têm fundo claro) */
-.logos { background: #fff; color: #808080; padding: 40px 20px 32px; }
-.grupoLogos { max-width: 1100px; margin: 0 auto 24px; }
-.grupoLogos h3 { display: flex; align-items: center; gap: 24px; font-size: 16px; font-weight: 400; margin-bottom: 16px; }
-.grupoLogos h3::before, .grupoLogos h3::after { content: ""; flex: 1; height: 1px; background: #d3d3d3; }
-.grupoLogos > div { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 16px 48px; }
-.grupoLogos img { height: 56px; width: auto; display: block; }
-.grupoLogos a:hover img { opacity: .75; }
-
 @media (max-width: 900px) {
   .hero { padding-top: 64px; }
   .titulo { font-size: 30px; max-width: 100%; }
   .subtitulo { font-size: 17px; }
   .apresentacao { width: 100%; }
-  .grupoLogos img { height: 44px; }
 }

@@ -6,29 +6,6 @@ import { capitais, listaIndicadores, rms } from '@/lib/dados';
 import { asset } from '@/lib/formato';
 import styles from './page.module.css';
 
-type Logo = [nome: string, arquivo: string, site: string];
-const LOGOS: { grupo: string; logos: Logo[] }[] = [
-  { grupo: 'Realização', logos: [['ITDP Brasil', 'itdp.jpg', 'https://itdpbrasil.org/']] },
-  {
-    grupo: 'Apoio', logos: [
-      ['Instituto Clima e Sociedade', 'ics.png', 'https://www.climaesociedade.org/'],
-      ['Oak Foundation', 'oak-foundation.png', 'https://oakfnd.org/'],
-    ],
-  },
-  {
-    grupo: 'Parceiros', logos: [
-      ['Multiplicidade Mobilidade Urbana', 'multiplicidade.png', 'https://multiplicidademobilidade.com.br/'],
-      ['Ameciclo', 'ameciclo.jpg', 'https://www.ameciclo.org/'],
-      ['União de Ciclistas do Brasil', 'ucb.jpg', 'https://www.uniaodeciclistas.org.br/'],
-      ['Casa Fluminense', 'casa-fluminense.png', 'https://casafluminense.org.br/'],
-      ['Nossa BH', 'nossabh.png', 'https://nossabh.org.br/'],
-      ['Instituto de Energia e Meio Ambiente', 'iema.png', 'https://energiaeambiente.org.br/'],
-      ['Idec', 'idec.jpg', 'https://idec.org.br/'],
-      ['Habitat Geo', 'habitat.png', 'https://www.habitatgeo.com.br/'],
-    ],
-  },
-];
-
 export default function Home() {
   const locais = [
     ...capitais.map(c => ({ rotulo: `${c.nome} (${c.uf})`, href: `/capitais/${c.slug}/` })),
@@ -77,21 +54,6 @@ export default function Home() {
             </p>
           </div>
         </div>
-      </section>
-
-      <section className={styles.logos} aria-label="Realização, apoio e parceiros">
-        {LOGOS.map(({ grupo, logos }) => (
-          <div key={grupo} className={styles.grupoLogos}>
-            <h3><span>{grupo}</span></h3>
-            <div>
-              {logos.map(([nome, arquivo, site]) => (
-                <a key={nome} href={site} target="_blank" rel="noopener" title={nome}>
-                  <img src={asset('/img/logos/' + arquivo)} alt={nome} />
-                </a>
-              ))}
-            </div>
-          </div>
-        ))}
       </section>
     </>
   );
