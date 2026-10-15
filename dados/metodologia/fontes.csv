@@ -13,3 +13,4 @@ salario-minimo;Salário mínimo (Ipeadata);Série mensal MTE12_SALMIN12;http://w
 anp;Vendas de combustíveis (ANP);Vendas de gasolina, etanol e diesel por município;https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos
 iema;Instituto de Energia e Meio Ambiente (IEMA);Fatores de emissão e método de cálculo;https://energiaeambiente.org.br/
 censo2010-entorno;Censo Demográfico 2010 — entorno dos domicílios (IBGE);SIDRA, tabela 3359: características do entorno dos domicílios;https://sidra.ibge.gov.br/tabela/3359
+pesquisas-od;Pesquisas origem-destino e planos de transporte (curadoria MobiliDADOS);Números publicados pelas pesquisas OD e PDTUs de cada RM e capital, com o PDF de cada estudo;https://drive.google.com/drive/folders/1glPOAR42caIyV2T_wjeWsc1V-T-RwUCh
