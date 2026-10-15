@@ -69,16 +69,22 @@ export function ultimoValor(nivel: Nivel, codigo: string, local: string): { ano:
   return { ano, valor: serie[ano] };
 }
 
+/** Resumo da ficha metodológica de um código (só fichas prontas), para o botão "i" das listas */
+export function resumoFicha(codigo: string) {
+  const f = fichaDoCodigo(codigo);
+  return f && !f.pendente ? { resumo: f.resumo, endereco: enderecoFicha(f) } : undefined;
+}
+
 /** Linhas da lista "Busca por indicadores" de um local, com o valor mais recente */
 export function indicadoresDoLocal(nivel: Nivel, local: string) {
   return listaIndicadores
     .filter(i => i.codigos[nivel])
     .map(i => {
       const u = ultimoValor(nivel, i.codigos[nivel]!, local);
-      const f = fichaDoCodigo(i.codigos[nivel]!);
+      const ficha = resumoFicha(i.codigos[nivel]!);
       return {
         slug: i.slug, nome: i.nome, unidade: i.unidade, ...temaDoIndicador(i.slug), ...(u && { valor: u.valor, ano: u.ano }),
-        ...(f && !f.pendente && { ficha: { resumo: f.resumo, endereco: enderecoFicha(f) } }),
+        ...(ficha && { ficha }),
       };
     });
 }

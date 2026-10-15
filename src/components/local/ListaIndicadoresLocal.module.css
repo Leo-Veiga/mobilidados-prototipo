@@ -13,26 +13,13 @@
 .lista a svg { flex-shrink: 0; }
 .nome { flex: 1; }
 .valor { text-align: right; white-space: nowrap; }
-.botaoInfo {
-  flex-shrink: 0; width: 28px; height: 28px; margin: 0 4px 0 8px; border-radius: 50%; cursor: pointer;
-  border: 1px solid var(--texto-2); background: none; color: var(--texto-2);
-  font: italic 700 14px Georgia, serif;
-}
-.botaoInfo:hover, .botaoInfo[aria-expanded="true"] { border-color: var(--verde-300); color: var(--verde-300); }
-.info { width: 100%; margin: 0 8px 8px 40px; padding: 10px 14px; border-left: 2px solid var(--verde-300); background: #1a1a1a; font-size: 14px; }
-.info p { margin: 0 0 6px; }
-.info a { display: inline; padding: 0; color: var(--verde-300); font-weight: 600; }
-.info a:hover { background: none; text-decoration: underline; }
 .valor small { color: var(--texto-2); font-weight: 300; font-size: 13px; }
 
 @media (max-width: 600px) {
   .painel { padding: 16px; }
   .cabecalho span:last-child { display: none; }
   .lista a { flex-wrap: wrap; }
-  .valor { width: 100%; text-align: left; padding-left: 32px; }
-  .botaoInfo { width: 36px; height: 36px; margin: 0; }
-  .info { margin-left: 8px; }
-}
+  .valor { width: 100%; text-align: left; padding-left: 32px; }}
 
 /* Grupos por tema (mesmos temas da ficha em PDF) */
 .tema { margin-top: 20px; }

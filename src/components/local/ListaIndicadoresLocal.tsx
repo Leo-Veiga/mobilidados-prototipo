@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import { IconeBusca, IconeEqualizador } from '@/components/Icones';
+import { BotaoInfo, PainelInfo, type ResumoFicha } from '@/components/InfoFicha';
 import { fmtDado } from '@/lib/formato';
 import { agruparPorTema } from '@/lib/temas';
 import styles from './ListaIndicadoresLocal.module.css';
@@ -17,7 +18,7 @@ export interface ItemIndicador {
   valor?: number;
   ano?: number;
   /** Resumo e endereço da ficha metodológica (ausente se a ficha não estiver pronta) */
-  ficha?: { resumo: string; endereco: string };
+  ficha?: ResumoFicha;
 }
 
 const semAcento = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
@@ -61,19 +62,8 @@ export default function ListaIndicadoresLocal({ itens, local }: { itens: ItemInd
                       : <small>sem dado</small>}
                   </span>
                 </Link>
-                {i.ficha && (
-                  <button
-                    type="button" className={styles.botaoInfo} aria-expanded={info === i.slug} aria-controls={`info-${i.slug}`}
-                    aria-label={`O que é: ${i.nome}`} title="O que é este indicador"
-                    onClick={() => setInfo(info === i.slug ? null : i.slug)}
-                  >i</button>
-                )}
-                {i.ficha && info === i.slug && (
-                  <div id={`info-${i.slug}`} className={styles.info}>
-                    <p>{i.ficha.resumo}</p>
-                    <Link href={i.ficha.endereco}>Como é calculado →</Link>
-                  </div>
-                )}
+                {i.ficha && <BotaoInfo id={i.slug} nome={i.nome} aberto={info === i.slug} aoClicar={() => setInfo(info === i.slug ? null : i.slug)} />}
+                {i.ficha && info === i.slug && <PainelInfo id={i.slug} ficha={i.ficha} />}
               </li>
             ))}
           </ul>

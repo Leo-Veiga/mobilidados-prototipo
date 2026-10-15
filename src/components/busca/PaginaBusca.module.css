@@ -16,6 +16,10 @@
 /* Indicadores */
 .indicadores { max-width: 950px; margin: 0 auto; padding: 8px 8px 0; }
 .listaIndicadores { list-style: none; padding: 0; margin: 32px 0 0; }
+.item { display: flex; flex-wrap: wrap; align-items: center; }
+.item > a { flex: 1; min-width: 0; }
+.cabecalho { display: flex; justify-content: space-between; font-weight: 700; margin-top: 32px; padding: 0 48px 8px 8px; border-bottom: 1px solid var(--borda); }
+.cabecalho span:last-child { font-weight: 600; }
 .listaIndicadores a { display: flex; align-items: center; gap: 12px; padding: 12px 8px; border-radius: var(--raio); }
 .listaIndicadores a:hover { background: #222; }
 .listaIndicadores a svg { flex-shrink: 0; }
