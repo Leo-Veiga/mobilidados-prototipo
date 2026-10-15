@@ -51,15 +51,15 @@ export const TEMAS: Tema[] = [
       {
         id: 'pnt', nome: 'População perto do transporte de média e alta capacidade (PNT)', principal: 'PNT',
         recortes: [
-          { nome: 'Por renda', partes: [['PNT_ATE_1/2', 'Até ½ SM'], ['PNT_1/2_1', '½ a 1 SM'], ['PNT_1_3', '1 a 3 SM'], ['PNT_ACIMA_3', 'Acima de 3 SM']] },
-          { nome: 'Por gênero e raça', partes: [['PNT', 'População total'], ['PNT_MULHERES_NEGRAS', 'Mulheres negras'], ['PNT_MULHERES_1SM', 'Mulheres até 1 SM']] },
+          { nome: 'Por renda do responsável', partes: [['PNT_RESP_ATE_1/2', 'Até ½ SM'], ['PNT_RESP_1/2_1', '½ a 1 SM'], ['PNT_RESP_1_3', '1 a 3 SM'], ['PNT_RESP_ACIMA_3', 'Acima de 3 SM']] },
+          { nome: 'Por gênero e raça', partes: [['PNT', 'População total'], ['PNT_MULHERES_NEGRAS', 'Mulheres negras']] },
         ],
       },
       {
         id: 'pnb', nome: 'População perto de ciclovias (PNB)', principal: 'PNB',
         recortes: [
-          { nome: 'Por renda', partes: [['PNB_ATE_1/2', 'Até ½ SM'], ['PNB_1/2_1', '½ a 1 SM'], ['PNB_1_3', '1 a 3 SM'], ['PNB_ACIMA_3', 'Acima de 3 SM']] },
-          { nome: 'Por gênero e raça', partes: [['PNB', 'População total'], ['PNB_MULHERES_NEGRAS', 'Mulheres negras'], ['PNB_MULHERES_1SM', 'Mulheres até 1 SM'], ['PNB_MULHERES_ATE_2SM', 'Mulheres chefes até 2 SM (série antiga)']] },
+          { nome: 'Por renda do responsável', partes: [['PNB_RESP_ATE_1/2', 'Até ½ SM'], ['PNB_RESP_1/2_1', '½ a 1 SM'], ['PNB_RESP_1_3', '1 a 3 SM'], ['PNB_RESP_ACIMA_3', 'Acima de 3 SM']] },
+          { nome: 'Por gênero e raça', partes: [['PNB', 'População total'], ['PNB_MULHERES_NEGRAS', 'Mulheres negras']] },
         ],
       },
       { id: 'tma-ciclo', nome: 'Estações de média e alta capacidade perto de ciclovias', principal: 'TMA_INFRA_CICLO', recortes: [] },
@@ -83,7 +83,7 @@ export const TEMAS: Tema[] = [
     indicadores: [
       {
         id: 'tarifa', nome: 'Peso da tarifa na renda', principal: 'TARIFAxSM',
-        recortes: [{ nome: 'Por renda de referência', partes: [['TARIFAxSM', 'Salário mínimo'], ['TARIFAX RENDA_DOM_NEGRA', 'Trabalhadora doméstica negra']] }],
+        recortes: [],
       },
     ],
   },

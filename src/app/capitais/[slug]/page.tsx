@@ -4,7 +4,7 @@ import BotaoDados from '@/components/BotaoDados';
 import CabecalhoPagina from '@/components/CabecalhoPagina';
 import FichaCapital from '@/components/capitais/FichaCapital';
 import ListaIndicadoresLocal from '@/components/local/ListaIndicadoresLocal';
-import { capitais, capitalPorSlug, indicadoresDoLocal } from '@/lib/dados';
+import { capitais, capitalPorSlug, dadosFicha, estacoesTma, indicadoresDoLocal } from '@/lib/dados';
 import { asset } from '@/lib/formato';
 import styles from './pagina.module.css';
 
@@ -44,7 +44,7 @@ export default async function PaginaCapital({ params }: Params) {
         {c.texto && <p className={styles.apresentacao}>{c.texto}</p>}
 
         <section className={styles.bloco} aria-label="Dados da capital">
-          <FichaCapital c={c} />
+          <FichaCapital c={c} ficha={dadosFicha('capitais', c.slug)} tma={estacoesTma('capitais', c.slug)} />
           <div className="centro"><BotaoDados href={asset('/dados/capitais-informacoes-gerais.csv')} /></div>
         </section>
 

@@ -3,7 +3,7 @@
 import { join } from 'node:path';
 import { Document, Font, Image, Link, Page, StyleSheet, Text, View, renderToBuffer } from '@react-pdf/renderer';
 import type { DadosFicha, LinhaIndicador, SerieGrafico } from './ficha';
-import { MODOS_TMA } from './tipos';
+import { MODOS_TMA, type TextoAno, type ValorAno } from './tipos';
 
 const RAIZ = process.cwd();
 Font.register({
@@ -55,9 +55,12 @@ const num = (v: number | null | undefined, casas = 1) =>
 /** Valor de indicador: sempre com 1 casa decimal, como no site */
 const dado = (v: number | null | undefined) =>
   v == null || Number.isNaN(v) ? 'sem dado' : v.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
-const pct = (v: number | null | undefined) => (v == null ? 'sem dado' : `${num(v * 100, 0)}%`);
+/** Percentual de 0 a 100 de um dado da ficha */
+const pct = (v: ValorAno) => (v == null ? 'sem dado' : `${num(v.valor, 1)}%`);
+/** Rótulo com o ano do dado: "População (2026)" */
+const comAno = (rotulo: string, v: { ano: number } | null | undefined) => (v ? `${rotulo} (${v.ano})` : rotulo);
 const data = (iso: string) => new Date(iso + 'T12:00:00').toLocaleDateString('pt-BR');
-const valido = (v: string) => Boolean(v) && !['-', 'NA', 'N/A'].includes(v.trim());
+const valido = (v: string | undefined) => Boolean(v) && !['-', 'NA', 'N/A'].includes(v!.trim());
 const NOME_MODO: Record<string, string> = { barca: 'Barca', brt: 'BRT', metro: 'Metrô', monotrilho: 'Monotrilho', trem: 'Trem', vlt: 'VLT' };
 
 function Item({ valor, rotulo }: { valor: string; rotulo: string }) {
@@ -106,7 +109,11 @@ function Colunas({ serie }: { serie: SerieGrafico }) {
 
 function FichaDocumento({ d, url, logo }: { d: DadosFicha; url: string; logo: string }) {
   const c = d.capital;
-  const tma = MODOS_TMA.filter(m => c.tma[m].estacoes || c.tma[m].km);
+  const v = d.valores;
+  const mob = c.mobilidade;
+  const tma = MODOS_TMA.filter(m => d.tma.modos[m] || c.tmaKm[m]);
+  const contrato = [mob.CONTRATO_INICIO && `desde ${mob.CONTRATO_INICIO.valor}`, mob.CONTRATO_PRAZO?.valor].filter(Boolean).join(', ');
+  const texto = (t: TextoAno | undefined, detalhe?: string) => (t ? (detalhe ? `${t.valor} (${detalhe})` : t.valor) : 'sem dado');
   return (
     <Document title={`Ficha da cidade — ${c.nome} (${c.uf}) — MobiliDADOS`} author="MobiliDADOS / ITDP Brasil" language="pt-BR">
       <Page size="A4" style={s.pagina}>
@@ -122,29 +129,34 @@ function FichaDocumento({ d, url, logo }: { d: DadosFicha; url: string; logo: st
 
         <Text style={s.secao}>Informações gerais</Text>
         <View style={s.grade}>
-          <Item valor={`${num(c.area)} km²`} rotulo="Área" />
-          <Item valor={num(c.pop2016, 0)} rotulo="População (2016)" />
-          <Item valor={`${num(c.densidadeUrbana, 0)} hab/km²`} rotulo="Densidade urbana" />
-          <Item valor={`${num(c.idhm, 3)}${c.faixaIdhm ? ` (${c.faixaIdhm})` : ''}`} rotulo="IDHM" />
-          <Item valor={`R$ ${num(c.renda, 0)}`} rotulo="Renda média domiciliar per capita" />
-          <Item valor={pct(c.percDr1sm)} rotulo="Domicílios com renda abaixo de 1 salário mínimo per capita" />
-          <Item valor={pct(c.percNegros)} rotulo="População negra" />
-          <Item valor={pct(c.percMulheres)} rotulo="Mulheres na população" />
-          <Item valor={pct(c.percHomens)} rotulo="Homens na população" />
+          <Item valor={num(v.POP?.valor, 0)} rotulo={comAno('População', v.POP)} />
+          <Item valor={`${num(v.AREA_KM2?.valor)} km²`} rotulo={comAno('Área', v.AREA_KM2)} />
+          <Item valor={`${num(v.DENS_URB?.valor, 0)} hab/km²`} rotulo={comAno('Densidade urbana', v.DENS_URB)} />
+          <Item valor={`${num(c.idhm, 3)}${c.faixaIdhm ? ` (${c.faixaIdhm})` : ''}`} rotulo="IDHM (2010)" />
+          <Item valor={`R$ ${num(v.RENDA_MED_PC?.valor, 0)}`} rotulo={comAno('Renda média domiciliar per capita', v.RENDA_MED_PC)} />
+          <Item valor={pct(v.PERC_ATE_1SM_PC)} rotulo={comAno('Moradores com renda domiciliar per capita até 1 salário mínimo', v.PERC_ATE_1SM_PC)} />
+          <Item valor={pct(v.PERC_NEGROS)} rotulo={comAno('População negra', v.PERC_NEGROS)} />
+          <Item valor={pct(v.PERC_MULHERES)} rotulo={comAno('Mulheres na população', v.PERC_MULHERES)} />
+          <Item valor={pct(v.PERC_HOMENS)} rotulo={comAno('Homens na população', v.PERC_HOMENS)} />
         </View>
 
         <Text style={s.secao}>Mobilidade</Text>
         <View style={s.grade}>
-          <Item valor={valido(c.laiContratoPrazo) ? c.laiContratoPrazo : c.laiContrato || 'sem dado'} rotulo={valido(c.laiContratoInicio) ? `Contrato de concessão dos ônibus (desde ${c.laiContratoInicio})` : 'Contrato de concessão dos ônibus'} />
-          <Item valor={valido(c.laiGpsFrota) && c.laiGpsFrota !== c.laiGps ? c.laiGpsFrota : c.laiGps || 'sem dado'} rotulo="Frota de ônibus com GPS" />
-          <Item valor={c.laiGtfs || 'sem dado'} rotulo="Dados abertos de horários (GTFS)" />
-          <Item valor={valido(c.planmobAno) ? `${c.planmobStatus} (${c.planmobAno})` : c.planmobStatus || 'sem dado'} rotulo="Plano de mobilidade" />
+          <Item valor={texto(mob.CONTRATO, contrato)} rotulo={comAno('Ônibus com contrato licitado', mob.CONTRATO)} />
+          <Item valor={texto(mob.GPS_PUBLICO, mob.GPS_FROTA && `${mob.GPS_FROTA.valor} da frota com GPS`)} rotulo={comAno('GPS dos ônibus público', mob.GPS_PUBLICO)} />
+          <Item valor={texto(mob.GTFS_PUBLICO)} rotulo={comAno('Dados abertos de horários (GTFS)', mob.GTFS_PUBLICO)} />
+          <Item valor={texto(mob.PLANMOB_STATUS, mob.PLANMOB_ANO && `de ${mob.PLANMOB_ANO.valor}`)} rotulo={comAno('Plano de mobilidade', mob.PLANMOB_STATUS)} />
           {tma.length
-            ? tma.map(m => <Item key={m} valor={`${num(c.tma[m].estacoes, 0)} estações · ${num(c.tma[m].km)} km`} rotulo={`Rede de ${NOME_MODO[m]}`} />)
+            ? tma.map(m => (
+              <Item
+                key={m} rotulo={`Rede de ${NOME_MODO[m]}`}
+                valor={`${num(d.tma.modos[m] ?? 0, 0)} estações${d.tma.ano ? ` (${d.tma.ano})` : ''}${c.tmaKm[m] ? ` · ${num(c.tmaKm[m])} km` : ''}`}
+              />
+            ))
             : <Item valor="Não possui" rotulo="Rede de transporte de média e alta capacidade" />}
         </View>
         <Text style={s.nota}>
-          Fontes informadas na base: {[c.laiContratoFonte, c.laiGpsFonte, c.laiGtfsFonte, c.planmobFonte].filter(valido).join(' · ') || '—'} · Rede de média e alta capacidade: ITDP Brasil.
+          Fontes informadas na base: {[mob.CONTRATO, mob.GPS_PUBLICO, mob.GTFS_PUBLICO, mob.PLANMOB_STATUS].map(t => t?.fonte).filter(valido).join(' · ') || '—'} · Rede de média e alta capacidade: ITDP Brasil (extensão em km sem ano informado).
         </Text>
 
         <Text style={s.secao}>Evolução de indicadores selecionados</Text>

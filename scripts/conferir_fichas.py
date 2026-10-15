@@ -21,6 +21,15 @@ C = json.load(open(os.path.join(RAIZ, 'src/data/indicadores-capitais.json'), enc
 caps = json.load(open(os.path.join(RAIZ, 'src/data/capitais.json'), encoding='utf-8'))
 
 
+# Dados de apresentação da ficha (população, área, perfil, estações de TMA): não entram na tabela de
+# indicadores do PDF. Mesma lista de CODIGOS_FICHA em src/lib/indicadores.ts.
+DADOS_FICHA = {
+    'POP', 'AREA_KM2', 'AREA_URB_KM2', 'DENS', 'DENS_URB', 'PERC_NEGROS', 'PERC_BRANCOS', 'PERC_MULHERES',
+    'PERC_HOMENS', 'RENDA_MED_PC', 'PERC_ATE_1SM_PC',
+    *(f'TMA_ESTACOES_{m}' for m in ('BARCA', 'BRT', 'METRO', 'MONOTRILHO', 'TREM', 'VLT')),
+}
+
+
 def br(v):
     """Mesmo formato do PDF: sempre 1 casa decimal (5 arredonda para cima), vírgula, ponto de milhar."""
     d = Decimal(repr(v)).quantize(Decimal('0.1'), rounding=ROUND_HALF_UP)
@@ -32,7 +41,7 @@ for c in caps:
     pdf = os.path.join(RAIZ, 'out', 'capitais', c['slug'], 'ficha.pdf')
     texto = re.sub(r'\s+', ' ', ' '.join(p.extract_text() or '' for p in PdfReader(pdf).pages))
     for cod, series in C.items():
-        if cod == 'POP' or c['slug'] not in series:
+        if cod in DADOS_FICHA or c['slug'] not in series:
             continue
         ano = max(series[c['slug']], key=int)
         v = series[c['slug']][ano]

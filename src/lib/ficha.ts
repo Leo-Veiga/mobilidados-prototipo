@@ -1,9 +1,9 @@
 /* Ficha da cidade (protótipo): reúne, para uma capital, os valores que vão para o PDF.
    Só cálculos sobre a base — nenhum texto livre. Toda frase do PDF é um modelo fixo
    preenchido com estes valores, para não haver conteúdo inventado. */
-import { capitais, indicadoresCapitais, meta } from './dados';
+import { capitais, dadosFicha as valoresFicha, estacoesTma, indicadoresCapitais, meta } from './dados';
 import { rotulo, unidade } from './indicadores';
-import type { Capital } from './tipos';
+import type { Capital, ModoTma, ValorAno } from './tipos';
 
 export { TEMAS } from './temas';
 import { TEMAS } from './temas';
@@ -33,6 +33,10 @@ export interface SerieGrafico {
 
 export interface DadosFicha {
   capital: Capital;
+  /** População, área, densidade, perfil e renda: valor mais recente, com o ano */
+  valores: Record<string, ValorAno>;
+  /** Estações de TMA por modo no ano mais recente do mapa TMA */
+  tma: { ano: number | null; modos: Partial<Record<ModoTma, number>> };
   dadosAtualizadosEm: string;
   geradaEm: string;
   secoes: { titulo: string; linhas: LinhaIndicador[] }[];
@@ -86,6 +90,7 @@ export function dadosFicha(slug: string): DadosFicha | null {
 
   return {
     capital, secoes, semDado, series,
+    valores: valoresFicha('capitais', slug), tma: estacoesTma('capitais', slug),
     dadosAtualizadosEm: meta.geradoEm,
     geradaEm: new Date().toISOString().slice(0, 10),
   };

@@ -1,8 +1,8 @@
 ﻿codigo;nome;unidade
 TEMPO_MED;Tempo médio de viagem casa-trabalho;min
 PERC_ACIMA_1H;Pessoas que gastam mais de 1h no trajeto casa-trabalho;%
-PERC_CALÇADAS;Domicílios com calçadas no entorno;%
-PERC_RAMPAS;Domicílios com rampas no entorno;%
+PERC_CALÇADAS;Domicílios com calçada no entorno;%
+PERC_RAMPAS;Domicílios com rampa para cadeirante no entorno;%
 PERC_A PÉ;Viagens a pé;%
 PERC_A PE;Viagens a pé;%
 PERC_BICI;Viagens de bicicleta;%
@@ -22,23 +22,34 @@ TX_INTERN_CIC;Taxa de internações de ciclistas;por 100 mil hab.
 TX_INTERN_AUTO;Taxa de internações de ocupantes de automóveis;por 100 mil hab.
 TX_INTERN_MOTO;Taxa de internações de motociclistas;por 100 mil hab.
 TARIFAxSM;Comprometimento do salário mínimo com a tarifa de transporte;%
-TARIFAX RENDA_DOM_NEGRA;Comprometimento da renda de trabalhadora doméstica negra com a tarifa;%
 PNT;População próxima de transporte de média e alta capacidade (PNT);%
-PNT_ATE_1/2;PNT — renda até ½ salário mínimo;%
-PNT_1/2_1;PNT — renda de ½ a 1 salário mínimo;%
-PNT_1_3;PNT — renda de 1 a 3 salários mínimos;%
-PNT_ACIMA_3;PNT — renda acima de 3 salários mínimos;%
 PNT_MULHERES_NEGRAS;PNT — mulheres negras;%
-PNT_MULHERES_1SM;PNT — mulheres com renda até 1 salário mínimo;%
 PNB;População próxima da infraestrutura cicloviária (PNB);%
-PNB_ATE_1/2;PNB — renda até ½ salário mínimo;%
-PNB_1/2_1;PNB — renda de ½ a 1 salário mínimo;%
-PNB_1_3;PNB — renda de 1 a 3 salários mínimos;%
-PNB_ACIMA_3;PNB — renda acima de 3 salários mínimos;%
 PNB_MULHERES_NEGRAS;PNB — mulheres negras;%
-PNB_MULHERES_ATE_2SM;PNB — mulheres responsáveis por domicílio com renda até 2 SM;%
-PNB_MULHERES_1SM;PNB — mulheres com renda até 1 salário mínimo;%
 TMA_INFRA_CICLO;Estações de média e alta capacidade próximas de ciclovias (300 m);%
-INFRA_CICLO_ESTB_SAÚDE;Estabelecimentos de saúde próximos de ciclovias (300 m);%
 PERC_MORTE_NEGROS;Percentual de negros entre as mortes no trânsito;%
 POP;População;habitantes
+PNT_RESP_ATE_1/2;PNT — domicílios com renda do responsável até ½ salário mínimo por morador;%
+PNT_RESP_1/2_1;PNT — domicílios com renda do responsável de ½ a 1 salário mínimo por morador;%
+PNT_RESP_1_3;PNT — domicílios com renda do responsável de 1 a 3 salários mínimos por morador;%
+PNT_RESP_ACIMA_3;PNT — domicílios com renda do responsável acima de 3 salários mínimos por morador;%
+PNB_RESP_ATE_1/2;PNB — domicílios com renda do responsável até ½ salário mínimo por morador;%
+PNB_RESP_1/2_1;PNB — domicílios com renda do responsável de ½ a 1 salário mínimo por morador;%
+PNB_RESP_1_3;PNB — domicílios com renda do responsável de 1 a 3 salários mínimos por morador;%
+PNB_RESP_ACIMA_3;PNB — domicílios com renda do responsável acima de 3 salários mínimos por morador;%
+AREA_KM2;Área territorial;km²
+AREA_URB_KM2;Área urbanizada;km²
+DENS;Densidade demográfica;hab/km²
+DENS_URB;Densidade urbana;hab/km²
+PERC_NEGROS;População negra (pretos e pardos);%
+PERC_BRANCOS;População branca;%
+PERC_MULHERES;Mulheres na população;%
+PERC_HOMENS;Homens na população;%
+RENDA_MED_PC;Renda média domiciliar per capita;R$
+PERC_ATE_1SM_PC;Moradores com renda domiciliar per capita até 1 salário mínimo;%
+TMA_ESTACOES_BARCA;Estações de barca;estações
+TMA_ESTACOES_BRT;Estações de BRT;estações
+TMA_ESTACOES_METRO;Estações de metrô;estações
+TMA_ESTACOES_MONOTRILHO;Estações de monotrilho;estações
+TMA_ESTACOES_TREM;Estações de trem;estações
+TMA_ESTACOES_VLT;Estações de VLT;estações

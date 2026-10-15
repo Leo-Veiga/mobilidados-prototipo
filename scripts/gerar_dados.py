@@ -42,11 +42,19 @@ COLUNAS_ID = {'CD_UF', 'UF', 'CD_RM', 'RM', 'ANO', 'CD_MUN', 'COD_MUN6', 'CAPITA
 
 # Estrutura mínima que a planilha precisa ter
 COLUNAS_OBRIGATORIAS = {
-    'Info_gerais_capitais': {'CAPITAL', 'UF', 'TXT APRESENTACAO', 'Área total (km²)', 'Pop_2016', 'IDH-M'},
+    'Info_gerais_capitais': {'CAPITAL', 'UF', 'TXT APRESENTACAO', 'IDH-M'},
     'Info_gerais_RMs': {'SIGLA', 'RM', 'UF', 'TXT APRESENTACAO'},
     'Indicadores_capitais': {'CAPITAIS', 'ANO'},
     'Indicadores_RMs': {'RM', 'ANO'},
 }
+# Ficha da capital (aba Mobilidade): um campo em texto por linha, com ano e fonte
+ABA_FICHA_MOB = 'Ficha_mobilidade_capitais'
+COLUNAS_FICHA_MOB = {'CD_MUN', 'ANO', 'CAMPO', 'VALOR', 'FONTE'}
+CAMPOS_MOB = ['CONTRATO', 'CONTRATO_INICIO', 'CONTRATO_PRAZO', 'GTFS_PUBLICO', 'GPS_PUBLICO', 'GPS_FROTA',
+              'PLANMOB_STATUS', 'PLANMOB_ANO']
+# Detalhes que só valem no mesmo ano do campo principal (ex.: início do contrato vigente em 2025)
+CAMPO_PRINCIPAL = {'CONTRATO_INICIO': 'CONTRATO', 'CONTRATO_PRAZO': 'CONTRATO', 'GPS_FROTA': 'GPS_PUBLICO',
+                   'PLANMOB_ANO': 'PLANMOB_STATUS'}
 TOTAL_CAPITAIS = 27
 ANO_MIN, ANO_MAX = 1990, 2100
 
@@ -128,6 +136,10 @@ def validar_estrutura(wb):
             erros.append(f'Aba "{aba}": faltam as colunas ' + ', '.join(f'"{c}"' for c in faltando) + '.')
         elif not ler(wb, aba):
             erros.append(f'Aba "{aba}" não tem nenhuma linha de dados.')
+    if ABA_FICHA_MOB in wb.sheetnames:
+        faltando = sorted(COLUNAS_FICHA_MOB - colunas(wb, ABA_FICHA_MOB))
+        if faltando:
+            erros.append(f'Aba "{ABA_FICHA_MOB}": faltam as colunas ' + ', '.join(f'"{c}"' for c in faltando) + '.')
     if erros:
         raise ErroPlanilha(erros)
 
@@ -187,18 +199,37 @@ def ler_rms(wb):
         rms.append({
             'slug': s, 'sigla': sig, 'nome': txt(r['RM']), 'curto': NOME_CURTO[s], 'uf': txt(r['UF']),
             'lat': num(r['LAT']), 'lon': num(r['LONG']), 'texto': txt(r['TXT APRESENTACAO']),
-            'area': num(r.get('Área total (km²)')), 'areaUrbana': num(r.get('Área urbana (km²)')),
-            'pop2016': num(r.get('Pop_2016')), 'densidade': num(r.get('Densidade (hab./km²)')),
-            'densidadeUrbana': num(r.get('Densidade urbana (hab./km²)')), 'idhm': num(r.get('IDHM')),
-            'faixaIdhm': txt(r.get('Faixa do IDHM')), 'renda': num(r.get('Renda média')),
-            'percDr1sm': num(r.get('Perc_DR_<1SM')), 'percNegros': num(r.get('Perc_Negros')),
-            'percMulheres': num(r.get('Perc_Mulheres')),
+            'idhm': num(r.get('IDHM')), 'faixaIdhm': txt(r.get('Faixa do IDHM')),
         })
     rms.sort(key=lambda x: list(RMS.values()).index(x['slug']))
     return rms
 
 
+def ler_ficha_mob(wb):
+    """{código IBGE: {campo: {valor, ano, fonte}}} com o ano mais recente de cada campo."""
+    if ABA_FICHA_MOB not in wb.sheetnames:
+        return {}
+    todos = {}
+    for r in ler(wb, ABA_FICHA_MOB):
+        cod, ano, campo, valor = num(r.get('CD_MUN')), num(r.get('ANO')), txt(r.get('CAMPO')), txt(r.get('VALOR'))
+        if cod is None or ano is None or campo not in CAMPOS_MOB or not valor:
+            continue
+        todos.setdefault(cod, {}).setdefault(campo, {})[ano] = {'valor': valor, 'ano': ano, 'fonte': txt(r.get('FONTE'))}
+    out = {}
+    for cod, campos in todos.items():
+        ficha = {}
+        for campo in CAMPOS_MOB:
+            anos = campos.get(campo, {})
+            principal = CAMPO_PRINCIPAL.get(campo)
+            ano = ficha[principal]['ano'] if principal in ficha else (None if principal else max(anos, default=None))
+            if ano in anos:
+                ficha[campo] = anos[ano]
+        out[cod] = ficha
+    return out
+
+
 def ler_capitais(wb):
+    mob = ler_ficha_mob(wb)
     caps = []
     for r in ler(wb, 'Info_gerais_capitais'):
         nome = txt(r.get('CAPITAL'))
@@ -208,20 +239,10 @@ def ler_capitais(wb):
         caps.append({
             'slug': slug(nome), 'nome': nome, 'uf': txt(g('UF')), 'rm': txt(g('RM')),
             'lat': num(g('LAT')), 'lon': num(g('LONG')), 'texto': txt(g('TXT APRESENTACAO')),
-            'area': num(g('Área total (km²)')), 'areaUrbana': num(g('Área urbana (km²)')),
-            'pop2016': num(g('Pop_2016')), 'densidade': num(g('Densidade (hab./km²)')),
-            'densidadeUrbana': num(g('Densidade urbana (hab./km²)')), 'idhm': num(g('IDH-M')),
-            'faixaIdhm': txt(g('Faixa de IDH-M')), 'renda': num(g('Renda média')),
-            'percDr1sm': num(g('Perc_DR_<1SM')), 'percNegros': num(g('Perc_Negros')),
-            'percMulheres': num(g('Perc_Mulheres')), 'percBrancos': num(g('Perc_Brancos')),
-            'percHomens': num(g('Perc_Homens')),
-            'laiContrato': txt(g('lai_contrato')), 'laiContratoInicio': txt(g('lai_contrato_inicio')),
-            'laiContratoPrazo': txt(g('lai_contrato_prazo')), 'laiContratoFonte': txt(g('lai_contrato_fonte')),
-            'laiGps': txt(g('lai_gps')), 'laiGpsFrota': txt(g('lai_gps_frota')), 'laiGpsFonte': txt(g('lai_gps_fonte')),
-            'laiGtfs': txt(g('lai_gtfs')), 'laiGtfsFonte': txt(g('lai_gtfs_fonte')),
-            'tma': {m: {'estacoes': num(g('tma_estacao_' + m)), 'km': num(g('tma_km_' + m))} for m in MODOS_TMA},
-            'planmobStatus': txt(g('planmob_status')), 'planmobAno': txt(g('planmob_ano_aprovacao')),
-            'planmobFonte': txt(g('planmob_fonte')),
+            'idhm': num(g('IDH-M')), 'faixaIdhm': txt(g('Faixa de IDH-M')),
+            # Estações por modo vêm das séries TMA_ESTACOES_<MODO>; a extensão (km) fica na ficha
+            'tmaKm': {m: num(g('tma_km_' + m)) for m in MODOS_TMA},
+            'mobilidade': mob.get(num(g('CD_MUN')), {}),
         })
     caps.sort(key=lambda c: slug(c['nome']))
     return caps
@@ -285,6 +306,8 @@ def main(caminho):
     if sem_nome:
         avisos.append('Indicadores sem nome em dados/catalogo-indicadores.csv (o site mostrará o código): '
                       + ', '.join(sem_nome))
+    if ABA_FICHA_MOB not in wb.sheetnames:
+        avisos.append(f'Aba "{ABA_FICHA_MOB}" não encontrada: a aba Mobilidade das capitais ficará sem dados.')
     for a in avisos:
         print('AVISO:', a)
 
@@ -297,10 +320,12 @@ def main(caminho):
     salvar_json('rms.json', rms)
     salvar_json('indicadores-rms.json', ind_rms)
 
-    campos = [k for k in caps[0] if k != 'tma']
-    tma = [f'tma_{t}_{m}' for m in MODOS_TMA for t in ('estacoes', 'km')]
-    salvar_csv('capitais-informacoes-gerais.csv', [campos + tma] + [
-        [cel(c[k]) for k in campos] + [cel(c['tma'][m][t]) for m in MODOS_TMA for t in ('estacoes', 'km')] for c in caps])
+    campos = [k for k in caps[0] if k not in ('tmaKm', 'mobilidade')]
+    tma = [f'tma_km_{m}' for m in MODOS_TMA]
+    mob = [(m, k) for m in CAMPOS_MOB for k in ('valor', 'ano', 'fonte')]
+    salvar_csv('capitais-informacoes-gerais.csv', [campos + tma + [m.lower() + ('' if k == 'valor' else '_' + k) for m, k in mob]] + [
+        [cel(c[k]) for k in campos] + [cel(c['tmaKm'][m]) for m in MODOS_TMA]
+        + [cel(c['mobilidade'].get(m, {}).get(k)) for m, k in mob] for c in caps])
     salvar_csv('capitais-indicadores.csv', csv_series(ind_caps, caps, catalogo))
     campos_rm = list(rms[0])
     salvar_csv('rms-informacoes-gerais.csv', [campos_rm] + [[cel(r[k]) for k in campos_rm] for r in rms])
