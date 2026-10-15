@@ -11,6 +11,8 @@ import './globals.css';
 export const metadata: Metadata = {
   title: { default: 'MobiliDADOS', template: '%s | MobiliDADOS' },
   description: 'MobiliDADOS: indicadores e dados abertos de mobilidade urbana para as 27 capitais e 9 maiores regiões metropolitanas do Brasil.',
+  // Protótipo: fora dos buscadores, para não ser confundido com o site oficial
+  robots: { index: false, follow: false },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
