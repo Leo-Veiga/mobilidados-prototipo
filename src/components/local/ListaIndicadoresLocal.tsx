@@ -16,6 +16,8 @@ export interface ItemIndicador {
   /** Valor mais recente neste local (ausente se não houver dado) */
   valor?: number;
   ano?: number;
+  /** Resumo e endereço da ficha metodológica (ausente se a ficha não estiver pronta) */
+  ficha?: { resumo: string; endereco: string };
 }
 
 const semAcento = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
@@ -23,6 +25,7 @@ const semAcento = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLo
 /** Lista de indicadores com o valor mais recente do local e link para a página de cada um */
 export default function ListaIndicadoresLocal({ itens, local }: { itens: ItemIndicador[]; local: string }) {
   const [texto, setTexto] = useState('');
+  const [info, setInfo] = useState<string | null>(null);
   const filtrados = useMemo(() => {
     const t = semAcento(texto.trim());
     return t ? itens.filter(i => semAcento(i.nome).includes(t)) : itens;
@@ -48,7 +51,7 @@ export default function ListaIndicadoresLocal({ itens, local }: { itens: ItemInd
           <h3 className={styles.nomeTema}>{g.tema}</h3>
           <ul className={styles.lista}>
             {g.itens.map(i => (
-              <li key={i.slug}>
+              <li key={i.slug} className={styles.item}>
                 <Link href={`/indicadores/${i.slug}/?local=${local}`}>
                   <IconeEqualizador />
                   <span className={styles.nome}>{i.nome}</span>
@@ -58,6 +61,19 @@ export default function ListaIndicadoresLocal({ itens, local }: { itens: ItemInd
                       : <small>sem dado</small>}
                   </span>
                 </Link>
+                {i.ficha && (
+                  <button
+                    type="button" className={styles.botaoInfo} aria-expanded={info === i.slug} aria-controls={`info-${i.slug}`}
+                    aria-label={`O que é: ${i.nome}`} title="O que é este indicador"
+                    onClick={() => setInfo(info === i.slug ? null : i.slug)}
+                  >i</button>
+                )}
+                {i.ficha && info === i.slug && (
+                  <div id={`info-${i.slug}`} className={styles.info}>
+                    <p>{i.ficha.resumo}</p>
+                    <Link href={i.ficha.endereco}>Como é calculado →</Link>
+                  </div>
+                )}
               </li>
             ))}
           </ul>

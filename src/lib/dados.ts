@@ -6,6 +6,7 @@ import indicadoresCapitaisJson from '@/data/indicadores-capitais.json';
 import indicadoresRmsJson from '@/data/indicadores-rms.json';
 import metaJson from '@/data/meta.json';
 import rmsJson from '@/data/rms.json';
+import { enderecoFicha, fichaDoCodigo } from './metodologia';
 import { GRUPOS_INFRA, rotulo, slugIndicador, unidade } from './indicadores';
 import type { Capital, Catalogo, Indicadores, Nivel, RegiaoMetropolitana } from './tipos';
 import { temaDoIndicador } from './temas';
@@ -74,7 +75,11 @@ export function indicadoresDoLocal(nivel: Nivel, local: string) {
     .filter(i => i.codigos[nivel])
     .map(i => {
       const u = ultimoValor(nivel, i.codigos[nivel]!, local);
-      return { slug: i.slug, nome: i.nome, unidade: i.unidade, ...temaDoIndicador(i.slug), ...(u && { valor: u.valor, ano: u.ano }) };
+      const f = fichaDoCodigo(i.codigos[nivel]!);
+      return {
+        slug: i.slug, nome: i.nome, unidade: i.unidade, ...temaDoIndicador(i.slug), ...(u && { valor: u.valor, ano: u.ano }),
+        ...(f && !f.pendente && { ficha: { resumo: f.resumo, endereco: enderecoFicha(f) } }),
+      };
     });
 }
 
