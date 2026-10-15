@@ -2,13 +2,15 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useEffect, useId, useMemo, useRef, useState } from 'react';
+import { Fragment, useEffect, useId, useMemo, useRef, useState } from 'react';
 import { IconeGrafico, IconeLocal, IconeSeta } from './Icones';
 import styles from './BuscaSelecao.module.css';
 
 export interface OpcaoBusca {
   rotulo: string;
   href: string;
+  /** Título do grupo (ex.: tema do indicador). Opções do mesmo grupo devem vir juntas, na ordem de exibição */
+  grupo?: string;
 }
 
 interface Props {
@@ -69,11 +71,17 @@ export default function BuscaSelecao({ rotulo, placeholder, icone, opcoes, verTo
         <div className={styles.lista}>
           <ul id={`${id}-lista`} role="listbox" aria-label={rotulo}>
             {filtradas.length ? filtradas.map((o, i) => (
-              <li key={o.href} id={`${id}-${i}`} role="option" aria-selected={i === destaque}>
-                <Link href={o.href} onMouseEnter={() => setDestaque(i)}>
-                  {o.rotulo} <IconeSeta tamanho={18} />
-                </Link>
-              </li>
+              <Fragment key={o.href}>
+                {/* Título do grupo antes da primeira opção de cada grupo (não é selecionável) */}
+                {o.grupo && o.grupo !== filtradas[i - 1]?.grupo && (
+                  <li role="presentation" className={styles.grupo}>{o.grupo}</li>
+                )}
+                <li id={`${id}-${i}`} role="option" aria-selected={i === destaque} className={o.grupo ? styles.noGrupo : undefined}>
+                  <Link href={o.href} onMouseEnter={() => setDestaque(i)}>
+                    {o.rotulo} <IconeSeta tamanho={18} />
+                  </Link>
+                </li>
+              </Fragment>
             )) : <li className={styles.nada}>Nenhum resultado para “{texto}”</li>}
           </ul>
           {verTodos && <Link className={styles.verTodos} href={verTodos.href}>{verTodos.rotulo}</Link>}

@@ -4,6 +4,7 @@ import GradeDestaques from '@/components/destaques/GradeDestaques';
 import { destaques } from '@/lib/destaques';
 import { capitais, listaIndicadores, rms } from '@/lib/dados';
 import { asset } from '@/lib/formato';
+import { agruparPorTema, temaDoIndicador } from '@/lib/temas';
 import styles from './page.module.css';
 
 export default function Home() {
@@ -11,7 +12,9 @@ export default function Home() {
     ...capitais.map(c => ({ rotulo: `${c.nome} (${c.uf})`, href: `/capitais/${c.slug}/` })),
     ...rms.map(r => ({ rotulo: `${r.nome} (${r.sigla})`, href: `/regioes-metropolitanas/${r.slug}/` })),
   ];
-  const indicadores = listaIndicadores.map(i => ({ rotulo: i.nome, href: `/indicadores/${i.slug}/` }));
+  // Mesma organização da página de indicadores: agrupados por tema, na ordem dos temas
+  const indicadores = agruparPorTema(listaIndicadores.map(i => ({ ...i, ...temaDoIndicador(i.slug) })))
+    .flatMap(g => g.itens.map(i => ({ rotulo: i.nome, href: `/indicadores/${i.slug}/`, grupo: g.tema })));
 
   return (
     <>

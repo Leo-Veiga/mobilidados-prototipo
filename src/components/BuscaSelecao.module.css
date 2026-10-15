@@ -15,6 +15,9 @@
 .lista li a { display: flex; justify-content: space-between; align-items: center; padding: 8px 20px; font-size: 15px; font-weight: 300; color: #000; }
 .lista li a svg { color: #808080; flex-shrink: 0; }
 .lista li[aria-selected="true"] a { background: #e5e5e5; }
+.lista .grupo { padding: 12px 20px 4px; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--verde-600); }
+.lista .grupo:not(:first-child) { border-top: 1px solid #e5e5e5; margin-top: 4px; }
+.lista .noGrupo a { padding-left: 28px; }
 .nada { padding: 12px 20px; font-size: 14px; color: #555; }
 .verTodos { display: flex; justify-content: center; align-items: center; height: 52px; border-top: 1px solid #e5e5e5; color: var(--verde-600); font-weight: 600; font-size: 15px; }
 .verTodos:hover { background: #e5e5e5; }
