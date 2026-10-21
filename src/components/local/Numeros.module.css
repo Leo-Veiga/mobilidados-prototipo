@@ -3,8 +3,15 @@
 .valor { font-size: 25px; line-height: 1.3; }
 .valor small { font-size: 15px; font-weight: 300; }
 .rotulo { font-size: 11px; text-transform: uppercase; letter-spacing: .03em; margin-top: 4px; color: var(--neutro-200); }
+.fonte { font-size: 12px; font-weight: 300; margin-top: 8px; color: var(--neutro-200); }
+.fonte a { color: var(--verde-300); display: inline-flex; align-items: center; gap: 4px; }
+.fonte a:hover { text-decoration: underline; }
+.colunas { display: grid; grid-template-columns: repeat(var(--colunas), minmax(0, 1fr)); gap: 28px 20px; padding: 16px 0; }
+.colunas .numero { width: auto; display: flex; flex-direction: column; }
+.colunas .fonte { margin-top: auto; padding-top: 8px; } /* fontes alinhadas na mesma altura */
 
 @media (max-width: 600px) {
   .numero { width: calc(50% - 10px); }
+  .colunas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .valor { font-size: 20px; }
 }

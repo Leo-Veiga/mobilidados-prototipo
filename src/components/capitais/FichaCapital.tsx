@@ -22,21 +22,13 @@ function texto(v: TextoAno | undefined, detalhe?: string) {
   return detalhe ? <>{v.valor} <small>{detalhe}</small></> : v.valor;
 }
 
-function Fontes({ fontes }: { fontes: [string, string][] }) {
-  const lista = fontes.filter(([, f]) => valido(f));
-  if (!lista.length) return null;
-  return (
-    <ul className={styles.fontes}>
-      {lista.map(([tema, f]) => (
-        <li key={tema}>
-          <strong>{tema}:</strong>{' '}
-          {/^https?:\/\//.test(f)
-            ? <a href={f} target="_blank" rel="noopener"><IconeLink tamanho={16} /> {dominio(f)}</a>
-            : f}
-        </li>
-      ))}
-    </ul>
-  );
+/** Link curto para a fonte de um dado da ficha de mobilidade (texto sem link aparece como está) */
+function Fonte({ v }: { v: TextoAno | undefined }) {
+  const f = v?.fonte;
+  if (!valido(f)) return null;
+  return /^https?:\/\//.test(f!)
+    ? <a href={f} target="_blank" rel="noopener" title={f}><IconeLink tamanho={14} /> {dominio(f!)}</a>
+    : <>{f}</>;
 }
 
 interface Props {
@@ -52,7 +44,6 @@ export default function FichaCapital({ c, ficha }: Props) {
   const mob = c.mobilidade;
   const contrato = [mob.CONTRATO_INICIO && `desde ${mob.CONTRATO_INICIO.valor}`, mob.CONTRATO_PRAZO?.valor]
     .filter(Boolean).join(', ');
-  const fonteMob = (tema: string, v: TextoAno | undefined): [string, string] => [comAno(tema, v), v?.fonte ?? ''];
 
   return (
     <Abas
@@ -74,25 +65,20 @@ export default function FichaCapital({ c, ficha }: Props) {
           <Numero valor={pct100(ficha.PERC_HOMENS)} rotulo={comAno('Homens na população', ficha.PERC_HOMENS)} />
         </Grade>
       ) : (
-        <>
-          <Grade>
-            <Numero valor={texto(mob.CONTRATO, contrato)} rotulo={comAno('Ônibus com contrato licitado', mob.CONTRATO)} />
-            <Numero valor={texto(mob.GTFS_PUBLICO)} rotulo={comAno('GTFS público', mob.GTFS_PUBLICO)} />
-            <Numero
-              valor={texto(mob.GPS_PUBLICO, mob.GPS_FROTA && `${mob.GPS_FROTA.valor} da frota com GPS`)}
-              rotulo={comAno('GPS dos ônibus público', mob.GPS_PUBLICO)}
-            />
-            <Numero
-              valor={texto(mob.PLANMOB_STATUS, mob.PLANMOB_ANO && `de ${mob.PLANMOB_ANO.valor}`)}
-              rotulo={comAno('Plano de mobilidade', mob.PLANMOB_STATUS)}
-            />
-          </Grade>
-          <Fontes fontes={[
-            fonteMob('Contrato de ônibus', mob.CONTRATO), fonteMob('GTFS', mob.GTFS_PUBLICO),
-            fonteMob('GPS', mob.GPS_PUBLICO), fonteMob('Frota com GPS', mob.GPS_FROTA),
-            fonteMob('Plano de mobilidade', mob.PLANMOB_STATUS),
-          ]} />
-        </>
+        <Grade colunas={4}>
+          <Numero valor={texto(mob.CONTRATO, contrato)} rotulo={comAno('Ônibus com contrato licitado', mob.CONTRATO)} fonte={<Fonte v={mob.CONTRATO} />} />
+          <Numero valor={texto(mob.GTFS_PUBLICO)} rotulo={comAno('GTFS público', mob.GTFS_PUBLICO)} fonte={<Fonte v={mob.GTFS_PUBLICO} />} />
+          <Numero
+            valor={texto(mob.GPS_PUBLICO, mob.GPS_FROTA && `${mob.GPS_FROTA.valor} da frota com GPS`)}
+            rotulo={comAno('GPS dos ônibus público', mob.GPS_PUBLICO)}
+            fonte={<Fonte v={mob.GPS_PUBLICO ?? mob.GPS_FROTA} />}
+          />
+          <Numero
+            valor={texto(mob.PLANMOB_STATUS, mob.PLANMOB_ANO && `de ${mob.PLANMOB_ANO.valor}`)}
+            rotulo={comAno('Plano de mobilidade', mob.PLANMOB_STATUS)}
+            fonte={<Fonte v={mob.PLANMOB_STATUS} />}
+          />
+        </Grade>
       )}
     </Abas>
   );

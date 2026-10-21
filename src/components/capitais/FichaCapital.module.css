@@ -1,9 +1,5 @@
-.ficha > [role="tabpanel"] { min-height: 280px; padding: 24px 32px; }
+.ficha > [role="tabpanel"] { min-height: 280px; padding: 24px 32px; display: flex; flex-direction: column; justify-content: center; }
 
-
-.fontes { list-style: none; margin: 24px 0 0; padding: 16px 0 0; border-top: 1px solid var(--borda); font-size: 13px; font-weight: 300; display: grid; gap: 6px; }
-.fontes a { color: var(--verde-300); display: inline-flex; align-items: center; gap: 4px; }
-.fontes a:hover { text-decoration: underline; }
 
 @media (max-width: 600px) {
   .ficha > [role="tabpanel"] { padding: 16px; }
