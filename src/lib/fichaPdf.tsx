@@ -1,5 +1,6 @@
 /* Ficha da cidade em PDF (protótipo), gerada no build com @react-pdf/renderer.
    Todos os textos são modelos fixos preenchidos com os dados de lib/ficha.ts. */
+import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { Document, Font, Image, Link, Page, StyleSheet, Text, View, renderToBuffer } from '@react-pdf/renderer';
 import type { ComparacaoGrafico, DadosFicha, LinhaIndicador, SerieGrafico } from './ficha';
@@ -23,11 +24,11 @@ const FUNDO_CLARO = '#f4fefb';
 
 const s = StyleSheet.create({
   pagina: { fontFamily: 'Open Sans', fontSize: 9, color: '#0e110f', padding: '36 40 56 40' },
-  cabecalho: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', borderBottom: `2 solid ${VERDE}`, paddingBottom: 12, marginBottom: 14 },
+  cabecalho: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', borderBottom: `2 solid ${VERDE}`, paddingBottom: 12, marginBottom: 14 },
   sobretitulo: { fontSize: 9, color: VERDE_ESCURO, fontWeight: 700, letterSpacing: 1 },
   titulo: { fontSize: 22, fontWeight: 700, marginTop: 2 },
   sub: { fontSize: 9, color: CINZA, marginTop: 4 },
-  logo: { width: 100, height: 40 },
+  logo: { width: 121, height: 48 },
   secao: { fontSize: 12, fontWeight: 700, color: VERDE_ESCURO, marginTop: 10, marginBottom: 5 },
   grade: { flexDirection: 'row', flexWrap: 'wrap', backgroundColor: FUNDO_CLARO, borderRadius: 4, padding: 8 },
   item: { width: '33.33%', padding: 3 },
@@ -126,7 +127,7 @@ function Barras({ comp }: { comp: ComparacaoGrafico }) {
   );
 }
 
-function FichaDocumento({ d, url, logo }: { d: DadosFicha; url: string; logo: string }) {
+function FichaDocumento({ d, url, logo }: { d: DadosFicha; url: string; logo: Buffer }) {
   const c = d.capital;
   const v = d.valores;
   const mob = c.mobilidade;
@@ -136,13 +137,13 @@ function FichaDocumento({ d, url, logo }: { d: DadosFicha; url: string; logo: st
     <Document title={`Ficha da cidade — ${c.nome} (${c.uf}) — MobiliDADOS`} author="MobiliDADOS / ITDP Brasil" language="pt-BR">
       <Page size="A4" style={s.pagina}>
         <View style={s.cabecalho}>
-          <View style={{ maxWidth: '75%' }}>
+          <Image src={{ data: logo, format: 'png' }} style={s.logo} />
+          <View style={{ maxWidth: '68%', alignItems: 'flex-end', textAlign: 'right' }}>
             <Text style={s.sobretitulo}>FICHA DA CIDADE</Text>
             <Text style={s.titulo}>{c.nome} ({c.uf})</Text>
             {c.texto ? <Text style={s.sub}>{c.texto}</Text> : null}
             <Text style={s.sub}>Dados atualizados em {data(d.dadosAtualizadosEm)} · Ficha gerada em {data(d.geradaEm)}</Text>
           </View>
-          <Image src={logo} style={s.logo} />
         </View>
 
         <Text style={s.secao}>Informações gerais</Text>
@@ -219,7 +220,10 @@ function FichaDocumento({ d, url, logo }: { d: DadosFicha; url: string; logo: st
   );
 }
 
+// Lido como bytes: no Windows o react-pdf não abre caminhos do tipo C:\...
+const LOGO = readFileSync(join(RAIZ, 'public/img/logo-mobilidados-escuro.png'));
+
 /** PDF da ficha de uma capital, como bytes */
 export function gerarFichaPdf(d: DadosFicha, url: string): Promise<Buffer> {
-  return renderToBuffer(<FichaDocumento d={d} url={url} logo={join(RAIZ, 'public/img/logo-mobilidados.png')} />);
+  return renderToBuffer(<FichaDocumento d={d} url={url} logo={LOGO} />);
 }
