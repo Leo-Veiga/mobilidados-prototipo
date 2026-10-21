@@ -4,6 +4,18 @@
 .nivel label { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; height: 44px; }
 .nivel input { accent-color: var(--verde-500); width: 16px; height: 16px; }
 .destaque { width: 320px; max-width: 100%; }
+.selecao { border: 0; padding: 0; margin: 16px auto 0; max-width: 820px; text-align: center; }
+.selecao legend { width: 100%; text-align: center; margin-bottom: 8px; }
+.atalhos { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.atalho { min-height: 36px; padding: 0 14px; border-radius: 18px; border: 1px solid var(--borda); background: transparent; color: inherit; font: inherit; font-size: 14px; cursor: pointer; }
+.atalho[aria-pressed="true"] { border-color: var(--verde-500); color: var(--verde-300); }
+.atalho:hover { border-color: var(--verde-300); color: var(--verde-300); }
+.lista { margin-top: 12px; }
+.lista summary { cursor: pointer; color: var(--verde-300); font-size: 14px; }
+.caixas { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 4px 16px; margin-top: 12px; text-align: left; }
+.caixas label { display: inline-flex; align-items: center; gap: 8px; min-height: 32px; cursor: pointer; font-size: 14px; }
+.caixas input { accent-color: var(--verde-500); width: 16px; height: 16px; }
+.nota { font-size: 13px; font-weight: 300; margin: 12px 4px 0; }
 .bloco { margin: 48px 0; }
 .titulo { font-size: 30px; font-weight: 400; text-align: center; margin-bottom: 12px; }
 .texto { font-weight: 300; text-align: center; max-width: 720px; margin: 0 auto 24px; }

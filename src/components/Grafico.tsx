@@ -147,9 +147,11 @@ interface Props {
   imagem: InfoImagem;
   /** Botão "Mostrar valores" (valores escondidos de início). picoVale: rotula também o maior e o menor valor das linhas */
   valores?: boolean | { picoVale?: boolean };
+  /** Botões liga/desliga extras, ao lado de "Mostrar valores" (ex.: mediana) */
+  alternancias?: { ativo: boolean; aoAlternar: () => void; ligado: string; desligado: string }[];
 }
 
-export default function Grafico({ config, altura = 300, descricao, imagem, valores = PADRAO_VALORES }: Props) {
+export default function Grafico({ config, altura = 300, descricao, imagem, valores = PADRAO_VALORES, alternancias = [] }: Props) {
   const canvas = useRef<HTMLCanvasElement>(null);
   const [gerando, setGerando] = useState(false);
   const [mostrarValores, setMostrarValores] = useState(false);
@@ -184,6 +186,11 @@ export default function Grafico({ config, altura = 300, descricao, imagem, valor
         <canvas ref={canvas} role="img" aria-label={descricao} />
       </div>
       <div className={styles.acoes}>
+        {alternancias.map(a => (
+          <button key={a.ligado} type="button" className={styles.botao} aria-pressed={a.ativo} onClick={a.aoAlternar}>
+            {a.ativo ? a.ligado : a.desligado}
+          </button>
+        ))}
         {valores && (
           <button type="button" className={styles.botao} aria-pressed={mostrarValores} onClick={() => setMostrarValores(!mostrarValores)}>
             {mostrarValores ? 'Esconder valores' : 'Mostrar valores'}

@@ -9,7 +9,8 @@ import { capitais, catalogo, indicadoresPorNivel, listaIndicadores, rms } from '
 import { slugIndicador } from '@/lib/indicadores';
 import { enderecoFicha, fichaDoCodigo } from '@/lib/metodologia';
 import { codigosDe, TEMAS, type IndicadorPrincipal } from '@/lib/organizacao';
-import type { Nivel } from '@/lib/tipos';
+import { REGIAO_UF } from '@/lib/regioes';
+import type { Lugar, Nivel } from '@/lib/tipos';
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -47,9 +48,9 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   };
 }
 
-const LUGARES: Record<Nivel, { slug: string; nome: string; curto?: string }[]> = {
-  capitais: capitais.map(({ slug, nome }) => ({ slug, nome })),
-  rms: rms.map(({ slug, nome, curto }) => ({ slug, nome, curto })),
+const LUGARES: Record<Nivel, Lugar[]> = {
+  capitais: capitais.map(({ slug, nome, uf }) => ({ slug, nome, regiao: REGIAO_UF[uf] })),
+  rms: rms.map(({ slug, nome, curto, uf }) => ({ slug, nome, curto, regiao: REGIAO_UF[uf] })),
 };
 
 /** Código usado em cada nível (nas RMs alguns códigos têm outra grafia, ex.: "PERC_A PÉ") */

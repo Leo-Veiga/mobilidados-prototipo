@@ -11,6 +11,8 @@ export interface Lugar {
   slug: string;
   nome: string;
   curto?: string;
+  /** Grande região do país (atalhos de seleção nos gráficos) */
+  regiao?: string;
 }
 
 /** Nível geográfico dos dados */
