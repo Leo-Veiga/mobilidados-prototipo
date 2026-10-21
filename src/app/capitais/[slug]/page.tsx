@@ -4,7 +4,7 @@ import BotaoDados from '@/components/BotaoDados';
 import CabecalhoPagina from '@/components/CabecalhoPagina';
 import FichaCapital from '@/components/capitais/FichaCapital';
 import ListaIndicadoresLocal from '@/components/local/ListaIndicadoresLocal';
-import { capitais, capitalPorSlug, dadosFicha, estacoesTma, indicadoresDoLocal } from '@/lib/dados';
+import { capitais, capitalPorSlug, dadosFicha, indicadoresDoLocal } from '@/lib/dados';
 import { asset } from '@/lib/formato';
 import styles from './pagina.module.css';
 
@@ -37,14 +37,14 @@ export default async function PaginaCapital({ params }: Params) {
             Baixar ficha da cidade (PDF)
           </a>
         </p>
-        <p className="centro nota" style={{ margin: '8px 0 0' }}>Resumo de 3 páginas com os principais dados de {c.nome}, gerado automaticamente.</p>
+        <p className="centro nota" style={{ margin: '8px 0 0' }}>Resumo com os principais dados de {c.nome}, gerado automaticamente.</p>
       </CabecalhoPagina>
 
       <div className="container-texto">
         {c.texto && <p className={styles.apresentacao}>{c.texto}</p>}
 
         <section className={styles.bloco} aria-label="Dados da capital">
-          <FichaCapital c={c} ficha={dadosFicha('capitais', c.slug)} tma={estacoesTma('capitais', c.slug)} />
+          <FichaCapital c={c} ficha={dadosFicha('capitais', c.slug)} />
           <div className="centro"><BotaoDados href={asset('/dados/capitais-informacoes-gerais.csv')} /></div>
         </section>
 

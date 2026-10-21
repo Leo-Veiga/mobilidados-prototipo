@@ -5,15 +5,8 @@ import Abas from '@/components/Abas';
 import { IconeLink } from '@/components/Icones';
 import { Grade, Numero } from '@/components/local/Numeros';
 import { comAno, fmt, pct100 } from '@/lib/formato';
-import { MODOS_TMA, type Capital, type ModoTma, type TextoAno, type ValorAno } from '@/lib/tipos';
+import type { Capital, TextoAno, ValorAno } from '@/lib/tipos';
 import styles from './FichaCapital.module.css';
-
-const NOME_MODO: Record<(typeof MODOS_TMA)[number], string> = {
-  barca: 'Barca', brt: 'BRT', metro: 'Metrô', monotrilho: 'Monotrilho', trem: 'Trem', vlt: 'VLT',
-};
-
-/** Extensão da rede de TMA: levantamento anterior, sem ano registrado na planilha */
-const SEM_ANO = ' (ano não informado)';
 
 /** Na planilha, "-", "NA" e "N/A" significam "sem informação" */
 const valido = (v: string | null | undefined) => Boolean(v) && !['-', 'NA', 'N/A'].includes(v!.trim());
@@ -50,14 +43,11 @@ interface Props {
   c: Capital;
   /** Valor mais recente de população, área, densidade, perfil e renda, com o ano */
   ficha: Record<string, ValorAno>;
-  /** Estações de TMA por modo no ano mais recente do mapa TMA */
-  tma: { ano: number | null; modos: Partial<Record<ModoTma, number>> };
 }
 
 /** Ficha da capital, com as abas Informações gerais e Mobilidade */
-export default function FichaCapital({ c, ficha, tma }: Props) {
+export default function FichaCapital({ c, ficha }: Props) {
   const [aba, setAba] = useState<'info' | 'mob'>('info');
-  const modos = MODOS_TMA.filter(m => tma.modos[m] || c.tmaKm[m]);
   const pop = ficha.POP;
   const mob = c.mobilidade;
   const contrato = [mob.CONTRATO_INICIO && `desde ${mob.CONTRATO_INICIO.valor}`, mob.CONTRATO_PRAZO?.valor]
@@ -97,23 +87,10 @@ export default function FichaCapital({ c, ficha, tma }: Props) {
               rotulo={comAno('Plano de mobilidade', mob.PLANMOB_STATUS)}
             />
           </Grade>
-          <h3 className={styles.subtitulo}>
-            Estações{tma.ano ? ` (${tma.ano})` : ''} e extensão da rede de transporte de média e alta capacidade (TMA)
-          </h3>
-          {modos.length ? (
-            <Grade>
-              {modos.map(m => (
-                <Numero
-                  key={m} rotulo={NOME_MODO[m]}
-                  valor={<>{fmt(tma.modos[m] ?? 0, 0)} <small>{tma.modos[m] === 1 ? 'estação' : 'estações'}{c.tmaKm[m] ? <> · {fmt(c.tmaKm[m], 1)} km{SEM_ANO}</> : null}</small></>}
-                />
-              ))}
-            </Grade>
-          ) : <p className="centro nota">A capital não possui rede de transporte de média e alta capacidade.</p>}
           <Fontes fontes={[
             fonteMob('Contrato de ônibus', mob.CONTRATO), fonteMob('GTFS', mob.GTFS_PUBLICO),
             fonteMob('GPS', mob.GPS_PUBLICO), fonteMob('Frota com GPS', mob.GPS_FROTA),
-            fonteMob('Plano de mobilidade', mob.PLANMOB_STATUS), ['Rede de TMA', 'ITDP (mapa TMA)'],
+            fonteMob('Plano de mobilidade', mob.PLANMOB_STATUS),
           ]} />
         </>
       )}

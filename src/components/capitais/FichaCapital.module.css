@@ -1,6 +1,5 @@
 .ficha > [role="tabpanel"] { min-height: 280px; padding: 24px 32px; }
 
-.subtitulo { font-size: 16px; font-weight: 600; text-align: center; margin: 24px 0 0; padding-top: 24px; border-top: 1px solid var(--borda); }
 
 .fontes { list-style: none; margin: 24px 0 0; padding: 16px 0 0; border-top: 1px solid var(--borda); font-size: 13px; font-weight: 300; display: grid; gap: 6px; }
 .fontes a { color: var(--verde-300); display: inline-flex; align-items: center; gap: 4px; }

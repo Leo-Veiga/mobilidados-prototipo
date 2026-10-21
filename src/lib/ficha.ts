@@ -1,15 +1,18 @@
 /* Ficha da cidade (protótipo): reúne, para uma capital, os valores que vão para o PDF.
    Só cálculos sobre a base — nenhum texto livre. Toda frase do PDF é um modelo fixo
    preenchido com estes valores, para não haver conteúdo inventado. */
-import { capitais, dadosFicha as valoresFicha, estacoesTma, indicadoresCapitais, meta } from './dados';
+import { capitais, dadosFicha as valoresFicha, indicadoresCapitais, meta } from './dados';
 import { rotulo, unidade } from './indicadores';
-import type { Capital, ModoTma, ValorAno } from './tipos';
+import type { Capital, ValorAno } from './tipos';
 
 export { TEMAS } from './temas';
 import { TEMAS } from './temas';
 
 /** Indicadores com série longa o bastante para um gráfico de evolução na ficha */
-export const SERIES_GRAFICO = ['TX_MORT_TOT', 'TX_INTERN_TOT', 'TX_MOTO', 'PNT'];
+export const SERIES_GRAFICO = ['TX_MORT_TOT', 'TX_INTERN_TOT', 'TX_MOTO', 'PNT', 'kgCO2/hab'];
+
+/** Indicadores de um ano só (Censo 2022): gráfico comparando a capital com as demais */
+export const COMPARACOES_GRAFICO = ['TEMPO_MED', 'PERC_ACIMA_1H'];
 
 export interface LinhaIndicador {
   codigo: string;
@@ -31,17 +34,25 @@ export interface SerieGrafico {
   pontos: { ano: number; valor: number }[];
 }
 
+export interface ComparacaoGrafico {
+  codigo: string;
+  nome: string;
+  unidade: string;
+  ano: number;
+  /** Esta capital, mediana, maior e menor valor entre as capitais, do maior para o menor */
+  barras: { rotulo: string; valor: number; destaque: boolean }[];
+}
+
 export interface DadosFicha {
   capital: Capital;
   /** População, área, densidade, perfil e renda: valor mais recente, com o ano */
   valores: Record<string, ValorAno>;
-  /** Estações de TMA por modo no ano mais recente do mapa TMA */
-  tma: { ano: number | null; modos: Partial<Record<ModoTma, number>> };
   dadosAtualizadosEm: string;
   geradaEm: string;
   secoes: { titulo: string; linhas: LinhaIndicador[] }[];
   semDado: string[];
   series: SerieGrafico[];
+  comparacoes: ComparacaoGrafico[];
 }
 
 function mediana(v: number[]): number {
@@ -67,6 +78,24 @@ function linha(codigo: string, slug: string): LinhaIndicador | null {
   };
 }
 
+/** A capital ao lado da mediana e dos extremos entre as capitais, no último ano com dado dela */
+function comparacao(codigo: string, slug: string): ComparacaoGrafico | null {
+  const l = linha(codigo, slug);
+  if (!l) return null;
+  const doAno = capitais
+    .map(c => ({ nome: c.nome, valor: indicadoresCapitais[codigo][c.slug]?.[l.ano] }))
+    .filter((x): x is { nome: string; valor: number } => typeof x.valor === 'number')
+    .sort((a, b) => b.valor - a.valor);
+  const maior = doAno[0], menor = doAno[doAno.length - 1];
+  const barras = [
+    { rotulo: 'Esta capital', valor: l.valor, destaque: true },
+    { rotulo: 'Mediana das capitais', valor: l.mediana, destaque: false },
+    ...(l.posicao === 1 ? [] : [{ rotulo: `Maior: ${maior.nome}`, valor: maior.valor, destaque: false }]),
+    ...(l.posicao === l.totalComDado ? [] : [{ rotulo: `Menor: ${menor.nome}`, valor: menor.valor, destaque: false }]),
+  ].sort((a, b) => b.valor - a.valor);
+  return { codigo, nome: l.nome, unidade: l.unidade, ano: l.ano, barras };
+}
+
 export function dadosFicha(slug: string): DadosFicha | null {
   const capital = capitais.find(c => c.slug === slug);
   if (!capital) return null;
@@ -90,7 +119,8 @@ export function dadosFicha(slug: string): DadosFicha | null {
 
   return {
     capital, secoes, semDado, series,
-    valores: valoresFicha('capitais', slug), tma: estacoesTma('capitais', slug),
+    comparacoes: COMPARACOES_GRAFICO.map(c => comparacao(c, slug)).filter((x): x is ComparacaoGrafico => x !== null),
+    valores: valoresFicha('capitais', slug),
     dadosAtualizadosEm: meta.geradoEm,
     geradaEm: new Date().toISOString().slice(0, 10),
   };

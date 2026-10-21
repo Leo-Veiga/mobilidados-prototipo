@@ -2,8 +2,8 @@
    Todos os textos são modelos fixos preenchidos com os dados de lib/ficha.ts. */
 import { join } from 'node:path';
 import { Document, Font, Image, Link, Page, StyleSheet, Text, View, renderToBuffer } from '@react-pdf/renderer';
-import type { DadosFicha, LinhaIndicador, SerieGrafico } from './ficha';
-import { MODOS_TMA, type TextoAno, type ValorAno } from './tipos';
+import type { ComparacaoGrafico, DadosFicha, LinhaIndicador, SerieGrafico } from './ficha';
+import type { TextoAno, ValorAno } from './tipos';
 
 const RAIZ = process.cwd();
 Font.register({
@@ -61,7 +61,6 @@ const pct = (v: ValorAno) => (v == null ? 'sem dado' : `${num(v.valor, 1)}%`);
 const comAno = (rotulo: string, v: { ano: number } | null | undefined) => (v ? `${rotulo} (${v.ano})` : rotulo);
 const data = (iso: string) => new Date(iso + 'T12:00:00').toLocaleDateString('pt-BR');
 const valido = (v: string | undefined) => Boolean(v) && !['-', 'NA', 'N/A'].includes(v!.trim());
-const NOME_MODO: Record<string, string> = { barca: 'Barca', brt: 'BRT', metro: 'Metrô', monotrilho: 'Monotrilho', trem: 'Trem', vlt: 'VLT' };
 
 function Item({ valor, rotulo }: { valor: string; rotulo: string }) {
   return (
@@ -107,11 +106,30 @@ function Colunas({ serie }: { serie: SerieGrafico }) {
   );
 }
 
+/** Barras horizontais: a capital ao lado da mediana e dos extremos entre as capitais */
+function Barras({ comp }: { comp: ComparacaoGrafico }) {
+  const max = Math.max(...comp.barras.map(b => b.valor));
+  return (
+    <View style={s.grafico} wrap={false}>
+      <Text style={{ fontSize: 8, fontWeight: 700 }}>{comp.nome}</Text>
+      <Text style={{ fontSize: 7, color: CINZA, marginBottom: 6 }}>{comp.unidade} · {comp.ano}</Text>
+      {comp.barras.map(b => (
+        <View key={b.rotulo} style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 3 }}>
+          <Text style={{ width: '42%', fontSize: 6.5, color: b.destaque ? VERDE_ESCURO : CINZA, fontWeight: b.destaque ? 700 : 400 }}>{b.rotulo}</Text>
+          <View style={{ width: '43%', height: 7 }}>
+            <View style={{ width: `${Math.max(1, (100 * b.valor) / max)}%`, height: 7, backgroundColor: b.destaque ? VERDE_ESCURO : VERDE, opacity: b.destaque ? 1 : 0.55 }} />
+          </View>
+          <Text style={{ width: '15%', fontSize: 6.5, textAlign: 'right', fontWeight: b.destaque ? 700 : 400 }}>{dado(b.valor)}</Text>
+        </View>
+      ))}
+    </View>
+  );
+}
+
 function FichaDocumento({ d, url, logo }: { d: DadosFicha; url: string; logo: string }) {
   const c = d.capital;
   const v = d.valores;
   const mob = c.mobilidade;
-  const tma = MODOS_TMA.filter(m => d.tma.modos[m] || c.tmaKm[m]);
   const contrato = [mob.CONTRATO_INICIO && `desde ${mob.CONTRATO_INICIO.valor}`, mob.CONTRATO_PRAZO?.valor].filter(Boolean).join(', ');
   const texto = (t: TextoAno | undefined, detalhe?: string) => (t ? (detalhe ? `${t.valor} (${detalhe})` : t.valor) : 'sem dado');
   return (
@@ -146,22 +164,15 @@ function FichaDocumento({ d, url, logo }: { d: DadosFicha; url: string; logo: st
           <Item valor={texto(mob.GPS_PUBLICO, mob.GPS_FROTA && `${mob.GPS_FROTA.valor} da frota com GPS`)} rotulo={comAno('GPS dos ônibus público', mob.GPS_PUBLICO)} />
           <Item valor={texto(mob.GTFS_PUBLICO)} rotulo={comAno('Dados abertos de horários (GTFS)', mob.GTFS_PUBLICO)} />
           <Item valor={texto(mob.PLANMOB_STATUS, mob.PLANMOB_ANO && `de ${mob.PLANMOB_ANO.valor}`)} rotulo={comAno('Plano de mobilidade', mob.PLANMOB_STATUS)} />
-          {tma.length
-            ? tma.map(m => (
-              <Item
-                key={m} rotulo={`Rede de ${NOME_MODO[m]}`}
-                valor={`${num(d.tma.modos[m] ?? 0, 0)} estações${d.tma.ano ? ` (${d.tma.ano})` : ''}${c.tmaKm[m] ? ` · ${num(c.tmaKm[m])} km` : ''}`}
-              />
-            ))
-            : <Item valor="Não possui" rotulo="Rede de transporte de média e alta capacidade" />}
         </View>
         <Text style={s.nota}>
-          Fontes informadas na base: {[mob.CONTRATO, mob.GPS_PUBLICO, mob.GTFS_PUBLICO, mob.PLANMOB_STATUS].map(t => t?.fonte).filter(valido).join(' · ') || '—'} · Rede de média e alta capacidade: ITDP Brasil (extensão em km sem ano informado).
+          Fontes informadas na base: {[mob.CONTRATO, mob.GPS_PUBLICO, mob.GTFS_PUBLICO, mob.PLANMOB_STATUS].map(t => t?.fonte).filter(valido).join(' · ') || '—'}.
         </Text>
 
-        <Text style={s.secao}>Evolução de indicadores selecionados</Text>
+        <Text style={s.secao}>Indicadores selecionados</Text>
         <View style={s.graficos}>
           {d.series.map(serie => <Colunas key={serie.codigo} serie={serie} />)}
+          {d.comparacoes.map(comp => <Barras key={comp.codigo} comp={comp} />)}
         </View>
 
         <View style={s.rodape} fixed>
