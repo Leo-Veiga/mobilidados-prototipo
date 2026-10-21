@@ -13,7 +13,7 @@ export function generateStaticParams() {
 
 export async function GET(_: Request, { params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const d = dadosFicha(slug);
+  const d = dadosFicha('capitais', slug);
   if (!d) return new Response('Não encontrado', { status: 404 });
   const pdf = await gerarFichaPdf(d, `${URL_SITE}/capitais/${slug}/`);
   return new Response(new Uint8Array(pdf), {

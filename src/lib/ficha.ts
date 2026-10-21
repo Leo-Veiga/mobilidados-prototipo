@@ -1,9 +1,9 @@
-/* Ficha da cidade (protótipo): reúne, para uma capital, os valores que vão para o PDF.
+/* Ficha da cidade (protótipo): reúne, para uma capital ou região metropolitana, os valores que vão para o PDF.
    Só cálculos sobre a base — nenhum texto livre. Toda frase do PDF é um modelo fixo
    preenchido com estes valores, para não haver conteúdo inventado. */
-import { capitais, dadosFicha as valoresFicha, indicadoresCapitais, meta } from './dados';
+import { capitais, dadosFicha as valoresFicha, indicadoresPorNivel, meta, rms } from './dados';
 import { rotulo, unidade } from './indicadores';
-import type { Capital, ValorAno } from './tipos';
+import type { Capital, Nivel, RegiaoMetropolitana, ValorAno } from './tipos';
 
 export { TEMAS } from './temas';
 import { TEMAS } from './temas';
@@ -50,8 +50,25 @@ export interface ComparacaoGrafico {
   barras: { rotulo: string; valor: number; destaque: boolean }[];
 }
 
+/** Divisão modal da pesquisa OD mais recente (só regiões metropolitanas), em % */
+export interface DivisaoModal {
+  ano: number;
+  modos: { nome: string; valor: number }[];
+}
+
 export interface DadosFicha {
-  capital: Capital;
+  nivel: Nivel;
+  /** A capital ou a região metropolitana */
+  local: Capital | RegiaoMetropolitana;
+  /** Só capitais: campos da aba Mobilidade */
+  capital: Capital | null;
+  titulo: string;
+  sobretitulo: string;
+  /** Grupo de comparação: "capitais" ou "RMs" */
+  grupo: string;
+  /** Endereço da página do local, relativo à raiz do site */
+  caminho: string;
+  modal: DivisaoModal | null;
   /** População, área, densidade, perfil e renda: valor mais recente, com o ano */
   valores: Record<string, ValorAno>;
   dadosAtualizadosEm: string;
@@ -97,20 +114,20 @@ function avaliar(codigo: string, valor: number, med: number): Avaliacao {
 /** PNT e recortes: capitais sem TMA têm 0 e ficam fora da mediana e da posição */
 const SO_COM_TMA = (codigo: string) => codigo.startsWith('PNT');
 
-/** Valores das capitais no ano, só os que entram na comparação */
-function comparaveis(codigo: string, ano: number): number[] {
-  return Object.values(indicadoresCapitais[codigo])
+/** Valores dos locais do nível no ano, só os que entram na comparação */
+function comparaveis(nivel: Nivel, codigo: string, ano: number): number[] {
+  return Object.values(indicadoresPorNivel[nivel][codigo])
     .map(s => s[ano])
     .filter((v): v is number => typeof v === 'number' && (!SO_COM_TMA(codigo) || v > 0));
 }
 
 /** Comparação de um indicador entre as capitais, no último ano com dado da capital escolhida */
-function linha(codigo: string, slug: string): LinhaIndicador | null {
-  const serie = indicadoresCapitais[codigo]?.[slug];
+function linha(nivel: Nivel, codigo: string, slug: string): LinhaIndicador | null {
+  const serie = indicadoresPorNivel[nivel][codigo]?.[slug];
   if (!serie || !Object.keys(serie).length) return null;
   const ano = Math.max(...Object.keys(serie).map(Number));
   const valor = serie[ano];
-  const doAno = comparaveis(codigo, ano);
+  const doAno = comparaveis(nivel, codigo, ano);
   const ranqueada = !SO_COM_TMA(codigo) || valor > 0;
   return {
     codigo, nome: rotulo(codigo).replace('₂', '2'), unidade: unidade(codigo), valor, ano,
@@ -122,54 +139,75 @@ function linha(codigo: string, slug: string): LinhaIndicador | null {
 }
 
 /** A capital ao lado da mediana e dos extremos entre as capitais, no último ano com dado dela */
-function comparacao(codigo: string, slug: string): ComparacaoGrafico | null {
-  const l = linha(codigo, slug);
+function comparacao(nivel: Nivel, codigo: string, slug: string, grupo: string): ComparacaoGrafico | null {
+  const l = linha(nivel, codigo, slug);
   if (!l) return null;
-  const doAno = capitais
-    .map(c => ({ nome: c.nome, valor: indicadoresCapitais[codigo][c.slug]?.[l.ano] }))
+  const locais: { slug: string; nome: string }[] = nivel === 'capitais' ? capitais : rms.map(r => ({ slug: r.slug, nome: r.sigla }));
+  const doAno = locais
+    .map(c => ({ nome: c.nome, valor: indicadoresPorNivel[nivel][codigo][c.slug]?.[l.ano] }))
     .filter((x): x is { nome: string; valor: number } => typeof x.valor === 'number')
     .sort((a, b) => (b.valor - a.valor) * (sentido(codigo) || 1));
   // Do melhor para o pior (sem avaliação: do maior para o menor)
   const [primeiro, ultimo] = [doAno[0], doAno[doAno.length - 1]];
   const [r1, r2] = sentido(codigo) ? ['Melhor', 'Pior'] : ['Maior', 'Menor'];
   const barras = [
-    { rotulo: 'Esta capital', valor: l.valor, destaque: true },
-    { rotulo: 'Mediana das capitais', valor: l.mediana, destaque: false },
+    { rotulo: nivel === 'capitais' ? 'Esta capital' : 'Esta RM', valor: l.valor, destaque: true },
+    { rotulo: `Mediana das ${grupo}`, valor: l.mediana, destaque: false },
     ...(l.posicao === 1 ? [] : [{ rotulo: `${r1}: ${primeiro.nome}`, valor: primeiro.valor, destaque: false }]),
     ...(l.posicao === l.totalComDado ? [] : [{ rotulo: `${r2}: ${ultimo.nome}`, valor: ultimo.valor, destaque: false }]),
   ].sort((a, b) => b.valor - a.valor);
   return { codigo, nome: l.nome, unidade: l.unidade, ano: l.ano, barras };
 }
 
-export function dadosFicha(slug: string): DadosFicha | null {
-  const capital = capitais.find(c => c.slug === slug);
-  if (!capital) return null;
+/** Divisão modal ("a pé" aparece com e sem acento em versões da planilha) */
+const MODOS = [['A pé', ['PERC_A PÉ', 'PERC_A PE']], ['Bicicleta', ['PERC_BICI']], ['Coletivo', ['PERC_TRANSP_COLETIVO']], ['Individual motorizado', ['PERC_TRANSP_IND_MOTO']]] as const;
+
+function divisaoModal(nivel: Nivel, slug: string): DivisaoModal | null {
+  const series = MODOS.map(([, cods]) => cods.map(c => indicadoresPorNivel[nivel][c]?.[slug]).find(Boolean) ?? {});
+  const anos = Object.keys(series[0]).map(Number).filter(a => series.every(s => typeof s[a] === 'number'));
+  if (!anos.length) return null;
+  const ano = Math.max(...anos);
+  return { ano, modos: MODOS.map(([nome], i) => ({ nome, valor: series[i][ano] })) };
+}
+
+export function dadosFicha(nivel: Nivel, slug: string): DadosFicha | null {
+  const capital = nivel === 'capitais' ? capitais.find(c => c.slug === slug) ?? null : null;
+  const rm = nivel === 'rms' ? rms.find(r => r.slug === slug) ?? null : null;
+  const local = capital ?? rm;
+  if (!local) return null;
+  const ind = indicadoresPorNivel[nivel];
+  const grupo = nivel === 'capitais' ? 'capitais' : 'RMs';
   const secoes = TEMAS.map(t => ({
     titulo: t.titulo,
-    linhas: t.codigos.map(c => linha(c, slug)).filter((l): l is LinhaIndicador => l !== null),
+    linhas: t.codigos.map(c => linha(nivel, c, slug)).filter((l): l is LinhaIndicador => l !== null),
   })).filter(s => s.linhas.length);
 
-  // Indicadores existentes na base para outras capitais, mas sem dado para esta
+  // Indicadores existentes na base para outros locais do nível, mas sem dado para este
   const semDado = TEMAS.flatMap(t => t.codigos)
-    .filter(c => indicadoresCapitais[c] && !indicadoresCapitais[c][slug])
+    .filter(c => ind[c] && !ind[c][slug])
     .map(rotulo);
 
   const series = SERIES_GRAFICO.map(codigo => {
-    const s = indicadoresCapitais[codigo]?.[slug] ?? {};
+    const s = ind[codigo]?.[slug] ?? {};
     return {
       codigo, nome: rotulo(codigo).replace('₂', '2'), unidade: unidade(codigo),
       pontos: Object.keys(s).map(Number).sort((a, b) => a - b).map(ano => ({
         ano, valor: s[ano],
-        mediana: mediana(comparaveis(codigo, ano)),
+        mediana: mediana(comparaveis(nivel, codigo, ano)),
       })),
     };
   }).filter(s => s.pontos.length >= 3 && s.pontos.some(p => p.valor > 0)); // sem gráfico zerado (PNT sem TMA)
 
   return {
-    capital, secoes, semDado, series,
-    destaques: DESTAQUES.map(c => linha(c, slug)).filter((l): l is LinhaIndicador => l !== null),
-    comparacoes: COMPARACOES_GRAFICO.map(c => comparacao(c, slug)).filter((x): x is ComparacaoGrafico => x !== null),
-    valores: valoresFicha('capitais', slug),
+    nivel, local, capital, grupo,
+    titulo: capital ? `${capital.nome} (${capital.uf})` : rm!.nome,
+    sobretitulo: capital ? 'FICHA DA CIDADE' : `FICHA DA REGIÃO METROPOLITANA · ${rm!.sigla}`,
+    caminho: `/${nivel === 'capitais' ? 'capitais' : 'regioes-metropolitanas'}/${slug}/`,
+    modal: rm ? divisaoModal(nivel, slug) : null,
+    secoes, semDado, series,
+    destaques: DESTAQUES.map(c => linha(nivel, c, slug)).filter((l): l is LinhaIndicador => l !== null),
+    comparacoes: COMPARACOES_GRAFICO.map(c => comparacao(nivel, c, slug, grupo)).filter((x): x is ComparacaoGrafico => x !== null),
+    valores: valoresFicha(nivel, slug),
     dadosAtualizadosEm: meta.geradoEm,
     geradaEm: new Date().toISOString().slice(0, 10),
   };

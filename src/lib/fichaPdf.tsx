@@ -4,9 +4,10 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { Circle, Document, Font, Image, Link, Page, Path, Polyline, Rect, StyleSheet, Svg, Text, View, renderToBuffer } from '@react-pdf/renderer';
 import mapa from '@/data/mapa-brasil.json';
-import type { ComparacaoGrafico, DadosFicha, LinhaIndicador, SerieGrafico } from './ficha';
+import type { ComparacaoGrafico, DadosFicha, DivisaoModal, LinhaIndicador, SerieGrafico } from './ficha';
 import { ICONE, ICONE_INDICADOR, ICONE_TEMA } from './iconesPdf';
 import type { Capital, TextoAno, ValorAno } from './tipos';
+
 
 const RAIZ = process.cwd();
 Font.register({
@@ -33,7 +34,7 @@ const s = StyleSheet.create({
   sobretitulo: { fontSize: 8, color: VERDE_CLARO, fontWeight: 700, letterSpacing: 1 },
   titulo: { fontSize: 22, fontWeight: 700, marginTop: 1, color: '#ffffff' },
   sub: { fontSize: 8, color: '#e3f5ea', marginTop: 3 },
-  logo: { width: 121, height: 48 },
+  logo: { width: 121, height: 48, flexShrink: 0 },
   secao: { flexDirection: 'row', alignItems: 'center', marginTop: 10, marginBottom: 5 },
   secaoTexto: { fontSize: 12, fontWeight: 700, color: VERDE_ESCURO, marginLeft: 5 },
   destaques: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 2 },
@@ -89,8 +90,8 @@ function Secao({ icone, children, topo }: { icone: string; children: string; top
   );
 }
 
-/** Mapinha do Brasil (mesmo desenho da busca do site) com a capital marcada */
-function Mapinha({ c }: { c: Capital }) {
+/** Mapinha do Brasil (mesmo desenho da busca do site) com o local marcado */
+function Mapinha({ c }: { c: { lat: number | null; lon: number | null } }) {
   const ponto = c.lat != null && c.lon != null
     ? { x: (c.lon - mapa.lonMin) * mapa.cos * mapa.escala, y: (mapa.latMax - c.lat) * mapa.escala }
     : null;
@@ -103,7 +104,7 @@ function Mapinha({ c }: { c: Capital }) {
 }
 
 /** Cartão de destaque: valor mais recente e posição em relação à mediana das capitais */
-function Destaque({ l }: { l: LinhaIndicador }) {
+function Destaque({ l, grupo }: { l: LinhaIndicador; grupo: string }) {
   return (
     <View style={s.destaque}>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -113,9 +114,33 @@ function Destaque({ l }: { l: LinhaIndicador }) {
       <Text style={{ fontSize: 15, fontWeight: 700, marginTop: 3 }}>{dado(l.valor)}</Text>
       <Text style={{ fontSize: 6.5, color: CINZA }}>{l.unidade} · {l.ano}</Text>
       <Text style={{ fontSize: 6.5, marginTop: 2 }}>
-        <Text style={{ fontWeight: 700, color: VERDE_ESCURO }}>{l.posicao === 0 ? 'sem rede de TMA' : l.avaliacao ? `${l.posicao}ª de ${l.totalComDado} capitais` : ''}</Text>
+        <Text style={{ fontWeight: 700, color: VERDE_ESCURO }}>{l.posicao === 0 ? 'sem rede de TMA' : l.avaliacao ? `${l.posicao}ª de ${l.totalComDado} ${grupo}` : ''}</Text>
         <Text style={{ color: CINZA }}> · mediana {dado(l.mediana)}</Text>
       </Text>
+    </View>
+  );
+}
+
+const COR_MODO = [VERDE_ESCURO, VERDE, VERDE_CLARO, '#b9c3bd'];
+
+/** Divisão modal: barra empilhada e legenda com os percentuais */
+function Modal({ m }: { m: DivisaoModal }) {
+  return (
+    <View style={[s.grade, { flexDirection: 'column' }]}>
+      <View style={{ flexDirection: 'row', height: 12, borderRadius: 2, overflow: 'hidden', margin: '2 3 6 3' }}>
+        {m.modos.map((x, i) => <View key={x.nome} style={{ width: `${x.valor}%`, backgroundColor: COR_MODO[i] }} />)}
+      </View>
+      <View style={{ flexDirection: 'row' }}>
+        {m.modos.map((x, i) => (
+          <View key={x.nome} style={[s.item, { width: '25%', flexDirection: 'row', alignItems: 'flex-start' }]}>
+            <View style={{ width: 7, height: 7, backgroundColor: COR_MODO[i], marginTop: 4, marginRight: 4 }} />
+            <View>
+              <Text style={s.itemValor}>{dado(x.valor)}%</Text>
+              <Text style={s.itemRotulo}>{x.nome}</Text>
+            </View>
+          </View>
+        ))}
+      </View>
     </View>
   );
 }
@@ -191,22 +216,53 @@ function Barras({ comp }: { comp: ComparacaoGrafico }) {
   );
 }
 
-function FichaDocumento({ d, url, logo }: { d: DadosFicha; url: string; logo: Buffer }) {
-  const c = d.capital;
-  const v = d.valores;
+/** Aba Mobilidade da ficha (só capitais) */
+function Mobilidade({ c }: { c: Capital }) {
   const mob = c.mobilidade;
   const contrato = [mob.CONTRATO_INICIO && `desde ${mob.CONTRATO_INICIO.valor}`, mob.CONTRATO_PRAZO?.valor].filter(Boolean).join(', ');
   const texto = (t: TextoAno | undefined, detalhe?: string) => (t ? (detalhe ? `${t.valor} (${detalhe})` : t.valor) : 'sem dado');
   return (
-    <Document title={`Ficha da cidade — ${c.nome} (${c.uf}) — MobiliDADOS`} author="MobiliDADOS / ITDP Brasil" language="pt-BR">
+    <>
+      <Secao icone={ICONE.onibus}>Mobilidade</Secao>
+      <View style={s.grade}>
+        <Item valor={texto(mob.CONTRATO, contrato)} rotulo={comAno('Ônibus com contrato licitado', mob.CONTRATO)} largura="25%" />
+        <Item valor={texto(mob.GPS_PUBLICO, mob.GPS_FROTA && `${mob.GPS_FROTA.valor} da frota com GPS`)} rotulo={comAno('GPS dos ônibus público', mob.GPS_PUBLICO)} largura="25%" />
+        <Item valor={texto(mob.GTFS_PUBLICO)} rotulo={comAno('Dados abertos de horários (GTFS)', mob.GTFS_PUBLICO)} largura="25%" />
+        <Item valor={texto(mob.PLANMOB_STATUS, mob.PLANMOB_ANO && `de ${mob.PLANMOB_ANO.valor}`)} rotulo={comAno('Plano de mobilidade', mob.PLANMOB_STATUS)} largura="25%" />
+      </View>
+      <Text style={s.nota}>
+        Fontes:{' '}
+        {([['Contrato', mob.CONTRATO], ['GPS', mob.GPS_PUBLICO], ['GTFS', mob.GTFS_PUBLICO], ['Plano', mob.PLANMOB_STATUS]] as [string, TextoAno | undefined][])
+          .filter(([, t]) => valido(t?.fonte))
+          .map(([tema, t], i) => (
+            <Text key={tema}>
+              {i ? ' · ' : ''}{tema}:{' '}
+              {/^https?:\/\//.test(t!.fonte!) ? <Link src={t!.fonte!} style={{ color: VERDE_ESCURO }}>{dominio(t!.fonte!)}</Link> : t!.fonte}
+            </Text>
+          ))}
+      </Text>
+    </>
+  );
+}
+
+function FichaDocumento({ d, url, logo }: { d: DadosFicha; url: string; logo: Buffer }) {
+  const c = d.capital;
+  const local = d.local;
+  /** Nome curto do local, para a tabela e as frases */
+  const nome = c ? c.nome : 'sigla' in local ? local.sigla : local.nome;
+  /** Grupo de comparação por extenso */
+  const grupo = d.nivel === 'capitais' ? 'capitais' : 'regiões metropolitanas';
+  const v = d.valores;
+  return (
+    <Document title={`${c ? 'Ficha da cidade' : 'Ficha da região metropolitana'} — ${d.titulo} — MobiliDADOS`} author="MobiliDADOS / ITDP Brasil" language="pt-BR">
       <Page size="A4" style={s.pagina}>
         <View style={s.cabecalho}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', maxWidth: '72%' }}>
-            <Mapinha c={c} />
-            <View>
-              <Text style={s.sobretitulo}>FICHA DA CIDADE</Text>
-              <Text style={s.titulo}>{c.nome} ({c.uf})</Text>
-              {c.texto ? <Text style={s.sub}>{c.texto}</Text> : null}
+          <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1, marginRight: 16 }}>
+            <Mapinha c={local} />
+            <View style={{ flex: 1 }}>
+              <Text style={s.sobretitulo}>{d.sobretitulo}</Text>
+              <Text style={[s.titulo, d.titulo.length > 40 ? { fontSize: 14 } : c ? {} : { fontSize: 16 }]}>{d.titulo}</Text>
+              {local.texto ? <Text style={s.sub}>{local.texto}</Text> : null}
               <Text style={s.sub}>Dados atualizados em {data(d.dadosAtualizadosEm)} · Ficha gerada em {data(d.geradaEm)}</Text>
             </View>
           </View>
@@ -216,7 +272,7 @@ function FichaDocumento({ d, url, logo }: { d: DadosFicha; url: string; logo: Bu
         {d.destaques.length > 0 && (
           <>
             <Secao icone={ICONE.grafico} topo>Destaques</Secao>
-            <View style={s.destaques}>{d.destaques.map(l => <Destaque key={l.codigo} l={l} />)}</View>
+            <View style={s.destaques}>{d.destaques.map(l => <Destaque key={l.codigo} l={l} grupo={d.grupo} />)}</View>
           </>
         )}
 
@@ -225,7 +281,7 @@ function FichaDocumento({ d, url, logo }: { d: DadosFicha; url: string; logo: Bu
           <Item valor={num(v.POP?.valor, 0)} rotulo={comAno('População', v.POP)} />
           <Item valor={`${num(v.AREA_KM2?.valor)} km²`} rotulo={comAno('Área', v.AREA_KM2)} />
           <Item valor={`${num(v.DENS_URB?.valor, 0)} hab/km²`} rotulo={comAno('Densidade urbana', v.DENS_URB)} />
-          <Item valor={`${num(c.idhm, 3)}${c.faixaIdhm ? ` (${c.faixaIdhm})` : ''}`} rotulo="IDHM (2010)" />
+          <Item valor={`${num(local.idhm, 3)}${local.faixaIdhm ? ` (${local.faixaIdhm})` : ''}`} rotulo="IDHM (2010)" />
           <Item valor={`R$ ${num(v.RENDA_MED_PC?.valor, 0)}`} rotulo={comAno('Renda média domiciliar per capita', v.RENDA_MED_PC)} />
           <Item valor={pct(v.PERC_ATE_1SM_PC)} rotulo={comAno('Moradores com renda domiciliar per capita até 1 salário mínimo', v.PERC_ATE_1SM_PC)} />
           <Item valor={pct(v.PERC_NEGROS)} rotulo={comAno('População negra', v.PERC_NEGROS)} />
@@ -233,27 +289,16 @@ function FichaDocumento({ d, url, logo }: { d: DadosFicha; url: string; logo: Bu
           <Item valor={pct(v.PERC_HOMENS)} rotulo={comAno('Homens na população', v.PERC_HOMENS)} />
         </View>
 
-        <Secao icone={ICONE.onibus}>Mobilidade</Secao>
-        <View style={s.grade}>
-          <Item valor={texto(mob.CONTRATO, contrato)} rotulo={comAno('Ônibus com contrato licitado', mob.CONTRATO)} largura="25%" />
-          <Item valor={texto(mob.GPS_PUBLICO, mob.GPS_FROTA && `${mob.GPS_FROTA.valor} da frota com GPS`)} rotulo={comAno('GPS dos ônibus público', mob.GPS_PUBLICO)} largura="25%" />
-          <Item valor={texto(mob.GTFS_PUBLICO)} rotulo={comAno('Dados abertos de horários (GTFS)', mob.GTFS_PUBLICO)} largura="25%" />
-          <Item valor={texto(mob.PLANMOB_STATUS, mob.PLANMOB_ANO && `de ${mob.PLANMOB_ANO.valor}`)} rotulo={comAno('Plano de mobilidade', mob.PLANMOB_STATUS)} largura="25%" />
-        </View>
-        <Text style={s.nota}>
-          Fontes:{' '}
-          {([['Contrato', mob.CONTRATO], ['GPS', mob.GPS_PUBLICO], ['GTFS', mob.GTFS_PUBLICO], ['Plano', mob.PLANMOB_STATUS]] as [string, TextoAno | undefined][])
-            .filter(([, t]) => valido(t?.fonte))
-            .map(([tema, t], i) => (
-              <Text key={tema}>
-                {i ? ' · ' : ''}{tema}:{' '}
-                {/^https?:\/\//.test(t!.fonte!) ? <Link src={t!.fonte!} style={{ color: VERDE_ESCURO }}>{dominio(t!.fonte!)}</Link> : t!.fonte}
-              </Text>
-            ))}
-        </Text>
+        {c && <Mobilidade c={c} />}
+        {d.modal && (
+          <>
+            <Secao icone={ICONE.onibus}>{`Divisão modal — pesquisa origem-destino de ${d.modal.ano}`}</Secao>
+            <Modal m={d.modal} />
+          </>
+        )}
 
         <Secao icone={ICONE.grafico}>Indicadores selecionados</Secao>
-        <Text style={[s.nota, { marginTop: -3, marginBottom: 5 }]}>Barras: {c.nome}, último ano em destaque. Linha tracejada: mediana das capitais no mesmo ano.</Text>
+        <Text style={[s.nota, { marginTop: -3, marginBottom: 5 }]}>Barras: {nome}, último ano em destaque. Linha tracejada: mediana das {grupo} no mesmo ano.</Text>
         <View style={s.graficos}>
           {d.series.map(serie => <Colunas key={serie.codigo} serie={serie} />)}
           {d.comparacoes.map(comp => <Barras key={comp.codigo} comp={comp} />)}
@@ -266,11 +311,11 @@ function FichaDocumento({ d, url, logo }: { d: DadosFicha; url: string; logo: Bu
       </Page>
 
       <Page size="A4" style={s.pagina}>
-        <Secao icone={ICONE.grafico} topo>Indicadores — valor mais recente e comparação com as capitais</Secao>
+        <Secao icone={ICONE.grafico} topo>{`Indicadores — valor mais recente e comparação com as ${grupo}`}</Secao>
         <View style={[s.linha, { borderBottom: `1 solid ${CINZA}` }]}>
           <Text style={[s.cab, s.colNome]}>Indicador</Text>
           <Text style={[s.cab, s.colUnid]}>Unidade</Text>
-          <Text style={[s.cab, s.colValor]}>{c.nome}</Text>
+          <Text style={[s.cab, s.colValor]}>{nome}</Text>
           <Text style={[s.cab, s.colAno]}>Ano</Text>
           <Text style={[s.cab, s.colMedia]}>Mediana*</Text>
           <Text style={[s.cab, s.colPos]}>Posição**</Text>
@@ -289,15 +334,15 @@ function FichaDocumento({ d, url, logo }: { d: DadosFicha; url: string; logo: Bu
           </View>
         ))}
         {d.semDado.length > 0 && (
-          <Text style={s.nota}>Sem dado para {c.nome} na base atual: {[...new Set(d.semDado)].join('; ')}.</Text>
+          <Text style={s.nota}>Sem dado para {nome} na base atual: {[...new Set(d.semDado)].join('; ')}.</Text>
         )}
 
         <View style={s.caixaNota} wrap={false}>
           <Text style={{ fontWeight: 700, marginBottom: 3 }}>Como ler esta ficha</Text>
-          <Text>• Cada valor é o mais recente disponível para {c.nome}; o ano aparece entre parênteses.</Text>
-          <Text>• *Mediana: valor do meio entre as capitais com dado no mesmo ano (metade das capitais está acima e metade abaixo). Usamos a mediana porque ela não é distorcida por um único valor muito alto ou muito baixo.</Text>
-          <Text>• **Posição: ordem entre as capitais com dado no mesmo ano, do melhor para o pior resultado (1ª = melhor). Melhor é o menor valor em mortes, internações, tempo de viagem, motorização, emissões, tarifa e viagens de transporte individual, e o maior valor nos demais. "—" = indicador sem avaliação de melhor ou pior (como o % de negros entre as mortes, que depende do perfil da população).</Text>
-          <Text>• ***PNT: a mediana e a posição consideram só as capitais com rede de transporte de média e alta capacidade (TMA); as demais têm 0 e ficam fora da comparação.</Text>
+          <Text>• Cada valor é o mais recente disponível para {nome}; o ano aparece entre parênteses.</Text>
+          <Text>• *Mediana: valor do meio entre as {grupo} com dado no mesmo ano (metade está acima e metade abaixo). Usamos a mediana porque ela não é distorcida por um único valor muito alto ou muito baixo.</Text>
+          <Text>• **Posição: ordem entre as {grupo} com dado no mesmo ano, do melhor para o pior resultado (1ª = melhor). Melhor é o menor valor em mortes, internações, tempo de viagem, motorização, emissões, tarifa e viagens de transporte individual, e o maior valor nos demais. "—" = indicador sem avaliação de melhor ou pior (como o % de negros entre as mortes, que depende do perfil da população).</Text>
+          <Text>• ***PNT: a mediana e a posição consideram só as {grupo} com rede de transporte de média e alta capacidade (TMA); as demais têm 0 e ficam fora da comparação.</Text>
           <Text>• Esta ficha é gerada automaticamente a partir da base de dados da MobiliDADOS e não contém análise. Metodologia e fontes de cada indicador: ficha metodológica da MobiliDADOS.</Text>
           <Link src={url} style={{ color: VERDE_ESCURO, marginTop: 3 }}>Dados completos e séries históricas: {url}</Link>
         </View>
@@ -314,7 +359,7 @@ function FichaDocumento({ d, url, logo }: { d: DadosFicha; url: string; logo: Bu
 // Lido como bytes: no Windows o react-pdf não abre caminhos do tipo C:\...
 const LOGO = readFileSync(join(RAIZ, 'public/img/logo-mobilidados.png')); // branco, sobre a faixa verde
 
-/** PDF da ficha de uma capital, como bytes */
+/** PDF da ficha de uma capital ou região metropolitana, como bytes */
 export function gerarFichaPdf(d: DadosFicha, url: string): Promise<Buffer> {
   return renderToBuffer(<FichaDocumento d={d} url={url} logo={LOGO} />);
 }
